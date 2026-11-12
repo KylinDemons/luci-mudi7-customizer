@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+# Preserve user settings for reinstall. Only discard generated runtime data.
+if [ "${1:-}" = remove ]; then
+    rm -rf /var/run/mudi7-customizer /tmp/mudi7-customizer
+    rm -f /tmp/luci-indexcache /tmp/luci-indexcache.*
+    /etc/init.d/rpcd reload
+fi

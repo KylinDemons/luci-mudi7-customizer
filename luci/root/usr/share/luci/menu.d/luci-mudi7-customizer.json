@@ -1,0 +1,15 @@
+{
+  "admin/system/luci-mudi7-customizer": {
+    "title": "Mudi7 个性化",
+    "order": 76,
+    "action": {
+      "type": "view",
+      "path": "system/luci-mudi7-customizer"
+    },
+    "depends": {
+      "acl": [
+        "luci-mudi7-customizer"
+      ]
+    }
+  }
+}

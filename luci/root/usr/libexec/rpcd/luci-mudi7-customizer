@@ -1,0 +1,209 @@
+#!/usr/bin/python3
+"""Narrow rpcd API for Mudi7 personalization."""
+import fcntl
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+
+sys.dont_write_bytecode = True
+DASH = Path('/usr/libexec/mudi7-customizer')
+sys.path.insert(0, str(DASH))
+import battery_control as battery
+from link_probe_config import get_probe_host, set_probe_host
+from openclash_config import get_rule_group, set_rule_group
+
+DISABLED = battery.ROOT / 'screen-disabled'
+METHODS = {
+    'status': {},
+    'set_screen': {'enabled': True},
+    'set_battery': {'enabled': True, 'threshold': 0},
+    'set_rule_group': {'name': ''},
+    'set_link_host': {'host': ''},
+    'cleanup': {'confirm': True},
+}
+
+
+def service(name, action):
+    return subprocess.run(
+        ['/etc/init.d/' + name, action], stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL, timeout=5,
+    ).returncode == 0
+
+
+def run(what, *args):
+    """Run a helper script, reporting failures in terms of what the user asked
+    for rather than as a CalledProcessError repr in the LuCI status line."""
+    try:
+        subprocess.run(args, check=True, stdout=subprocess.DEVNULL, timeout=15)
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f'{what}超时，请稍后重试。') from exc
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError(f'{what}失败（退出码 {exc.returncode}），请稍后重试。') from exc
+
+
+def read_int(path):
+    try:
+        return int(battery.read(path))
+    except (OSError, ValueError):
+        return None
+
+
+def status():
+    cfg = battery.load(battery.CONFIG, battery.DEFAULT)
+    state = battery.load(battery.STATE, {})
+    running = service('batterycontrol', 'running')
+    gauge = read_int(battery.BAT / 'capacity')
+    voltage = read_int(battery.BAT / 'voltage_now')
+    online = read_int(battery.ONLINE)
+    supported = battery.supported()
+    fresh = 0 <= time.time() - state.get('updated', 0) < 25
+    threshold = cfg['threshold']
+    gauge_stop = next((n for n in range(101) if battery.gauge_to_display(n) >= threshold), None)
+    if not supported:
+        control = 'unsupported'
+    elif not cfg['enabled']:
+        control = 'off'
+    elif not running or not fresh:
+        control = 'inactive'
+    elif state.get('error'):
+        control = 'error'
+    elif state.get('blocked'):
+        control = 'held'
+    elif online == 0:
+        control = 'waiting'
+    else:
+        control = 'armed'
+    return {
+        'rule_group': get_rule_group(),
+        'link_host': get_probe_host(),
+        'screen_enabled': not DISABLED.exists() and service('homebutton', 'enabled'),
+        'screen_active': service('mudi7-dashboard', 'running'),
+        'stock_active': service('gl_screen', 'running'),
+        'battery': {
+            'enabled': cfg['enabled'], 'threshold': threshold, 'gauge_stop': gauge_stop,
+            'control': control, 'supported': supported,
+            'gauge': gauge,
+            'display': battery.gauge_to_display(gauge) if gauge is not None else None,
+            'online': online, 'voltage_mv': round(voltage / 1000) if voltage is not None else None,
+            'current_ma': read_int(battery.BAT / 'current_now'),
+        },
+    }
+
+
+def restore_pump():
+    """Re-enable the charge pump on teardown.
+
+    battery.release() deliberately leaves the pump alone: while the package is
+    installed the vendor daemon re-mirrors it on the next plug event, and
+    switching it back early can undo a gate that is still meant to hold. A
+    cleanup is different -- nothing of ours is left to fix it later, and on
+    supplies that actually reach the pump (9 V PD / PPS; its input sits behind
+    an 11.5 V OVP, so 12 V heads never get there) charge_en=0 would keep the
+    pack from charging until the next replug. Writing 1 cannot cost anything:
+    the vendor daemon owns this pin and rewrites it on its own schedule.
+    """
+    try:
+        if battery.read(battery.PUMP) != '1':
+            battery.PUMP.write_text('1\n')
+    except OSError:
+        pass
+
+
+def cleanup():
+    run('切回原厂屏幕', DASH / 'toggle.sh', 'disable')
+    if not service('batterycontrol', 'disable'):
+        raise RuntimeError('无法禁用限充服务的开机自启。')
+    # procd refuses to stop an instance that is already gone; only a service
+    # that is still running after a failed stop is a real problem.
+    if not service('batterycontrol', 'stop') and service('batterycontrol', 'running'):
+        raise RuntimeError('限充服务未能停止，请重试。')
+
+    # Wait for the daemon's shutdown handler. Keep its original voltage record
+    # until the restoration has succeeded, including after an unclean exit.
+    runtime = battery.STATE.parent
+    if runtime.exists():
+        deadline = time.monotonic() + 5
+        with battery.DAEMON_LOCK.open('a') as daemon_lock, battery.LOCK.open('a') as lock:
+            for fd in (daemon_lock, lock):
+                while True:
+                    try:
+                        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                        break
+                    except BlockingIOError:
+                        if time.monotonic() >= deadline:
+                            raise RuntimeError('限充服务尚未停止，请重试。')
+                        time.sleep(0.05)
+            battery.release()
+            restore_pump()
+    labels = {'mudi7-dashboard': '第三方屏幕', 'homebutton': '按键切换', 'batterycontrol': '限充'}
+    leftover = [labels[name] for name in labels if service(name, 'running')]
+    if leftover:
+        raise RuntimeError('以下服务仍在运行，请稍后重试：' + '、'.join(leftover))
+    if not service('gl_screen', 'running'):
+        raise RuntimeError('原厂屏幕尚未启动，请重试。')
+
+    for directory in (
+        runtime, Path('/tmp/mudi7-customizer'),
+        DASH / '__pycache__', battery.ROOT,
+    ):
+        try:
+            shutil.rmtree(directory)
+        except FileNotFoundError:
+            pass
+
+
+def handle(method, args):
+    if method == 'status':
+        return status()
+    if method == 'set_screen':
+        enabled = args.get('enabled')
+        if type(enabled) is not bool:
+            raise ValueError('屏幕开关必须为布尔值。')
+        run('启用第三方屏幕' if enabled else '切回原厂屏幕',
+            DASH / 'toggle.sh', 'enable' if enabled else 'disable')
+    elif method == 'set_battery':
+        enabled, threshold = args.get('enabled'), args.get('threshold')
+        if type(enabled) is not bool or type(threshold) is not int or not 50 <= threshold <= 100:
+            raise ValueError('限充目标必须为 50–100 的整数。')
+        battery.LOCK.parent.mkdir(parents=True, exist_ok=True)
+        battery.ensure_daemon()
+        battery.operate('configure', (enabled, threshold))
+    elif method == 'set_rule_group':
+        set_rule_group(args.get('name'))
+    elif method == 'set_link_host':
+        set_probe_host(args.get('host'))
+    elif method == 'cleanup':
+        if args.get('confirm') is not True:
+            raise ValueError('请先确认清理。')
+        cleanup()
+    return status()
+
+
+def main():
+    if sys.argv[1:] == ['list']:
+        print(json.dumps(METHODS))
+        return
+    if len(sys.argv) != 3 or sys.argv[1] != 'call' or sys.argv[2] not in METHODS:
+        sys.exit(1)
+    method = sys.argv[2]
+    try:
+        # Serialize LuCI writes without creating a state file that cleanup
+        # would have to unlink while another RPC is waiting on it.
+        with open(__file__, 'rb') as lock:
+            flags = fcntl.LOCK_SH if method == 'status' else fcntl.LOCK_EX
+            fcntl.flock(lock, flags | fcntl.LOCK_NB)
+            args = json.load(sys.stdin) if method != 'status' else {}
+            if not isinstance(args, dict):
+                raise ValueError('无效的请求参数。')
+            print(json.dumps({'ok': True, **handle(method, args)}, ensure_ascii=True))
+    except BlockingIOError:
+        print(json.dumps({'ok': False, 'error': '另一项操作正在运行，请稍后重试。'}))
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
+        print(json.dumps({'ok': False, 'error': str(exc)}))
+
+
+if __name__ == '__main__':
+    main()

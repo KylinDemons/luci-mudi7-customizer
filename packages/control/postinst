@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+
+# Check private dependencies before enabling either service.
+/usr/libexec/mudi7-customizer/dashboard-launch.sh --check
+
+chmod 755 /usr/libexec/mudi7-customizer/*.py /usr/libexec/mudi7-customizer/*.sh
+chmod 755 /etc/init.d/batterycontrol /etc/init.d/mudi7-dashboard /etc/init.d/homebutton
+
+/etc/init.d/batterycontrol enable
+/etc/init.d/batterycontrol restart
+
+if [ ! -e /etc/mudi7-customizer/screen-disabled ]; then
+    /etc/init.d/homebutton enable
+    /etc/init.d/homebutton restart
+fi
+
+rm -f /tmp/luci-indexcache /tmp/luci-indexcache.*
+/etc/init.d/rpcd reload
+
+exit 0

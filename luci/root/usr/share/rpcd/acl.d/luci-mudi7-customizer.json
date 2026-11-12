@@ -1,0 +1,29 @@
+{
+  "luci-mudi7-customizer": {
+    "description": "Manage the Mudi 7 dashboard and shared charge limit",
+    "read": {
+      "ubus": {
+        "luci-mudi7-customizer": [
+          "status"
+        ],
+        "luci-mudi7-customizer-preserve": [
+          "scan"
+        ]
+      }
+    },
+    "write": {
+      "ubus": {
+        "luci-mudi7-customizer": [
+          "set_screen",
+          "set_battery",
+          "set_rule_group",
+          "set_link_host",
+          "cleanup"
+        ],
+        "luci-mudi7-customizer-preserve": [
+          "save"
+        ]
+      }
+    }
+  }
+}

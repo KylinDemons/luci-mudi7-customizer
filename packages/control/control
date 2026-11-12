@@ -1,0 +1,9 @@
+Package: luci-mudi7-customizer
+Version: 1.0.0
+Architecture: aarch64_cortex-a53
+Maintainer: KylinDemons <KylinDemons@foxmail.com>
+Section: utils
+Priority: optional
+Depends: python3, python3-numpy, libtiff6, libjpeg, libwebp, zlib, libpng, luci-base
+Conflicts: gl-e5800-dashboard, glbattlimit
+Description: GL.iNet GL-E5800 Mudi7 Customizer

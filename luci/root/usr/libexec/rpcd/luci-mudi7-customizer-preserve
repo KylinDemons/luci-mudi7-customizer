@@ -1,0 +1,105 @@
+#!/usr/bin/python3
+"""Manage an explicitly selected A/B upgrade path list; never read contents."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import sys
+import tempfile
+
+RULE = Path('/lib/upgrade/keep.d/99-mudi7-user-config')
+INFO = Path('/usr/lib/opkg/info')
+KEEP = Path('/lib/upgrade/keep.d')
+METHODS = {'scan': {}, 'save': {'text': '', 'revision': ''}}
+SAFE = re.compile(r'^/(?:etc|data|var|bin|lib|sbin|usr)/[A-Za-z0-9_.+/-]+$')
+
+def revision(data):
+    return hashlib.sha256(data.encode()).hexdigest()
+
+def read_rule():
+    try:
+        if RULE.is_symlink():
+            raise ValueError('规则文件不能是符号链接。')
+        return RULE.read_text(encoding='utf-8')
+    except FileNotFoundError:
+        return ''
+
+def scan():
+    candidates = {}
+    def add(pkg, value):
+        value = value.strip()
+        if value.startswith('/') and len(value) < 512:
+            candidates.setdefault(value, set()).add(pkg)
+    for control in sorted(INFO.glob('*.control')):
+        pkg = control.name[:-8]
+        if not re.fullmatch(r'[A-Za-z0-9+_.-]+', pkg):
+            continue
+        for file in (INFO / (pkg + '.conffiles'), KEEP / pkg):
+            try:
+                if file.is_file() and file.stat().st_size < 65536:
+                    for line in file.read_text(errors='replace').splitlines():
+                        add(pkg, line)
+            except OSError:
+                continue
+        for path in ('/etc/config/' + pkg, '/etc/config/' + (pkg[9:] if pkg.startswith('luci-app-') else pkg), '/etc/' + pkg):
+            if os.path.exists(path):
+                add(pkg, path)
+    if Path('/etc/opkg').is_dir():
+        add('opkg（软件源和密钥）', '/etc/opkg/')
+    text = read_rule()
+    return {'text': text, 'revision': revision(text), 'candidates': [{'path': p, 'packages': sorted(v)} for p, v in sorted(candidates.items())]}
+
+def save(args):
+    text, old = args.get('text'), args.get('revision')
+    if not isinstance(text, str) or len(text.encode()) > 65536 or not isinstance(old, str):
+        raise ValueError('规则内容或版本无效。')
+    if revision(read_rule()) != old:
+        raise ValueError('规则文件已被其他操作修改，请刷新后重试。')
+    lines = []
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            lines.append(raw)
+            continue
+        if not SAFE.fullmatch(line) or '..' in line.split('/'):
+            raise ValueError('不支持的路径：' + line)
+        path = Path(line)
+        if any(part.is_symlink() for part in [path] + list(path.parents)):
+            raise ValueError('暂不支持符号链接路径：' + line)
+        if line.startswith(('/bin/', '/lib/', '/sbin/', '/usr/')) and path.is_dir():
+            raise ValueError('此类目录无法被 A/B 升级脚本递归复制：' + line)
+        lines.append(line)
+    if str(RULE) not in lines:
+        lines.append(str(RULE))
+    result = '\n'.join(lines).strip() + '\n'
+    RULE.parent.mkdir(parents=True, exist_ok=True)
+    fd, name = tempfile.mkstemp(prefix='.mudi7-preserve-', dir=str(RULE.parent))
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            f.write(result)
+            f.flush()
+            os.fsync(f.fileno())
+        os.chmod(name, 0o644)
+        os.replace(name, RULE)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+    return {'text': result, 'revision': revision(result)}
+
+def main():
+    if sys.argv[1:] == ['list']:
+        print(json.dumps(METHODS)); return
+    if len(sys.argv) != 3 or sys.argv[1] != 'call' or sys.argv[2] not in METHODS:
+        sys.exit(1)
+    try:
+        args = json.load(sys.stdin)
+        if not isinstance(args, dict):
+            raise ValueError('请求无效。')
+        result = scan() if sys.argv[2] == 'scan' else save(args)
+        print(json.dumps({'ok': True, **result}, ensure_ascii=True))
+    except (OSError, ValueError, UnicodeError) as exc:
+        print(json.dumps({'ok': False, 'error': str(exc)}, ensure_ascii=True))
+if __name__ == '__main__':
+    main()
