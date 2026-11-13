@@ -7,7 +7,7 @@
           "status"
         ],
         "luci-mudi7-customizer-preserve": [
-          "scan"
+          "status"
         ]
       }
     },
@@ -21,7 +21,7 @@
           "cleanup"
         ],
         "luci-mudi7-customizer-preserve": [
-          "save"
+          "set_enabled"
         ]
       }
     }
