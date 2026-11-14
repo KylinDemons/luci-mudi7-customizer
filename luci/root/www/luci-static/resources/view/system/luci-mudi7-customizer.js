@@ -6,6 +6,9 @@
 
 var object = 'luci-mudi7-customizer';
 var status = rpc.declare({ object: object, method: 'status', reject: true });
+var setStockI18n = rpc.declare({ object: object, method: 'stock_i18n', params: ['action'], reject: true });
+var setScreenModules = rpc.declare({ object: object, method: 'set_screen_modules', params: ['modules'], reject: true });
+var setScreenLanguage = rpc.declare({ object: object, method: 'set_screen_language', params: ['language'], reject: true });
 var setScreen = rpc.declare({ object: object, method: 'set_screen', params: ['enabled'], reject: true });
 var setBattery = rpc.declare({ object: object, method: 'set_battery', params: ['enabled', 'threshold'], reject: true });
 var setRuleGroup = rpc.declare({ object: object, method: 'set_rule_group', params: ['name'], reject: true });
@@ -17,14 +20,24 @@ var getFeedPreserve = rpc.declare({ object: preserveObject, method: 'status', re
 var setFeedPreserve = rpc.declare({ object: preserveObject, method: 'set_enabled', params: ['enabled', 'revision'], reject: true });
 
 var batteryStates = {
-	off: '限充已关闭',
-	inactive: '等待限充服务',
-	waiting: '等待接入 USB-C 电源',
-	armed: '限充已开启，允许充电',
-	held: '已达到目标，正在限制充电',
-	unsupported: '设备未提供限充接口',
-	error: '限充控制失败'
+	off: _("Charge limit disabled"),
+	inactive: _("Waiting for the charge limit service"),
+	waiting: _("Waiting for USB-C power"),
+	armed: _("Charge limit enabled, charging allowed"),
+	held: _("Target reached, charging limited"),
+	unsupported: _("Charge limit interface unavailable"),
+	error: _("Charge limit control failed")
 };
+
+function rpcError(result, fallback) {
+	if (!result || !result.error)
+		return fallback;
+	var params = (result.error_params || []).map(function (value) {
+		return Array.isArray(value) ? value.map(function (label) { return _(label); }).join(', ') :
+			typeof value === 'string' ? _(value) : value;
+	});
+	return String.prototype.format.apply(_(result.error), params);
+}
 
 function row(label, value) {
 	return E('tr', { 'class': 'tr' }, [
@@ -43,20 +56,20 @@ function section(title, children) {
 
 function preserveSection() {
 	var toggle = E('input', { type: 'checkbox', disabled: true });
-	var feedback = E('p', { role: 'status', 'aria-live': 'polite' }, '正在读取规则…');
+	var feedback = E('p', { role: 'status', 'aria-live': 'polite' }, _("Loading rules…"));
 	var revision = '', current = false;
 
 	function load() {
 		toggle.disabled = true;
 		return getFeedPreserve().then(function (result) {
 			if (!result || !result.ok)
-				throw new Error(result && result.error || '无法读取保留规则。');
+				throw new Error(rpcError(result, _("Unable to read preservation rules.")));
 			current = result.enabled;
 			revision = result.revision;
 			toggle.checked = current;
 			toggle.indeterminate = result.partial;
 			toggle.disabled = false;
-			feedback.textContent = result.partial ? '当前仅有部分路径在规则中，开启可补全两条规则。' : '';
+			feedback.textContent = result.partial ? _("Only some paths are currently listed. Enable this option to add both rules.") : '';
 		}).catch(function (error) {
 			feedback.textContent = error.message;
 		});
@@ -65,26 +78,26 @@ function preserveSection() {
 	toggle.addEventListener('change', function () {
 		var desired = toggle.checked;
 		toggle.disabled = true;
-		feedback.textContent = '正在保存…';
+		feedback.textContent = _("Saving…");
 		return setFeedPreserve(desired, revision).then(function (result) {
 			if (!result || !result.ok)
-				throw new Error(result && result.error || '保存失败。');
+				throw new Error(rpcError(result, _("Save failed.")));
 			current = result.enabled;
 			revision = result.revision;
 			toggle.checked = current;
 			toggle.indeterminate = result.partial;
-			feedback.textContent = '规则已保存。';
+			feedback.textContent = _("Rules saved.");
 			toggle.disabled = false;
 		}).catch(function (error) {
 			toggle.checked = current;
-			feedback.textContent = error.message + ' 请刷新页面后重试。';
+			feedback.textContent = error.message + ' ' + _("Please refresh the page and try again.");
 		});
 	});
 	load();
-	return section('系统升级软件源保留', [
-		E('p', {}, 'GL.iNet 固件有升级后自动重装已有插件的功能，此功能依赖软件源。如果使用了自定义软件源，可以将 /etc/opkg/customfeeds.conf 或 /etc/opkg/customfeeds.conf.d/ 下的配置文件加入 /lib/upgrade/keep.d/opkg，以便升级时保留。'),
-		E('p', {}, [E('label', {}, [toggle, ' 保留自定义软件源配置'])]),
-		E('p', {}, '开关同时管理 /etc/opkg/customfeeds.conf 和 /etc/opkg/customfeeds.conf.d/ 两条规则。升级时是否恢复取决于当前版本固件的保留逻辑，请另行备份重要配置。'),
+	return section(_("Preserve package feeds during firmware upgrades"), [
+		E('p', {}, _("GL.iNet firmware can automatically reinstall existing plugins after an upgrade. This requires package feeds. If you use custom feeds, you can add /etc/opkg/customfeeds.conf or the configuration files under /etc/opkg/customfeeds.conf.d/ to /lib/upgrade/keep.d/opkg to preserve them during upgrades.")),
+		E('p', {}, [E('label', {}, [toggle, ' ', _("Preserve custom package feed configuration")])]),
+		E('p', {}, _("This switch manages both /etc/opkg/customfeeds.conf and /etc/opkg/customfeeds.conf.d/. Restoration during upgrades depends on the preservation logic in the current firmware version. Back up important settings separately.")),
 		feedback
 	]);
 }
@@ -95,18 +108,42 @@ return view.extend({
 	},
 
 	render: function (initial) {
+		var stockState = E('p', { role: 'status', 'aria-live': 'polite' }, _("Loading stock UI status…"));
+		var stockWarning = E('p', { 'class': 'alert-message warning', role: 'alert', 'aria-live': 'polite', style: 'display: none' });
+		var stockData = {};
+		var screenLanguage = E('select', { disabled: true }, [
+			E('option', { value: 'zh-cn' }, _("Chinese")),
+			E('option', { value: 'en' }, _("English"))
+		]);
+		var moduleItems = [
+			['sim', _("Cellular")], ['monitor', _("Monitor")], ['battery', _("Battery")],
+			['openclash', 'OpenClash'], ['adguardhome', 'AdGuard Home'],
+			['tailscale', 'Tailscale'], ['settings', _("Settings")]
+		];
+		var moduleInputs = {}, selectedModules = moduleItems.map(function (item) { return item[0]; });
+		var moduleChoices = E('div', { role: 'group', 'aria-label': _("Visible screen modules") }, moduleItems.map(function (item) {
+			var input = E('input', { type: 'checkbox', disabled: true, 'data-screen-module': item[0] });
+			moduleInputs[item[0]] = input;
+			return E('label', { style: 'display: inline-block; margin-right: 1.2em; margin-bottom: .5em' }, [input, ' ', item[1]]);
+		}));
 		var screen = E('input', { type: 'checkbox', disabled: true });
 		var battery = E('input', { type: 'checkbox', disabled: true });
 		var ruleGroup = E('input', { type: 'text', disabled: true });
 		var linkHost = E('input', { type: 'text', placeholder: 'www.baidu.com', disabled: true });
 		var target = E('input', { type: 'number', min: 50, max: 100, step: 1, disabled: true });
-		var screenLabel = E('p', {}, '正在读取屏幕状态…');
-		var live = E('div', {}, '正在读取电池状态…');
+		var screenLabel = E('p', {}, _("Loading screen status…"));
+		var live = E('div', {}, _("Loading battery status…"));
 		var feedback = E('p', { 'role': 'status', 'aria-live': 'polite' });
 		var busy = false, available = false, dirtyEnabled = false, dirtyTarget = false, dirtyGroup = false, dirtyHost = false, revision = 0;
 
 		function controls() {
-			screen.disabled = busy || !available;
+			screen.disabled = screenLanguage.disabled = busy || !available;
+			moduleItems.forEach(function (item) {
+				var input = moduleInputs[item[0]];
+				input.disabled = busy || !available || (input.checked && selectedModules.length === 1);
+			});
+			applyStock.disabled = busy || !available || !stockData.supported || stockData.state !== 'original';
+			restoreStock.disabled = busy || !available || !stockData.can_restore;
 			battery.disabled = target.disabled = save.disabled = busy || !available;
 			ruleGroup.disabled = saveGroup.disabled = clean.disabled = busy || !available;
 			linkHost.disabled = saveHost.disabled = busy || !available;
@@ -114,10 +151,20 @@ return view.extend({
 
 		function update(data) {
 			if (!data || !data.ok)
-				throw new Error(data && data.error || '无法读取设备状态。');
+				throw new Error(rpcError(data, _("Unable to read device status.")));
 			var b = data.battery;
+			stockData = data.stock_i18n || {};
+			stockState.textContent = _("Current status") + ': ' + (stockData.state === 'applied' ? _("Chinese localization applied") :
+				stockData.state === 'original' ? _("Original stock UI") : _("Unknown (resources changed or backup incomplete)"));
+			if (!stockData.supported)
+				stockState.textContent += '. ' + _(stockData.reason || "The stock UI resource format or device is not supported. Check for plugin updates.");
+			stockWarning.textContent = stockData.warning ? _(stockData.warning) : '';
+			stockWarning.style.display = stockData.warning ? '' : 'none';
 			available = true;
 			screen.checked = data.screen_enabled;
+			screenLanguage.value = data.screen_language || 'zh-cn';
+			selectedModules = data.screen_modules || moduleItems.map(function (item) { return item[0]; });
+			moduleItems.forEach(function (item) { moduleInputs[item[0]].checked = selectedModules.indexOf(item[0]) !== -1; });
 			if (!dirtyGroup)
 				ruleGroup.value = data.rule_group;
 			if (!dirtyHost)
@@ -127,19 +174,19 @@ return view.extend({
 			if (!dirtyTarget)
 				target.value = b.threshold;
 
-			screenLabel.textContent = data.screen_active ? '当前显示：第三方屏幕' :
-				data.stock_active ? '当前显示：原厂屏幕' : '屏幕服务正在切换';
-			var controller = batteryStates[b.control] || '未知';
+			screenLabel.textContent = data.screen_active ? _("Current display: custom screen") :
+				data.stock_active ? _("Current display: stock screen") : _("Switching screen services");
+			var controller = batteryStates[b.control] || _("Unknown");
 			if (b.control === 'held' && b.current_ma > 0)
-				controller += '，当前仍测得充电电流';
+				controller += _("; charging current is still detected");
 			var rows = [
-				row('控制状态', controller),
-				row('当前电量', b.gauge == null ? '—' : '电量计 ' + b.gauge + '% / GL 界面约 ' + b.display + '%'),
-				row('USB-C 电源', b.online == null ? '—' : b.online ? '已接入' : '未接入'),
-				row('电池电压', measurement(b.voltage_mv, 'mV')),
-				row('电池电流', b.current_ma == null ? '—' : measurement(b.current_ma, 'mA') + '（正值表示充电，负值表示放电，零值表示电池未工作）'),
-				row('已保存阈值', b.threshold + '%（GL 刻度）' +
-					(b.gauge_stop == null ? '' : '，约电量计 ' + b.gauge_stop + '% 停止，低于此值恢复'))
+				row(_("Control status"), controller),
+				row(_("Battery level"), b.gauge == null ? '—' : _("Gauge %s%% / GL interface approximately %s%%").format(b.gauge, b.display)),
+				row(_("USB-C power"), b.online == null ? '—' : b.online ? _("Connected") : _("Disconnected")),
+				row(_("Battery voltage"), measurement(b.voltage_mv, 'mV')),
+				row(_("Battery current"), b.current_ma == null ? '—' : measurement(b.current_ma, 'mA') + ' ' + _("(positive: charging, negative: discharging, zero: battery inactive)")),
+				row(_("Saved threshold"), _("%s%% (GL scale)").format(b.threshold) +
+					(b.gauge_stop == null ? '' : _("; stops at approximately %s%% on the gauge and resumes below this level").format(b.gauge_stop)))
 			];
 			live.replaceChildren(E('table', { 'class': 'table' }, rows));
 			controls();
@@ -167,10 +214,10 @@ return view.extend({
 			busy = true;
 			revision++;
 			controls();
-			feedback.textContent = '正在应用…';
+			feedback.textContent = _("Applying…");
 			return Promise.resolve().then(action).then(function (data) {
 				if (!data || !data.ok)
-					throw new Error(data && data.error || '操作失败。');
+					throw new Error(rpcError(data, _("Operation failed.")));
 				if (resetInputs)
 					resetInputs();
 				update(data);
@@ -184,69 +231,94 @@ return view.extend({
 			});
 		}
 
+		moduleItems.forEach(function (item) {
+			moduleInputs[item[0]].addEventListener('change', function () {
+				var desired = moduleItems.filter(function (entry) { return moduleInputs[entry[0]].checked; }).map(function (entry) { return entry[0]; });
+				if (!desired.length) {
+					moduleInputs[item[0]].checked = true;
+					feedback.textContent = _("Select at least one screen module.");
+					controls();
+					return;
+				}
+				return apply(function () { return setScreenModules(desired); }, _("Screen modules saved."));
+			});
+		});
+		screenLanguage.addEventListener('change', function () {
+			var language = screenLanguage.value;
+			return apply(function () { return setScreenLanguage(language); }, _("Custom screen language saved."));
+		});
 		screen.addEventListener('change', function () {
 			var enabled = screen.checked;
-			apply(function () { return setScreen(enabled); }, enabled ? '第三方屏幕已启用。' : '已切回原厂屏幕。');
+			apply(function () { return setScreen(enabled); }, enabled ? _("Custom screen enabled.") : _("Switched to the stock screen."));
 		});
 		battery.addEventListener('change', function () { dirtyEnabled = true; });
 		target.addEventListener('input', function () { dirtyTarget = true; });
 
-		var save = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, '应用限充设置');
+		var applyStock = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Apply Chinese localization"));
+		applyStock.addEventListener('click', function () {
+			return apply(function () { return setStockI18n('apply'); }, _("Stock UI Chinese localization applied."));
+		});
+		var restoreStock = E('button', { 'class': 'btn cbi-button cbi-button-reset', type: 'button', disabled: true }, _("Restore changes"));
+		restoreStock.addEventListener('click', function () {
+			return apply(function () { return setStockI18n('restore'); }, _("Stock UI resources restored from the backup."));
+		});
+
+		var save = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Apply charge limit settings"));
 		save.addEventListener('click', function () {
 			var threshold = Number(target.value), enabled = battery.checked;
 			if (!Number.isInteger(threshold) || threshold < 50 || threshold > 100) {
-				feedback.textContent = '请输入 50–100 的整数。';
+				feedback.textContent = _("Enter an integer from 50 to 100.");
 				return;
 			}
-			apply(function () { return setBattery(enabled, threshold); }, '限充设置已应用。', function () {
+			apply(function () { return setBattery(enabled, threshold); }, _("Charge limit settings applied."), function () {
 				dirtyEnabled = dirtyTarget = false;
 			});
 		});
 
 		ruleGroup.addEventListener('input', function () { dirtyGroup = true; });
-		var saveGroup = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, '保存策略组');
+		var saveGroup = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Save proxy group"));
 		saveGroup.addEventListener('click', function () {
 			var name = ruleGroup.value;
 			if (!name.trim()) {
-				feedback.textContent = '请输入策略组名称。';
+				feedback.textContent = _("Enter a proxy group name.");
 				return;
 			}
-			apply(function () { return setRuleGroup(name); }, '策略组已保存，触屏将在下一次刷新时读取。', function () {
+			apply(function () { return setRuleGroup(name); }, _("Proxy group saved. The touchscreen will read it on the next refresh."), function () {
 				dirtyGroup = false;
 			});
 		});
 
 		linkHost.addEventListener('input', function () { dirtyHost = true; });
-		var saveHost = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, '保存探测地址');
+		var saveHost = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Save probe address"));
 		saveHost.addEventListener('click', function () {
 			var host = linkHost.value.trim();
 			if (!host) {
-				feedback.textContent = '请输入 IPv4 / IPv6 地址或域名。';
+				feedback.textContent = _("Enter an IPv4 / IPv6 address or domain name.");
 				return;
 			}
 			if (host.length > 253) {
-				feedback.textContent = '探测地址过长（最多 253 个字符）。';
+				feedback.textContent = _("Probe address is too long (maximum 253 characters).");
 				return;
 			}
-			apply(function () { return setLinkHost(host); }, '探测地址已保存，Monitor 页将在下一次探测时使用（约 3 秒）。', function () {
+			apply(function () { return setLinkHost(host); }, _("Probe address saved. The Monitor page will use it for the next probe (about 3 seconds)."), function () {
 				dirtyHost = false;
 			});
 		});
 
-		var clean = E('button', { 'class': 'btn cbi-button cbi-button-negative', type: 'button', disabled: true }, '卸载前清理');
+		var clean = E('button', { 'class': 'btn cbi-button cbi-button-negative', type: 'button', disabled: true }, _("Clean up before uninstalling"));
 		clean.addEventListener('click', function () {
-			ui.showModal('卸载前清理', [
-				E('p', {}, '此操作会切回原厂屏幕，停止第三方屏幕、按键切换和限充服务，并删除亮度、PIN、限充设置、链路探测地址和运行数据。清理后可在软件包管理中卸载本插件。'),
+			ui.showModal(_("Clean up before uninstalling"), [
+				E('p', {}, _("This will switch to the stock screen, stop the custom screen, button switching and charge limit services, and delete brightness, PIN, charge limit settings, the link probe address and runtime data. You can then uninstall this plugin in the package manager.")),
 				E('div', { 'class': 'right' }, [
-					E('button', { 'class': 'btn', type: 'button', click: ui.hideModal }, '取消'), ' ',
+					E('button', { 'class': 'btn', type: 'button', click: ui.hideModal }, _("Cancel")), ' ',
 					E('button', {
 						'class': 'btn cbi-button cbi-button-negative', type: 'button', click: function () {
 							ui.hideModal();
-							return apply(function () { return cleanup(true); }, '清理完成。现在可以卸载 luci-mudi7-customizer。', function () {
+							return apply(function () { return cleanup(true); }, _("Cleanup complete. You can now uninstall luci-mudi7-customizer."), function () {
 								dirtyEnabled = dirtyTarget = dirtyGroup = dirtyHost = false;
 							});
 						}
-					}, '确认清理')
+					}, _("Confirm cleanup"))
 				])
 			]);
 		});
@@ -256,28 +328,39 @@ return view.extend({
 		poll.add(refresh, 5);
 
 		return E('div', {}, [
-			E('h2', {}, 'Mudi7 个性化'),
-			section('第三方屏幕', [
-				E('label', {}, [screen, ' 启用第三方屏幕']),
-				E('p', {}, '开启后切到第三方屏幕，并启用原厂与第三方屏幕之间的按键切换（长按 Home 键 2 秒左右切换）。关闭后由原厂屏幕处理按键。'),
+			E('h2', {}, _("Mudi7 Customizer")),
+			section(_("Stock UI Chinese support"), [
+				E('p', {}, _("Matches the original language resources before applying and backs up all changed files. Unknown or changed entries stay unchanged. Layout fixes are applied only to verified screen resources. Restore changes returns files to their pre-localization state.")),
+				stockState,
+				stockWarning,
+				E('p', {}, [applyStock, ' ', restoreStock])
+			]),
+			section(_("Custom screen"), [
+				E('p', {}, [E('label', {}, [_("Interface language"), ' ', screenLanguage])]),
+				E('p', {}, _("The custom screen switches language within about one second, without restarting. Proxy node and group names stay unchanged.")),
+				E('label', {}, [screen, ' ', _("Enable custom screen")]),
+				E('p', {}, [E('strong', {}, _("Visible screen modules"))]),
+				moduleChoices,
+				E('p', {}, _("Checked modules appear on the custom screen. Select at least one. Hiding a module does not disable its service. Changes take effect within about one second.")),
+				E('p', {}, _("When enabled, switches to the custom screen and enables button switching between the stock and custom screens (hold Home for about 2 seconds). When disabled, the stock screen handles button input.")),
 				screenLabel,
 				E('hr'),
-				E('p', {}, [E('strong', {}, 'OpenClash 触屏设置')]),
-				E('p', {}, [E('label', {}, ['Rule 模式策略组 ', ruleGroup]), ' ', saveGroup]),
-				E('p', {}, '填写 Mihomo 配置中的完整手动选择组名称，区分大小写。默认是「默认代理」。Global 模式使用 GLOBAL。'),
+				E('p', {}, [E('strong', {}, _("OpenClash touchscreen settings"))]),
+				E('p', {}, [E('label', {}, [_("Rule mode proxy group"), ' ', ruleGroup]), ' ', saveGroup]),
+				E('p', {}, _("Enter the full name of the manual selection group in your Mihomo configuration. It is case-sensitive. The default is “默认代理”. Global mode uses GLOBAL.")),
 				E('hr'),
-				E('p', {}, [E('strong', {}, 'Monitor 链路探测')]),
-				E('p', {}, [E('label', {}, ['探测地址 ', linkHost]), ' ', saveHost]),
-				E('p', {}, 'Monitor 页的 Link Health 会向此地址发送 ICMP 探测：可填 IPv4（如 1.1.1.1）、IPv6（如 2400:3200::1）或域名（如 www.baidu.com，按 IPv4 探测），默认 www.baidu.com。探测只在 Monitor 页显示时进行，离开该页即停止。保存后约 3 秒内生效，无需重启屏幕服务。')
+				E('p', {}, [E('strong', {}, _("Monitor link probing"))]),
+				E('p', {}, [E('label', {}, [_("Probe address"), ' ', linkHost]), ' ', saveHost]),
+				E('p', {}, _("Link Health on the Monitor page sends ICMP probes to this address. Enter an IPv4 address (e.g. 1.1.1.1), an IPv6 address (e.g. 2400:3200::1), or a domain name (e.g. www.baidu.com, probed over IPv4). The default is www.baidu.com. Probing runs only while the Monitor page is visible and stops when you leave it. Changes take effect within about 3 seconds, without restarting the screen service."))
 			]),
-			section('电池限充', [
-				E('p', {}, [E('label', {}, [battery, ' 启用电池限充'])]),
-				E('p', {}, [E('label', {}, ['充电目标（GL 界面刻度，50–100%） ', target]), ' ', save]),
-				E('p', {}, '与第三方触屏共用设置。切回原厂屏幕后，电池限充可继续工作。')
+			section(_("Battery charge limit"), [
+				E('p', {}, [E('label', {}, [battery, ' ', _("Enable battery charge limit")])]),
+				E('p', {}, [E('label', {}, [_("Charge target (GL interface scale, 50–100%)"), ' ', target]), ' ', save]),
+				E('p', {}, _("Settings are shared with the custom touchscreen. The battery charge limit can remain active after switching to the stock screen."))
 			]),
-			section('电池状态', [live]),
+			section(_("Battery status"), [live]),
 			preserveSection(),
-			section('清理工具', [clean]),
+			section(_("Cleanup tools"), [clean]),
 			feedback
 		]);
 	},

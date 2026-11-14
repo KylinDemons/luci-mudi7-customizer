@@ -1,6 +1,6 @@
 {
   "admin/system/luci-mudi7-customizer": {
-    "title": "Mudi7 个性化",
+    "title": "Mudi7 Customizer",
     "order": 76,
     "action": {
       "type": "view",

@@ -1,5 +1,5 @@
 Package: luci-mudi7-customizer
-Version: 1.0.0
+Version: 1.0.2
 Architecture: aarch64_cortex-a53
 Maintainer: KylinDemons <KylinDemons@foxmail.com>
 Section: utils

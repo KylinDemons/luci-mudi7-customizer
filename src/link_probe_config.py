@@ -44,7 +44,7 @@ def host_family(value):
 
 def validate_host(value):
     if not isinstance(value, str):
-        raise ValueError('探测地址必须为文本。')
+        raise ValueError('The probe address must be text.')
     host = value.strip()
     # A trailing dot is a legal fully-qualified form; drop it for storage.
     if host.endswith('.'):
@@ -53,22 +53,22 @@ def validate_host(value):
     if host.startswith('[') and host.endswith(']'):
         host = host[1:-1]
     if not host:
-        raise ValueError('请输入探测地址，例如 1.1.1.1、2400:3200::1 或 www.baidu.com。')
+        raise ValueError('Enter a probe address, such as 1.1.1.1, 2400:3200::1 or www.baidu.com.')
     if len(host) > MAX_HOST_LEN:
-        raise ValueError('探测地址过长（最多 253 个字符）。')
+        raise ValueError('Probe address is too long (maximum 253 characters).')
 
     if '://' in host:
-        raise ValueError('只填写地址本身，不要包含 http:// 等前缀。')
+        raise ValueError('Enter only the address, without prefixes such as http://.')
     if host_family(host) in ('ipv4', 'ipv6'):
         return host
     if ':' in host:
-        raise ValueError('不是有效的 IPv6 地址；如需指定端口，请去掉端口号（探测不使用端口）。')
+        raise ValueError('Invalid IPv6 address. Remove any port number (probes do not use ports).')
     if all(char.isdigit() or char == '.' for char in host):
         # e.g. 192.168.8.999 -- a dotted quad that is not a valid address,
         # otherwise it would be accepted as a numeric hostname.
-        raise ValueError('这不是有效的 IPv4 地址。')
+        raise ValueError('Invalid IPv4 address.')
     if not all(_LABEL.match(label) for label in host.split('.')):
-        raise ValueError('请输入有效的域名（如 www.baidu.com）、IPv4 地址（如 1.1.1.1）或 IPv6 地址（如 2400:3200::1）。')
+        raise ValueError('Enter a valid domain name (e.g. www.baidu.com), IPv4 address (e.g. 1.1.1.1) or IPv6 address (e.g. 2400:3200::1).')
     return host
 
 

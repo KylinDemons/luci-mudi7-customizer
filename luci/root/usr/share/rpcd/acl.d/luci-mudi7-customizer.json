@@ -18,7 +18,10 @@
           "set_battery",
           "set_rule_group",
           "set_link_host",
-          "cleanup"
+          "cleanup",
+          "stock_i18n",
+          "set_screen_language",
+          "set_screen_modules"
         ],
         "luci-mudi7-customizer-preserve": [
           "set_enabled"

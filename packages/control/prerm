@@ -1,6 +1,12 @@
 #!/bin/sh
 set -e
 
+# Restore while the module and bundled compatibility profile still exist.
+# Abort removal on a stale/damaged backup instead of discarding recovery data.
+if [ "${1:-}" = remove ] && [ -d /etc/mudi7-stock-i18n ]; then
+    /usr/bin/python3 /usr/libexec/mudi7-customizer/stock_i18n.py restore
+fi
+
 # If the custom dashboard is currently the active screen, switch back to
 # the stock gl_screen UI before removing its files, so uninstalling never
 # leaves the physical screen blank or crash-looping.
@@ -14,5 +20,8 @@ fi
 
 /etc/init.d/homebutton stop 2>/dev/null || true
 /etc/init.d/homebutton disable 2>/dev/null || true
+
+# Remove only this plugin's ephemeral AdGuard statistics credentials.
+rm -f /tmp/gl_token_mudi7-customizer-*
 
 exit 0

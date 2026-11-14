@@ -1,0 +1,310 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid " (positive: charging, negative: discharging, zero: battery inactive)"
+msgstr ""
+
+msgid " Enable battery charge limit"
+msgstr ""
+
+msgid " Enable custom screen"
+msgstr ""
+
+msgid " Please refresh the page and try again."
+msgstr ""
+
+msgid " Preserve custom package feed configuration"
+msgstr ""
+
+#, javascript-format
+msgid "%s failed (exit code %s). Please try again later."
+msgstr ""
+
+#, javascript-format
+msgid "%s timed out. Please try again later."
+msgstr ""
+
+#, javascript-format
+msgid "%s%% (GL scale)"
+msgstr ""
+
+msgid "; charging current is still detected"
+msgstr ""
+
+#, javascript-format
+msgid "; stops at approximately %s%% on the gauge and resumes below this level"
+msgstr ""
+
+msgid "Another operation is running. Please try again later."
+msgstr ""
+
+msgid "Apply charge limit settings"
+msgstr ""
+
+msgid "Applying…"
+msgstr ""
+
+msgid "Battery charge limit"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level"
+msgstr ""
+
+msgid "Battery status"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
+
+msgid "Button switching"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Charge limit"
+msgstr ""
+
+msgid "Charge limit control failed"
+msgstr ""
+
+msgid "Charge limit disabled"
+msgstr ""
+
+msgid "Charge limit enabled, charging allowed"
+msgstr ""
+
+msgid "Charge limit interface unavailable"
+msgstr ""
+
+msgid "Charge limit settings applied."
+msgstr ""
+
+msgid "Charge target (GL interface scale, 50–100%) "
+msgstr ""
+
+msgid "Clean up before uninstalling"
+msgstr ""
+
+msgid "Cleanup complete. You can now uninstall luci-mudi7-customizer."
+msgstr ""
+
+msgid "Cleanup tools"
+msgstr ""
+
+msgid "Confirm cleanup"
+msgstr ""
+
+msgid "Connected"
+msgstr ""
+
+msgid "Control status"
+msgstr ""
+
+msgid "Current display: custom screen"
+msgstr ""
+
+msgid "Current display: stock screen"
+msgstr ""
+
+msgid "Custom screen"
+msgstr ""
+
+msgid "Custom screen enabled."
+msgstr ""
+
+msgid "Disconnected"
+msgstr ""
+
+msgid "Enable the custom screen"
+msgstr ""
+
+msgid "Enter a probe address, such as 1.1.1.1, 2400:3200::1 or www.baidu.com."
+msgstr ""
+
+msgid "Enter a proxy group name."
+msgstr ""
+
+msgid "Enter a valid domain name (e.g. www.baidu.com), IPv4 address (e.g. 1.1.1.1) or IPv6 address (e.g. 2400:3200::1)."
+msgstr ""
+
+msgid "Enter an IPv4 / IPv6 address or domain name."
+msgstr ""
+
+msgid "Enter an integer from 50 to 100."
+msgstr ""
+
+msgid "Enter only the address, without prefixes such as http://."
+msgstr ""
+
+msgid "Enter the actual Rule mode proxy group name (maximum 256 bytes; GLOBAL is not allowed)."
+msgstr ""
+
+msgid "Enter the full name of the manual selection group in your Mihomo configuration. It is case-sensitive. The default is “默认代理”. Global mode uses GLOBAL."
+msgstr ""
+
+msgid "GL.iNet firmware can automatically reinstall existing plugins after an upgrade. This requires package feeds. If you use custom feeds, you can add /etc/opkg/customfeeds.conf or the configuration files under /etc/opkg/customfeeds.conf.d/ to /lib/upgrade/keep.d/opkg to preserve them during upgrades."
+msgstr ""
+
+#, javascript-format
+msgid "Gauge %s%% / GL interface approximately %s%%"
+msgstr ""
+
+msgid "Invalid IPv4 address."
+msgstr ""
+
+msgid "Invalid IPv6 address. Remove any port number (probes do not use ports)."
+msgstr ""
+
+msgid "Invalid request parameters."
+msgstr ""
+
+msgid "Invalid request."
+msgstr ""
+
+msgid "Invalid switch state or rule revision."
+msgstr ""
+
+msgid "Link Health on the Monitor page sends ICMP probes to this address. Enter an IPv4 address (e.g. 1.1.1.1), an IPv6 address (e.g. 2400:3200::1), or a domain name (e.g. www.baidu.com, probed over IPv4). The default is www.baidu.com. Probing runs only while the Monitor page is visible and stops when you leave it. Changes take effect within about 3 seconds, without restarting the screen service."
+msgstr ""
+
+msgid "Loading battery status…"
+msgstr ""
+
+msgid "Loading rules…"
+msgstr ""
+
+msgid "Loading screen status…"
+msgstr ""
+
+msgid "Monitor link probing"
+msgstr ""
+
+msgid "Mudi7 Customizer"
+msgstr ""
+
+msgid "Only some paths are currently listed. Enable this option to add both rules."
+msgstr ""
+
+msgid "OpenClash touchscreen settings"
+msgstr ""
+
+msgid "Operation failed."
+msgstr ""
+
+msgid "Please confirm cleanup first."
+msgstr ""
+
+msgid "Preserve package feeds during firmware upgrades"
+msgstr ""
+
+msgid "Probe address "
+msgstr ""
+
+msgid "Probe address is too long (maximum 253 characters)."
+msgstr ""
+
+msgid "Probe address saved. The Monitor page will use it for the next probe (about 3 seconds)."
+msgstr ""
+
+msgid "Proxy group saved. The touchscreen will read it on the next refresh."
+msgstr ""
+
+msgid "Rule mode proxy group "
+msgstr ""
+
+msgid "Rules saved."
+msgstr ""
+
+msgid "Save failed."
+msgstr ""
+
+msgid "Save probe address"
+msgstr ""
+
+msgid "Save proxy group"
+msgstr ""
+
+msgid "Saved threshold"
+msgstr ""
+
+msgid "Saving…"
+msgstr ""
+
+msgid "Settings are shared with the custom touchscreen. The battery charge limit can remain active after switching to the stock screen."
+msgstr ""
+
+msgid "Switch to the stock screen"
+msgstr ""
+
+msgid "Switched to the stock screen."
+msgstr ""
+
+msgid "Switching screen services"
+msgstr ""
+
+msgid "Target reached, charging limited"
+msgstr ""
+
+msgid "The charge limit service failed to stop. Please try again."
+msgstr ""
+
+msgid "The charge limit service has not stopped yet. Please try again."
+msgstr ""
+
+msgid "The charge target must be an integer from 50 to 100."
+msgstr ""
+
+msgid "The probe address must be text."
+msgstr ""
+
+msgid "The rule file has been modified by another operation. Refresh the page and try again."
+msgstr ""
+
+msgid "The rule file must not be a symbolic link."
+msgstr ""
+
+msgid "The screen switch must be a boolean."
+msgstr ""
+
+msgid "The stock screen has not started yet. Please try again."
+msgstr ""
+
+#, javascript-format
+msgid "These services are still running. Please try again later: %s"
+msgstr ""
+
+msgid "This switch manages both /etc/opkg/customfeeds.conf and /etc/opkg/customfeeds.conf.d/. Restoration during upgrades depends on the preservation logic in the current firmware version. Back up important settings separately."
+msgstr ""
+
+msgid "This will switch to the stock screen, stop the custom screen, button switching and charge limit services, and delete brightness, PIN, charge limit settings, the link probe address and runtime data. You can then uninstall this plugin in the package manager."
+msgstr ""
+
+msgid "USB-C power"
+msgstr ""
+
+msgid "Unable to disable charge limit service autostart."
+msgstr ""
+
+msgid "Unable to read device status."
+msgstr ""
+
+msgid "Unable to read preservation rules."
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Waiting for USB-C power"
+msgstr ""
+
+msgid "Waiting for the charge limit service"
+msgstr ""
+
+msgid "When enabled, switches to the custom screen and enables button switching between the stock and custom screens (hold Home for about 2 seconds). When disabled, the stock screen handles button input."
+msgstr ""
+

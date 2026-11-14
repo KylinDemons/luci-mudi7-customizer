@@ -1,0 +1,4660 @@
+{
+  "entries": {
+    "ABORT": {
+      "source": "\"Abort\"",
+      "translated": "\"中止\""
+    },
+    "ADGUARDHOME_BLOCK_ADULT_WEBSITES_CARD_LABEL_TEXT": {
+      "source": "\"Blocked adult websites\"",
+      "translated": "\"已拦截成人网站\""
+    },
+    "ADGUARDHOME_BLOCK_FILTERS_CARD_LABEL_TEXT": {
+      "source": "\"Blocked by Filters\"",
+      "translated": "\"过滤器已拦截\""
+    },
+    "ADGUARDHOME_BLOCK_MALWARE_CARD_LABEL_TEXT": {
+      "source": "\"Blocked malware /phishing\"",
+      "translated": "\"已拦截恶意软件/钓鱼网站\""
+    },
+    "ADGUARDHOME_DNS_QUERIES_CARD_LABEL_TEXT": {
+      "source": "\"DNS Queries\"",
+      "translated": "\"DNS 查询\""
+    },
+    "ADGUARDHOME_ENABLE_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "ADGUARDHOME_HANDLE_CLIENT_REQ_ENABLE_LABEL_TEXT": {
+      "source": "\"AG Home Handle Client Requests\"",
+      "translated": "\"由 AdGuard Home 处理客户端请求\""
+    },
+    "ADGUARDHOME_REMINDER_LABEL_TEXT": {
+      "source": "\"*If this option is enabled, DNS queries from client devices will be handled directly by AdGuard Home, which will invalidate the domain-based VPN policy and parental control rules.\"",
+      "translated": "\"*启用后，客户端设备的 DNS 查询将直接由 AdGuard Home 处理，基于域名的 VPN 策略和家长控制规则将失效。\""
+    },
+    "ADGUARDHOME_TITLE_LABEL_TEXT": {
+      "source": "\"AdGuard Home\"",
+      "translated": "\"AdGuard Home\""
+    },
+    "APPLY": {
+      "source": "\"Apply\"",
+      "translated": "\"应用\""
+    },
+    "ATTENTION": {
+      "source": "\"Attention\"",
+      "translated": "\"注意\""
+    },
+    "AUTO": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "BACK": {
+      "source": "\"Back\"",
+      "translated": "\"返回\""
+    },
+    "BANDWIDTH": {
+      "source": "\"Bandwidth\"",
+      "translated": "\"带宽\""
+    },
+    "BATTERY@ERR_LABEL_TEXT": {
+      "source": "\"Battery Error\\nRunning on external power\"",
+      "translated": "\"电池错误\\n外部电源供电中\""
+    },
+    "BOLD_10_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_1_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_2_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_3_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_4_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_5_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_6_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_7_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_8_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BOLD_9_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "BRIDGE_MODE_APPLY_BUTTON_TEXT": {
+      "source": "\"Apply\"",
+      "translated": "\"应用\""
+    },
+    "BRIDGE_MODE_AP_LABEL_TEXT": {
+      "source": "\"Access Point Mode\"",
+      "translated": "\"接入点模式\""
+    },
+    "BRIDGE_MODE_EXTENDER_LABEL_TEXT": {
+      "source": "\"Extender Mode\"",
+      "translated": "\"扩展器模式\""
+    },
+    "BRIDGE_MODE_NETWORK_MODE_TITLE_TEXT": {
+      "source": "\"Network Mode\"",
+      "translated": "\"网络模式\""
+    },
+    "BRIDGE_MODE_PASSTHROUGH_LABEL_TEXT": {
+      "source": "\"IP Passthrough\"",
+      "translated": "\"IP 透传\""
+    },
+    "BRIDGE_MODE_ROUTER_LABEL_TEXT": {
+      "source": "\"Router Mode\"",
+      "translated": "\"路由器模式\""
+    },
+    "BRIDGE_MODE_UNKNOWN_LABEL_TEXT": {
+      "source": "\"Unknown Mode\"",
+      "translated": "\"未知模式\""
+    },
+    "BRIDGE_MODE_WDS_LABEL_TEXT": {
+      "source": "\"WDS Mode\"",
+      "translated": "\"WDS 模式\""
+    },
+    "CAUTION": {
+      "source": "\"Caution\"",
+      "translated": "\"注意\""
+    },
+    "CELLULAR_APN_ATTR_LABEL_TEXT": {
+      "source": "\"APN\"",
+      "translated": "\"APN\""
+    },
+    "CELLULAR_CONNECT@FAILED_LABEL_TEXT": {
+      "source": "\"Connection failed...\"",
+      "translated": "\"连接失败...\""
+    },
+    "CELLULAR_CONNECTING_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "CELLULAR_CONNECT_LABEL_TEXT": {
+      "source": "\"Connect\"",
+      "translated": "\"连接\""
+    },
+    "CELLULAR_DATA_LIMIT@REMINDER_LABEL_TEXT": {
+      "source": "\"*For time reset cycle and time settings, please go to the Admin Panel at %s\"",
+      "translated": "\"*重置周期和时间设置，请前往管理面板 %s\""
+    },
+    "CELLULAR_DATA_LIMIT@TITLE_LABEL_TEXT": {
+      "source": "\"SIM %d Limit Settings\"",
+      "translated": "\"SIM %d 限额设置\""
+    },
+    "CELLULAR_DATA_LIMIT_REACHED_REMINDER_LABEL_TEXT": {
+      "source": "\"The current SIM card has exceeded the data cap amount.\"",
+      "translated": "\"当前 SIM 卡已超出流量限额。\""
+    },
+    "CELLULAR_DATA_REMINDER_LABEL_TEXT": {
+      "source": "\"*The data statistics are for information only. Actual traffic is determined by your network operator and will appear on the bill provided Data Reset Periodby your network operator.\"",
+      "translated": "\"*流量统计仅供参考。实际流量由运营商决定，并显示在运营商提供的账单中。\""
+    },
+    "CELLULAR_DATA_UNIT_B_LABEL_TEXT": {
+      "source": "\"B\"",
+      "translated": "\"B\""
+    },
+    "CELLULAR_DATA_UNIT_GB_LABEL_TEXT": {
+      "source": "\"GB\"",
+      "translated": "\"GB\""
+    },
+    "CELLULAR_DATA_UNIT_KB_LABEL_TEXT": {
+      "source": "\"KB\"",
+      "translated": "\"KB\""
+    },
+    "CELLULAR_DATA_UNIT_MB_LABEL_TEXT": {
+      "source": "\"MB\"",
+      "translated": "\"MB\""
+    },
+    "CELLULAR_DATA_USED@TITLE_LABEL_TEXT": {
+      "source": "\"SIM %d Data Used\"",
+      "translated": "\"SIM %d 已用流量\""
+    },
+    "CELLULAR_DETAILS_3G_ONLY_LABEL_TEXT": {
+      "source": "\"3G Only\"",
+      "translated": "\"仅 3G\""
+    },
+    "CELLULAR_DETAILS_4G_LABEL_TEXT": {
+      "source": "\"4G\"",
+      "translated": "\"4G\""
+    },
+    "CELLULAR_DETAILS_4G_ONLY_LABEL_TEXT": {
+      "source": "\"4G\"",
+      "translated": "\"4G\""
+    },
+    "CELLULAR_DETAILS_5G_LABEL_TEXT": {
+      "source": "\"5G\"",
+      "translated": "\"5G\""
+    },
+    "CELLULAR_DETAILS_5G_PREFERRED_LABEL_TEXT": {
+      "source": "\"5G\"",
+      "translated": "\"5G\""
+    },
+    "CELLULAR_DETAILS_AMBR_LABEL_TEXT": {
+      "source": "\"Max Bit Rate (AMBR)\"",
+      "translated": "\"最大比特率（AMBR）\""
+    },
+    "CELLULAR_DETAILS_AUTO_LABEL_TEXT": {
+      "source": "\"AUTO\"",
+      "translated": "\"自动\""
+    },
+    "CELLULAR_DETAILS_CELLULAR_INFO_LABEL_TEXT": {
+      "source": "\"Cellular Information\"",
+      "translated": "\"蜂窝网络信息\""
+    },
+    "CELLULAR_DETAILS_CONFIG@TITLE_LABEL_TEXT": {
+      "source": "\"SIM %d Details & Configs\"",
+      "translated": "\"SIM %d 详情与配置\""
+    },
+    "CELLULAR_DETAILS_CUSTOM_APN_LABEL_TEXT": {
+      "source": "\"Custom APN\"",
+      "translated": "\"自定义 APN\""
+    },
+    "CELLULAR_DETAILS_CUSTOM_LABEL_TEXT": {
+      "source": "\"Custom\"",
+      "translated": "\"自定义\""
+    },
+    "CELLULAR_DETAILS_DATA_ROAMING_LABEL_TEXT": {
+      "source": "\"Data Roaming\"",
+      "translated": "\"数据漫游\""
+    },
+    "CELLULAR_DETAILS_GATEWAY_LABEL_TEXT": {
+      "source": "\"Gateway\"",
+      "translated": "\"网关\""
+    },
+    "CELLULAR_DETAILS_IP_ADDRESS_LABEL_TEXT": {
+      "source": "\"IP Address\"",
+      "translated": "\"IP 地址\""
+    },
+    "CELLULAR_DETAILS_NETWORK_INFO_LABEL_TEXT": {
+      "source": "\"Network Information\"",
+      "translated": "\"网络信息\""
+    },
+    "CELLULAR_DETAILS_NETWORK_TYPE_AUTO_LABEL_TEXT": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "CELLULAR_DETAILS_NETWORK_TYPE_LABEL_TEXT": {
+      "source": "\"Network Type\"",
+      "translated": "\"网络类型\""
+    },
+    "CELLULAR_DETAILS_PRIMARY_DNS_LABEL_TEXT": {
+      "source": "\"Primary DNS\"",
+      "translated": "\"首选 DNS\""
+    },
+    "CELLULAR_DETAILS_SAVE_LABEL_TEXT": {
+      "source": "\"Save\"",
+      "translated": "\"保存\""
+    },
+    "CELLULAR_DETAILS_SECONDARY_DNS_LABEL_TEXT": {
+      "source": "\"Secondary DNS\"",
+      "translated": "\"备用 DNS\""
+    },
+    "CELLULAR_DEVICE_MODEM_IMEI_LABEL_TEXT": {
+      "source": "\"IMEI\"",
+      "translated": "\"IMEI\""
+    },
+    "CELLULAR_DEVICE_MODEM_NAME_LABEL_TEXT": {
+      "source": "\"Modem\"",
+      "translated": "\"调制解调器\""
+    },
+    "CELLULAR_DEVICE_MODEM_VERSION_LABEL_TEXT": {
+      "source": "\"Firmware Version\"",
+      "translated": "\"固件版本\""
+    },
+    "CELLULAR_DISCONNECT_LABEL_TEXT": {
+      "source": "\"Disconnect\"",
+      "translated": "\"断开\""
+    },
+    "CELLULAR_ESIM@CONNECT@FAILED_LABEL_TEXT": {
+      "source": "\"eSIM Connection Error.\"",
+      "translated": "\"eSIM 连接错误。\""
+    },
+    "CELLULAR_ESIM_LINK_MSG_FAILED_LABEL_TEXT": {
+      "source": "\"Please check whether the eSIM profile requires top-up, and verify the APN settings.\"",
+      "translated": "\"请检查 eSIM 配置文件是否需要充值，并验证 APN 设置。\""
+    },
+    "CELLULAR_ESIM_MANAGEMENT_LABEL_TEXT": {
+      "source": "\"eSIM Management\"",
+      "translated": "\"eSIM 管理\""
+    },
+    "CELLULAR_ESIM_MANAGEMENT_REMINDER_LABEL_TEXT": {
+      "source": "\"eSIM inactive. Management features disabled. Switch SIM2 to eSIM to continue?\"",
+      "translated": "\"eSIM 未启用，管理功能不可用。是否将 SIM2 切换为 eSIM 以继续？\""
+    },
+    "CELLULAR_ESIM_MSG_FAILED_LABEL_TEXT": {
+      "source": "\"Please check whether the eSIM profile is enabled, try topping up your data, and verify the APN settings.\"",
+      "translated": "\"请检查 eSIM 配置文件是否已启用，尝试充值流量，并验证 APN 设置。\""
+    },
+    "CELLULAR_ESIM_NOT_REGISTERED_LABEL_TEXT": {
+      "source": "\"eSIM unregistered.\"",
+      "translated": "\"eSIM 未注册。\""
+    },
+    "CELLULAR_EXCUTION_REMINDER_LABEL_TEXT": {
+      "source": "\"*The device will try to switch back to the preferred SIM card at the specified time.\"",
+      "translated": "\"*设备将在指定时间尝试切换回首选 SIM 卡。\""
+    },
+    "CELLULAR_FAILOVER_CURRENT@SIM_LABEL_TEXT": {
+      "source": "\"Current SIM Card\"",
+      "translated": "\"当前 SIM 卡\""
+    },
+    "CELLULAR_FAILOVER_PRIO@ATTR_LABEL_TEXT": {
+      "source": "\"Priority %d\"",
+      "translated": "\"优先级 %d\""
+    },
+    "CELLULAR_FAILOVER_SCHED@SW@TIME_LABEL_TEXT": {
+      "source": "\"Execution Time\"",
+      "translated": "\"执行时间\""
+    },
+    "CELLULAR_FAILOVER_SCHED@SWITCH_LABEL_TEXT": {
+      "source": "\"Scheduled Switch to Preferred SIM\"",
+      "translated": "\"定时切换至首选 SIM\""
+    },
+    "CELLULAR_FAILOVER_SIM@ATTR_LABEL_TEXT": {
+      "source": "\"SIM %d\"",
+      "translated": "\"SIM %d\""
+    },
+    "CELLULAR_FAILOVER_SWITCH_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "CELLULAR_FAILOVER_TITLE_LABEL_TEXT": {
+      "source": "\"SIM Failover\"",
+      "translated": "\"SIM 故障转移\""
+    },
+    "CELLULAR_FAILOVER_UNSAVED_REMINDER_LABEL_TEXT": {
+      "source": "\"Changes haven't been submitted. Are you sure you want to go back?\"",
+      "translated": "\"更改尚未提交，确定要返回吗？\""
+    },
+    "CELLULAR_FAILOVER_UNSAVED_TITLE_LABEL_TEXT": {
+      "source": "\"Unsaved Changes\"",
+      "translated": "\"更改未保存\""
+    },
+    "CELLULAR_GOTO_SMS_LABEL_TEXT": {
+      "source": "\"Go To SMS\"",
+      "translated": "\"前往短信\""
+    },
+    "CELLULAR_HOME_ACTIVE_LABEL_TEXT": {
+      "source": "\"Active\"",
+      "translated": "\"已启用\""
+    },
+    "CELLULAR_HOME_AUTO_SWITCH_LABEL_TEXT": {
+      "source": "\"Auto Switch\"",
+      "translated": "\"自动切换\""
+    },
+    "CELLULAR_HOME_CONNECTING_DOTS_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"正在连接...\""
+    },
+    "CELLULAR_HOME_CONNECTING_LABEL_TEXT": {
+      "source": "\"Connecting\"",
+      "translated": "\"正在连接\""
+    },
+    "CELLULAR_HOME_DETAILS_CONFIG_LABEL_TEXT": {
+      "source": "\"Details & Configurations\"",
+      "translated": "\"详情与配置\""
+    },
+    "CELLULAR_HOME_DISABLED_LABEL_TEXT": {
+      "source": "\"Disabled\"",
+      "translated": "\"已禁用\""
+    },
+    "CELLULAR_HOME_LIMITED_SERVICE_LABEL_TEXT": {
+      "source": "\"Limited Service\"",
+      "translated": "\"服务受限\""
+    },
+    "CELLULAR_HOME_MODEM_INFORMATION_LABEL_TEXT": {
+      "source": "\"Modem Information\"",
+      "translated": "\"调制解调器信息\""
+    },
+    "CELLULAR_HOME_MODULE_DISABLED_LABEL_TEXT": {
+      "source": "\"Module disabled\"",
+      "translated": "\"模块已禁用\""
+    },
+    "CELLULAR_HOME_NOT_DETECTED_LABEL_TEXT": {
+      "source": "\"SIM Card Not Detected\"",
+      "translated": "\"未检测到 SIM 卡\""
+    },
+    "CELLULAR_HOME_NO_SERVICE_LABEL_TEXT": {
+      "source": "\"No service\"",
+      "translated": "\"无服务\""
+    },
+    "CELLULAR_HOME_SIM_CARD_LABEL_TEXT": {
+      "source": "\"SIM Card\"",
+      "translated": "\"SIM 卡\""
+    },
+    "CELLULAR_HOME_SIM_FAILOVER_LABEL_TEXT": {
+      "source": "\"SIM Failover\"",
+      "translated": "\"SIM 故障转移\""
+    },
+    "CELLULAR_HOME_SIM_TYPE_LABEL_TEXT": {
+      "source": "\"SIM Type\"",
+      "translated": "\"SIM 类型\""
+    },
+    "CELLULAR_HOME_STANDBY_LABEL_TEXT": {
+      "source": "\"Standby\"",
+      "translated": "\"待机\""
+    },
+    "CELLULAR_HOME_USE_THIS_SIM_LABEL_TEXT": {
+      "source": "\"Use this SIM\"",
+      "translated": "\"使用此 SIM 卡\""
+    },
+    "CELLULAR_INFO_ARFCN@ATTR_LABEL_TEXT": {
+      "source": "\"ARFCN\"",
+      "translated": "\"ARFCN\""
+    },
+    "CELLULAR_INFO_BAND@ATTR_LABEL_TEXT": {
+      "source": "\"Band\"",
+      "translated": "\"频段\""
+    },
+    "CELLULAR_INFO_BANDWIDTH@ATTR_LABEL_TEXT": {
+      "source": "\"Bandwidth\"",
+      "translated": "\"带宽\""
+    },
+    "CELLULAR_INFO_ID@ATTR_LABEL_TEXT": {
+      "source": "\"Cell ID\"",
+      "translated": "\"小区 ID\""
+    },
+    "CELLULAR_INFO_MODE@ATTR_LABEL_TEXT": {
+      "source": "\"Mode\"",
+      "translated": "\"模式\""
+    },
+    "CELLULAR_INFO_PCI@ATTR_LABEL_TEXT": {
+      "source": "\"PCI\"",
+      "translated": "\"PCI\""
+    },
+    "CELLULAR_INFO_RSRP@ATTR_LABEL_TEXT": {
+      "source": "\"RSRP\"",
+      "translated": "\"RSRP\""
+    },
+    "CELLULAR_INFO_RSRQ@ATTR_LABEL_TEXT": {
+      "source": "\"RSRQ\"",
+      "translated": "\"RSRQ\""
+    },
+    "CELLULAR_INFO_RSSI@ATTR_LABEL_TEXT": {
+      "source": "\"RSSI\"",
+      "translated": "\"RSSI\""
+    },
+    "CELLULAR_INFO_SINR@ATTR_LABEL_TEXT": {
+      "source": "\"SINR\"",
+      "translated": "\"SINR\""
+    },
+    "CELLULAR_INFO_TAC@ATTR_LABEL_TEXT": {
+      "source": "\"TAC\"",
+      "translated": "\"TAC\""
+    },
+    "CELLULAR_LOCKED_SIMCARD_LABEL_TEXT": {
+      "source": "\"Locked\"",
+      "translated": "\"已锁定\""
+    },
+    "CELLULAR_MODEM_AUTO_SWITCH_LABEL_TEXT": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "CELLULAR_MODEM_CONNECT_TOO_LONG_REMINDER_LABEL_TEXT": {
+      "source": "\"Some SIM cards may have special restrictions. Check Admin Panel at %s\"",
+      "translated": "\"部分 SIM 卡可能有特殊限制。请查看管理面板 %s\""
+    },
+    "CELLULAR_MODEM_ESIM_LABEL_TEXT": {
+      "source": "\"eSIM\"",
+      "translated": "\"eSIM\""
+    },
+    "CELLULAR_MODEM_LIST_NO_SIMCARD_LABEL_TEXT": {
+      "source": "\"No SIM Card\"",
+      "translated": "\"无 SIM 卡\""
+    },
+    "CELLULAR_MODEM_SIM_LABEL_TEXT": {
+      "source": "\"SIM\"",
+      "translated": "\"SIM\""
+    },
+    "CELLULAR_MSG@FAILED_LABEL_TEXT": {
+      "source": "\"Please check if the SIM card has available data and if the APN settings are correct.\"",
+      "translated": "\"请检查 SIM 卡是否有可用流量，以及 APN 设置是否正确。\""
+    },
+    "CELLULAR_NETWORK_TYPE_EMPTY_BAND_REMINDER_LABEL_TEXT": {
+      "source": "\"Band Masking is empty for the selected Network Type and will be disabled upon saving.\"",
+      "translated": "\"所选网络类型的频段屏蔽为空，保存时将被禁用。\""
+    },
+    "CELLULAR_NOT_REGISTER_SIMCARD_LABEL_TEXT": {
+      "source": "\"Not Registered\"",
+      "translated": "\"未注册\""
+    },
+    "CELLULAR_NO_MODEM_FOUND_LABEL_TEXT": {
+      "source": "\"No Modem device found.\\nPlug in your USB modem to start.( Please ensure that the power supply voltage exceeds 9V3A )\"",
+      "translated": "\"未发现调制解调器。\\n请接入 USB 调制解调器。（请确保供电规格高于 9V/3A）\""
+    },
+    "CELLULAR_NO_SIMCARD_LABEL_TEXT": {
+      "source": "\"No SIM\"",
+      "translated": "\"无 SIM 卡\""
+    },
+    "CELLULAR_SIG@EXCELLENT_LABEL_TEXT": {
+      "source": "\"Excellent\"",
+      "translated": "\"优秀\""
+    },
+    "CELLULAR_SIG@FAIR_LABEL_TEXT": {
+      "source": "\"Fair\"",
+      "translated": "\"一般\""
+    },
+    "CELLULAR_SIG@GOOD_LABEL_TEXT": {
+      "source": "\"Good\"",
+      "translated": "\"良好\""
+    },
+    "CELLULAR_SIG@POOR_LABEL_TEXT": {
+      "source": "\"Poor\"",
+      "translated": "\"较差\""
+    },
+    "CELLULAR_SIMCARD_NOT_DETECTED_LABEL_TEXT": {
+      "source": "\"Your SIM card has not been detected. Please ensure that the card is inserted correctly and the contacts are clean.\"",
+      "translated": "\"未检测到 SIM 卡。请确保卡已正确插入且触点清洁。\""
+    },
+    "CELLULAR_SIMCARD_NOT_REGISTERED_LABEL_TEXT": {
+      "source": "\"SIM card not registered.\"",
+      "translated": "\"SIM 卡未注册。\""
+    },
+    "CELLULAR_SIMCARD_STATUS_ICCID@ATTR_LABEL_TEXT": {
+      "source": "\"ICCID\"",
+      "translated": "\"ICCID\""
+    },
+    "CELLULAR_SIMCARD_STATUS_NET@OP@ATTR_LABEL_TEXT": {
+      "source": "\"Network Operator\"",
+      "translated": "\"网络运营商\""
+    },
+    "CELLULAR_SIMCARD_STATUS_PHONE@NUMBER@ATTR_LABEL_TEXT": {
+      "source": "\"Phone Number\"",
+      "translated": "\"电话号码\""
+    },
+    "CELLULAR_SIMCARD_SWITCHING_LABEL_TEXT": {
+      "source": "\"SIM card slot switching...\"",
+      "translated": "\"SIM 卡槽切换中...\""
+    },
+    "CELLULAR_SLOT_TITLE_LABEL_TEXT": {
+      "source": "\"SIM %d Slot Type\"",
+      "translated": "\"SIM %d 卡槽类型\""
+    },
+    "CELLULAR_STATUS_AIRPLANE_LABEL_TEXT": {
+      "source": "\"Cellular is unavailable. Please turn off airplane mode and try again.\"",
+      "translated": "\"蜂窝网络不可用。请关闭飞行模式后重试。\""
+    },
+    "CELLULAR_STATUS_HOME_SIM_TYPE_REMINDER_ESIM_LABEL_TEXT": {
+      "source": "\"This action will disconnect SIM %d and connect eSIM. Confirm switch?\"",
+      "translated": "\"此操作将断开 SIM %d 并连接 eSIM，确认切换？\""
+    },
+    "CELLULAR_STATUS_HOME_SIM_TYPE_REMINDER_SIM_LABEL_TEXT": {
+      "source": "\"This action will disconnect eSIM and connect SIM %d. Confirm switch?\"",
+      "translated": "\"此操作将断开 eSIM 并连接 SIM %d，确认切换？\""
+    },
+    "CELLULAR_STATUS_LOCKED@ONE@SUBTITLE_LABEL_TEXT": {
+      "source": "\"SIM %d is locked.\"",
+      "translated": "\"SIM %d 已锁定。\""
+    },
+    "CELLULAR_STATUS_LOW_POWER_LABEL_TEXT": {
+      "source": "\"Recovering from low power mode...\"",
+      "translated": "\"正在从低功耗模式恢复...\""
+    },
+    "CELLULAR_STATUS_MULTI@COUNT_LABEL_TEXT": {
+      "source": "\"Cellular %d\"",
+      "translated": "\"蜂窝网络 %d\""
+    },
+    "CELLULAR_STATUS_PART_DATA_USED_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Data Used\"",
+      "translated": "\"已用流量\""
+    },
+    "CELLULAR_STATUS_PART_TITLE_LABEL_TEXT": {
+      "source": "\"Cellular\"",
+      "translated": "\"蜂窝网络\""
+    },
+    "CELLULAR_STATUS_UNLOCK@ATTR_LABEL_TEXT": {
+      "source": "\"SIM %d Unlock\"",
+      "translated": "\"SIM %d 解锁\""
+    },
+    "CELLULAR_STATUS_UNLOCK@ENTER_LABEL_TEXT": {
+      "source": "\"to enter the PIN and unlock.\"",
+      "translated": "\"输入 PIN 并解锁。\""
+    },
+    "CELLULAR_STATUS_UNLOCK@INV@MULTI@REM_LABEL_TEXT": {
+      "source": "\"SIM 1 and SIM 2 are locked due to the wrong PIN code entered 3 times. Please unlock it via your phone.\"",
+      "translated": "\"SIM 1 和 SIM 2 因 PIN 码错误 3 次已锁定。请通过手机解锁。\""
+    },
+    "CELLULAR_STATUS_UNLOCK@INV@ONE@REM_LABEL_TEXT": {
+      "source": "\"SIM %d is locked due to the wrong PIN code entered 3 times. Please unlock it via your phone.\"",
+      "translated": "\"SIM %d 因 PIN 码错误 3 次已锁定。请通过手机解锁。\""
+    },
+    "CELLULAR_STATUS_UNLOCK@MULTI@REM_LABEL_TEXT": {
+      "source": "\"Both SIM 1 and SIM 2 are locked. Select\"",
+      "translated": "\"SIM 1 和 SIM 2 均已锁定。请选择\""
+    },
+    "CELLULAR_STATUS_UNLOCK@ONE@REM_LABEL_TEXT": {
+      "source": "\"SIM %d is locked. Click \"",
+      "translated": "\"SIM %d 已锁定。点击 \""
+    },
+    "CELLULAR_TECH_2G_LABEL_TEXT": {
+      "source": "\"2G\"",
+      "translated": "\"2G\""
+    },
+    "CELLULAR_TECH_3G_LABEL_TEXT": {
+      "source": "\"3G\"",
+      "translated": "\"3G\""
+    },
+    "CELLULAR_TECH_4G_LABEL_TEXT": {
+      "source": "\"4G\"",
+      "translated": "\"4G\""
+    },
+    "CELLULAR_TECH_4G_PLUS_LABEL_TEXT": {
+      "source": "\"4G+\"",
+      "translated": "\"4G+\""
+    },
+    "CELLULAR_TECH_5G_NSA_LABEL_TEXT": {
+      "source": "\"5G NSA\"",
+      "translated": "\"5G NSA\""
+    },
+    "CELLULAR_TECH_5G_SA_LABEL_TEXT": {
+      "source": "\"5G SA\"",
+      "translated": "\"5G SA\""
+    },
+    "CELLULAR_UNLOCK_PKU_REMINDER_LABEL_TEXT": {
+      "source": "\"Last attempt before PUK via phone.\"",
+      "translated": "\"通过手机 PUK 前的最后一次尝试。\""
+    },
+    "CELLULAR_UNLOCK_REMINDER_LABEL_TEXT": {
+      "source": "\"%d attempts remaining.\"",
+      "translated": "\"剩余 %d 次尝试。\""
+    },
+    "CELLULAR_UNLOCK_TITLE_LABEL_TEXT": {
+      "source": "\"SIM %d Unlock\"",
+      "translated": "\"SIM %d 解锁\""
+    },
+    "CELLULAR_UNLOCK_TRY_AGAIN_LABEL_TEXT": {
+      "source": "\"Wrong PIN. Try again.\"",
+      "translated": "\"PIN 错误，请重试。\""
+    },
+    "CELLULAR_UNLOCK_WARN_LABEL_TEXT": {
+      "source": "\"The PIN code has been entered wrong 3 times, the SIM card has been locked, please unlock it through your phone.\"",
+      "translated": "\"PIN 码已错误输入 3 次，SIM 卡已锁定，请通过手机解锁。\""
+    },
+    "CELLULAR_USED_ESIM@ATTR_LABEL_TEXT": {
+      "source": "\"eSIM Data Used\"",
+      "translated": "\"eSIM 已用流量\""
+    },
+    "CELLULAR_USED_LIMIT@ATTR_LABEL_TEXT": {
+      "source": "\"Limit Settings\"",
+      "translated": "\"流量限额设置\""
+    },
+    "CELLULAR_USED_POWER@SWITCH_LABEL_TEXT": {
+      "source": "\"Save Data When Power Off\"",
+      "translated": "\"关机时保存流量\""
+    },
+    "CELLULAR_USED_REMINDER_LABEL_TEXT": {
+      "source": "\"This page displays the data of the current SIM card slot.\"",
+      "translated": "\"此页面显示当前 SIM 卡槽的流量数据。\""
+    },
+    "CELLULAR_USED_RST@ATTR_LABEL_TEXT": {
+      "source": "\"Data Reset\"",
+      "translated": "\"流量重置\""
+    },
+    "CELLULAR_USED_SIM@ATTR_LABEL_TEXT": {
+      "source": "\"SIM %d Data Used\"",
+      "translated": "\"SIM %d 已用流量\""
+    },
+    "CELLULAR_USED_TITLE_LABEL_TEXT": {
+      "source": "\"Data Used\"",
+      "translated": "\"已用流量\""
+    },
+    "CELLULAR_eSIM_INFO_TITLE_LABEL_TEXT": {
+      "source": "\"eSIM Information\"",
+      "translated": "\"eSIM 信息\""
+    },
+    "CHARGING_PAUSED_REMINDER_LABEL_TEXT": {
+      "source": "\"Battery temperature is too high. Charging has been paused to protect the battery.\"",
+      "translated": "\"电池温度过高。为保护电池，充电已暂停。\""
+    },
+    "CHARGING_PAUSED_WARNING_LABEL_TEXT": {
+      "source": "\"Charging Paused\"",
+      "translated": "\"充电已暂停\""
+    },
+    "CLIENT_BLOCKED_INFO_TITLE_LABEL_TEXT": {
+      "source": "\"Blocked Clients\"",
+      "translated": "\"已拉黑客户端\""
+    },
+    "CLIENT_CONNECTION_TYPE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Connection Type\"",
+      "translated": "\"连接类型\""
+    },
+    "CLIENT_DETAILS_BLOCKED_UNBLOCK_BUTTON_TEXT": {
+      "source": "\"Unblock This Device\"",
+      "translated": "\"取消拉黑此设备\""
+    },
+    "CLIENT_DETAILS_BLOCK_BUTTON_TEXT": {
+      "source": "\"Block This Device\"",
+      "translated": "\"拉黑此设备\""
+    },
+    "CLIENT_IP_ADDR_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"IP Address\"",
+      "translated": "\"IP 地址\""
+    },
+    "CLIENT_MAC_ADDR_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"MAC Address\"",
+      "translated": "\"MAC 地址\""
+    },
+    "CLIENT_NO_BLOCKED_CLIENT_REMINDER_LABEL_TEXT": {
+      "source": "\"No blocked devices.\"",
+      "translated": "\"暂无被拉黑设备。\""
+    },
+    "CLIENT_NO_CLIENT_CONNECTED_REMINDER_LABEL_TEXT": {
+      "source": "\"No connected devices.\"",
+      "translated": "\"暂无已连接设备。\""
+    },
+    "CLIENT_OVERVIEW_TITLE_LABEL_TEXT": {
+      "source": "\"Clients\"",
+      "translated": "\"客户端\""
+    },
+    "CLIENT_REMINDER_BLOCK_BUTTON_TEXT": {
+      "source": "\"Block\"",
+      "translated": "\"拉黑\""
+    },
+    "CLIENT_REMINDER_CANCEL_BUTTON_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "CLIENT_REMINDER_INFO_LABEL_TEXT": {
+      "source": "\"This will block the device from accessing the host and guest networks. Do you want to continue?\"",
+      "translated": "\"这将阻止该设备访问主网络和访客网络。是否继续？\""
+    },
+    "CLIENT_REMINDER_TITLE_LABEL_TEXT": {
+      "source": "\"Block This Client\"",
+      "translated": "\"拉黑此客户端\""
+    },
+    "CLIENT_TRAFFIC_STATISTICS_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Traffic Statistics\"",
+      "translated": "\"流量统计\""
+    },
+    "CLIENT_TYPE_2_4G_GUEST_LABEL_TEXT": {
+      "source": "\"2.4GHz Guest Wi-Fi\"",
+      "translated": "\"2.4GHz 访客 Wi-Fi\""
+    },
+    "CLIENT_TYPE_2_4G_IOT_LABEL_TEXT": {
+      "source": "\"2.4GHz IoT Wi-Fi\"",
+      "translated": "\"2.4GHz IoT Wi-Fi\""
+    },
+    "CLIENT_TYPE_2_4G_LABEL_TEXT": {
+      "source": "\"2.4GHz Wi-Fi\"",
+      "translated": "\"2.4GHz Wi-Fi\""
+    },
+    "CLIENT_TYPE_5G_GUEST_LABEL_TEXT": {
+      "source": "\"5GHz Guest Wi-Fi\"",
+      "translated": "\"5GHz 访客 Wi-Fi\""
+    },
+    "CLIENT_TYPE_5G_IOT_LABEL_TEXT": {
+      "source": "\"5GHz IoT Wi-Fi\"",
+      "translated": "\"5GHz IoT Wi-Fi\""
+    },
+    "CLIENT_TYPE_5G_LABEL_TEXT": {
+      "source": "\"5GHz Wi-Fi\"",
+      "translated": "\"5GHz Wi-Fi\""
+    },
+    "CLIENT_TYPE_6G_GUEST_LABEL_TEXT": {
+      "source": "\"6GHz Guest Wi-Fi\"",
+      "translated": "\"6GHz 访客 Wi-Fi\""
+    },
+    "CLIENT_TYPE_6G_LABEL_TEXT": {
+      "source": "\"6GHz Wi-Fi\"",
+      "translated": "\"6GHz Wi-Fi\""
+    },
+    "CLIENT_TYPE_CABLE_CUSTOM_LABEL_TEXT": {
+      "source": "\"Custom\"",
+      "translated": "\"自定义\""
+    },
+    "CLIENT_TYPE_CABLE_GUEST_LABEL_TEXT": {
+      "source": "\"Guest\"",
+      "translated": "\"访客\""
+    },
+    "CLIENT_TYPE_CABLE_IOT_LABEL_TEXT": {
+      "source": "\"IoT\"",
+      "translated": "\"IoT\""
+    },
+    "CLIENT_TYPE_ETHERNET_LABEL_TEXT": {
+      "source": "\"Ethernet\"",
+      "translated": "\"以太网\""
+    },
+    "CLIENT_TYPE_MLO_GUEST_LABEL_TEXT": {
+      "source": "\"MLO Guest Wi-Fi\"",
+      "translated": "\"MLO 访客 Wi-Fi\""
+    },
+    "CLIENT_TYPE_MLO_LABEL_TEXT": {
+      "source": "\"MLO Wi-Fi\"",
+      "translated": "\"MLO Wi-Fi\""
+    },
+    "CLIENT_TYPE_UNKNOWN_LABEL_TEXT": {
+      "source": "\"Unknown\"",
+      "translated": "\"未知\""
+    },
+    "CLIENT_TYPE_USB_TETHERING_LABEL_TEXT": {
+      "source": "\"USB Tethering\"",
+      "translated": "\"USB 共享网络\""
+    },
+    "CLIENT_USED_DATA_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Used Data\"",
+      "translated": "\"已用流量\""
+    },
+    "COMPONENT_TEXTAREA_HINT_LABEL_TEXT": {
+      "source": "\"Enter Password\"",
+      "translated": "\"输入密码\""
+    },
+    "CONNECTED": {
+      "source": "\"Connected\"",
+      "translated": "\"已连接\""
+    },
+    "CONNECTING": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "CONNECTION_FAILED": {
+      "source": "\"Connection failed.\"",
+      "translated": "\"连接失败。\""
+    },
+    "CONTINUE": {
+      "source": "\"Continue\"",
+      "translated": "\"继续\""
+    },
+    "CRITICAL_BATTERY_REMINDER_LABEL_TEXT": {
+      "source": "\"Battery level is below 5%. The device will shut down soon. Please charge immediately!\"",
+      "translated": "\"电池电量低于 5%。设备即将关机，请立即充电！\""
+    },
+    "CRITICAL_BATTERY_WARNING_LABEL_TEXT": {
+      "source": "\"Critical Low Battery\"",
+      "translated": "\"电量严重不足\""
+    },
+    "DATA_STATISTICS_RULE_TYPE_APP": {
+      "source": "\"app\"",
+      "translated": "\"app\""
+    },
+    "DAY": {
+      "source": "\"Day\"",
+      "translated": "\"日\""
+    },
+    "DELETE": {
+      "source": "\"Delete\"",
+      "translated": "\"删除\""
+    },
+    "DISABLE": {
+      "source": "\"Disable\"",
+      "translated": "\"禁用\""
+    },
+    "DISPLAY_BRIGHTNESS_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Brightness\"",
+      "translated": "\"亮度\""
+    },
+    "DISPLAY_BRIGHTNESS_PART_TITLE_LABEL_TEXT": {
+      "source": "\"Brightness\"",
+      "translated": "\"亮度\""
+    },
+    "DISPLAY_HOUR_FORMAT_12_OPTION_LABEL_TEXT": {
+      "source": "\"12-hour\"",
+      "translated": "\"12 小时制\""
+    },
+    "DISPLAY_HOUR_FORMAT_24_OPTION_LABEL_TEXT": {
+      "source": "\"24-hour\"",
+      "translated": "\"24 小时制\""
+    },
+    "DISPLAY_HOUR_FORMAT_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Time Format\"",
+      "translated": "\"时间格式\""
+    },
+    "DISPLAY_HOUR_FORMAT_PART_TITLE_LABEL_TEXT": {
+      "source": "\"Time Format\"",
+      "translated": "\"时间格式\""
+    },
+    "DISPLAY_SIGNATURE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Personalised Signature\"",
+      "translated": "\"个性签名\""
+    },
+    "DISPLAY_SIGNATURE_SUBMIT_LABEL_TEXT": {
+      "source": "\"Save\"",
+      "translated": "\"保存\""
+    },
+    "DISPLAY_SIGNATURE_TITLE_LABEL_TEXT": {
+      "source": "\"Personalised Signature\"",
+      "translated": "\"个性签名\""
+    },
+    "DISPLAY_TIME@ZONE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Time Zone\"",
+      "translated": "\"时区\""
+    },
+    "DISPLAY_TITLE_LABEL_TEXT": {
+      "source": "\"Display\"",
+      "translated": "\"显示\""
+    },
+    "DISPLAY_WAKE_DISPLAY_CARD_LABEL_TEXT": {
+      "source": "\"Set As Wake Display\"",
+      "translated": "\"设为唤醒显示\""
+    },
+    "DISPLAY_WAKE_DISPLAY_CURRENT_LABEL_TEXT": {
+      "source": "\"Current\"",
+      "translated": "\"当前\""
+    },
+    "DISPLAY_WAKE_DISPLAY_STYLE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wake Display Style\"",
+      "translated": "\"唤醒显示样式\""
+    },
+    "DISPLAY_WAKE_DISPLAY_STYLE_TITLE_LABEL_TEXT": {
+      "source": "\"Wake Display Style\"",
+      "translated": "\"唤醒显示样式\""
+    },
+    "DONE": {
+      "source": "\"Done\"",
+      "translated": "\"完成\""
+    },
+    "DPI_BLOCK_BUTTON_LABEL_TEXT": {
+      "source": "\"Block This App\"",
+      "translated": "\"屏蔽此应用\""
+    },
+    "DPI_BLOCK_HINT_LABEL_TEXT": {
+      "source": "\"*App blocking is powered by Content Filter\"",
+      "translated": "\"*应用屏蔽由内容过滤提供支持\""
+    },
+    "DPI_CONTENT_APPS_LABEL_TEXT": {
+      "source": "\"Blocked Apps List\"",
+      "translated": "\"已屏蔽应用列表\""
+    },
+    "DPI_CONTENT_CONFLICT_CANCEL_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "DPI_CONTENT_CONFLICT_ENABLE_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "DPI_CONTENT_CONFLICT_LINE1_TEXT": {
+      "source": "\"Enable this feature will disable\"",
+      "translated": "\"启用此功能将禁用\""
+    },
+    "DPI_CONTENT_CONFLICT_LINE2_TEXT": {
+      "source": "\"Network Acceleration\"",
+      "translated": "\"网络加速\""
+    },
+    "DPI_CONTENT_CONFLICT_LINE3_TEXT": {
+      "source": "\"Do you want to continue?\"",
+      "translated": "\"是否继续？\""
+    },
+    "DPI_CONTENT_CONFLICT_TITLE_TEXT": {
+      "source": "\"Conflict Alert\"",
+      "translated": "\"冲突提示\""
+    },
+    "DPI_CONTENT_DESC_LABEL_TEXT": {
+      "source": "\"Content Filter provides smart online safety powered by DPI classification, automatically blocking harmful or malicious websites to keep your network clean and secure.\"",
+      "translated": "\"内容过滤利用 DPI 分类提供智能上网保护，自动屏蔽有害或恶意网站，保持网络安全整洁。\""
+    },
+    "DPI_CONTENT_DETAIL_NOTE_FORMAT_TEXT": {
+      "source": "\"Showing %d items. More details in the Admin Panel (%s).\"",
+      "translated": "\"仅显示 %d 项，更多详情请查看管理面板（%s）。\""
+    },
+    "DPI_CONTENT_DOMAIN_LABEL_TEXT": {
+      "source": "\"Blocked Domain / IP List\"",
+      "translated": "\"已屏蔽域名 / IP 列表\""
+    },
+    "DPI_CONTENT_PROTECTION_ACTION_BLOCK": {
+      "source": "\"add\"",
+      "translated": "\"add\""
+    },
+    "DPI_CONTENT_PROTECTION_ACTION_UNBLOCK": {
+      "source": "\"del\"",
+      "translated": "\"del\""
+    },
+    "DPI_CONTENT_TITLE_LABEL_TEXT": {
+      "source": "\"Content Filter\"",
+      "translated": "\"内容过滤\""
+    },
+    "DPI_DATA_STATISTICS_DISABLED_REMINDER_TEXT": {
+      "source": "\"Data Statistics offers an intelligent traffic insight dashboard that categorizes and visualizes network usage by applications, helping you monitor real-time and historical traffic for better network awareness and control.\"",
+      "translated": "\"数据统计提供智能流量洞察面板，按应用分类并展示网络使用情况，帮助您监控实时和历史流量，更好地掌握并管理网络。\""
+    },
+    "DPI_DATA_STATISTICS_TITLE_LABEL_TEXT": {
+      "source": "\"Data Statistics\"",
+      "translated": "\"数据统计\""
+    },
+    "DPI_DIALOG_AGREE_TEXT": {
+      "source": "\"I have read and agree \"",
+      "translated": "\"我已阅读并同意 \""
+    },
+    "DPI_DIALOG_AMP_TEXT": {
+      "source": "\"&\"",
+      "translated": "\"&\""
+    },
+    "DPI_DIALOG_CANCEL_LABEL_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "DPI_DIALOG_ENABLE_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "DPI_DIALOG_NUM1_TEXT": {
+      "source": "\"1.\"",
+      "translated": "\"1.\""
+    },
+    "DPI_DIALOG_NUM2_TEXT": {
+      "source": "\"2.\"",
+      "translated": "\"2.\""
+    },
+    "DPI_DIALOG_PRIVACY_TEXT": {
+      "source": "\"Privacy Policy\"",
+      "translated": "\"隐私政策\""
+    },
+    "DPI_DIALOG_REMINDER_LABEL_TEXT": {
+      "source": "\"1. DPI uses local resources to analyze and classify packets.\\n2. Network Acceleration will be disabled to ensure packet inspection.\"",
+      "translated": "\"1. DPI 使用本地资源分析并分类数据包。\\n2. 为确保数据包检测，网络加速将被禁用。\""
+    },
+    "DPI_DIALOG_TERMS_TEXT": {
+      "source": "\"Terms of Service\"",
+      "translated": "\"服务条款\""
+    },
+    "DPI_DIALOG_TEXT1": {
+      "source": "\"DPI uses local resources to analyze and classify packets.\"",
+      "translated": "\"DPI 使用本地资源分析并分类数据包。\""
+    },
+    "DPI_DIALOG_TEXT2": {
+      "source": "\"Network Acceleration will be disabled to ensure packet inspection.\"",
+      "translated": "\"为确保数据包检测，网络加速将被禁用。\""
+    },
+    "DPI_DIALOG_WARNING_LABEL_TEXT": {
+      "source": "\"What happens when DPI is enabled?\"",
+      "translated": "\"启用 DPI 后会发生什么？\""
+    },
+    "DPI_ENABLED_DESC_LABEL_TEXT": {
+      "source": "\"You can now enjoy the full suite of DPI features locally.\"",
+      "translated": "\"现在可以在本地使用完整的 DPI 功能。\""
+    },
+    "DPI_ENABLED_DONE_LABEL_TEXT": {
+      "source": "\"Done\"",
+      "translated": "\"完成\""
+    },
+    "DPI_ENABLED_TITLE_LABEL_TEXT": {
+      "source": "\"Activated Successfully\"",
+      "translated": "\"已成功启用\""
+    },
+    "DPI_HOME_DESC_LABEL_TEXT": {
+      "source": "\"The DPI Engine function of GL.iNet provides intelligent network management exclusively on your local router. Enjoy complete privacy with full access to Data Statistics, Content Filter, and QoS.\"",
+      "translated": "\"GL.iNet 的 DPI 引擎仅在本地路由器上提供智能网络管理。完整访问数据统计、内容过滤和 QoS，同时保障隐私。\""
+    },
+    "DPI_HOME_ENABLE_LABEL_TEXT": {
+      "source": "\"Enable DPI Engine\"",
+      "translated": "\"启用 DPI 引擎\""
+    },
+    "DPI_HOME_WAIT_NETWORK_LABEL_TEXT": {
+      "source": "\"Waiting for networking\"",
+      "translated": "\"正在等待网络连接\""
+    },
+    "DPI_HOME_WAIT_TIME_LABEL_TEXT": {
+      "source": "\"Waiting Time Synchronization\"",
+      "translated": "\"正在等待时间同步\""
+    },
+    "DPI_LICENSE_DATABASE_VERSION_LABEL_TEXT": {
+      "source": "\"Database Version\"",
+      "translated": "\"数据库版本\""
+    },
+    "DPI_LICENSE_DPI_PROGRAM_VERSION_LABEL_TEXT": {
+      "source": "\"DPI Program Version\"",
+      "translated": "\"DPI 程序版本\""
+    },
+    "DPI_LICENSE_EMPTY_LABEL_TEXT": {
+      "source": "\"--\"",
+      "translated": "\"--\""
+    },
+    "DPI_LICENSE_NEW_VERSION_FORMAT_TEXT": {
+      "source": "\" (NEW v%s)\"",
+      "translated": "\"（新版 v%s）\""
+    },
+    "DPI_LICENSE_TITLE_LABEL_TEXT": {
+      "source": "\"DPI License\"",
+      "translated": "\"DPI 许可证\""
+    },
+    "DPI_LICENSE_UPGRADE_FAILED_LABEL_TEXT": {
+      "source": "\"Upgrade failed. Please try again.\"",
+      "translated": "\"升级失败，请重试。\""
+    },
+    "DPI_LICENSE_UPGRADE_LABEL_TEXT": {
+      "source": "\"Upgrade\"",
+      "translated": "\"升级\""
+    },
+    "DPI_LICENSE_VERSION_FORMAT_TEXT": {
+      "source": "\"v%s\"",
+      "translated": "\"v%s\""
+    },
+    "DPI_LIST_CONTENT_LABEL_TEXT": {
+      "source": "\"Content Filter\"",
+      "translated": "\"内容过滤\""
+    },
+    "DPI_LIST_DPI_ENGINE_LABEL_TEXT": {
+      "source": "\"DPI Engine\"",
+      "translated": "\"DPI 引擎\""
+    },
+    "DPI_LIST_FLOW_LABEL_TEXT": {
+      "source": "\"Data Statistics\"",
+      "translated": "\"数据统计\""
+    },
+    "DPI_LIST_STATUS_DISABLED_TEXT": {
+      "source": "\"Disabled\"",
+      "translated": "\"已禁用\""
+    },
+    "DPI_LIST_STATUS_ENABLED_TEXT": {
+      "source": "\"Enabled\"",
+      "translated": "\"已启用\""
+    },
+    "DPI_OVERVIEW_LIST_OVERFLOW_ELLIPSIS_LABEL_TEXT": {
+      "source": "\"...\"",
+      "translated": "\"...\""
+    },
+    "DPI_OVERVIEW_LIST_OVERFLOW_HINT_LABEL_TEXT": {
+      "source": "\"Showing 100 items. More details in the Admin Panel (%s).\"",
+      "translated": "\"仅显示 100 项，更多详情请查看管理面板（%s）。\""
+    },
+    "DPI_QRCODE_DEFAULT_VALUE_TEXT": {
+      "source": "\"Unknown\"",
+      "translated": "\"未知\""
+    },
+    "DPI_QRCODE_HINT_LABEL_TEXT": {
+      "source": "\"Scan with your phone to view all details.\"",
+      "translated": "\"使用手机扫码查看全部详情。\""
+    },
+    "DPI_QRCODE_PRIVACY_TITLE_LABEL_TEXT": {
+      "source": "\"Privacy Policy\"",
+      "translated": "\"隐私政策\""
+    },
+    "DPI_QRCODE_PRIVACY_URL_TEXT": {
+      "source": "\"https://www.gl-inet.com/privacy-policy/\"",
+      "translated": "\"https://www.gl-inet.com/privacy-policy/\""
+    },
+    "DPI_QRCODE_TERMS_TITLE_LABEL_TEXT": {
+      "source": "\"Terms of Service\"",
+      "translated": "\"服务条款\""
+    },
+    "DPI_QRCODE_TERMS_URL_TEXT": {
+      "source": "\"https://www.gl-inet.com/terms-of-service/\"",
+      "translated": "\"https://www.gl-inet.com/terms-of-service/\""
+    },
+    "DPI_TIME_OPTION_PAST_DAY_LABEL_TEXT": {
+      "source": "\"Past Day\"",
+      "translated": "\"过去一天\""
+    },
+    "DPI_TIME_OPTION_PAST_HOUR_LABEL_TEXT": {
+      "source": "\"Past Hour\"",
+      "translated": "\"过去一小时\""
+    },
+    "DPI_TIME_OPTION_PAST_WEEK_LABEL_TEXT": {
+      "source": "\"Past Week\"",
+      "translated": "\"过去一周\""
+    },
+    "DPI_TITLE_ENABLED_LABEL_TEXT": {
+      "source": "\"DPI\"",
+      "translated": "\"DPI\""
+    },
+    "DPI_TITLE_LABEL_TEXT": {
+      "source": "\"DPI Engine\"",
+      "translated": "\"DPI 引擎\""
+    },
+    "DPI_UNBLOCK_BUTTON_LABEL_TEXT": {
+      "source": "\"Unblock\"",
+      "translated": "\"取消屏蔽\""
+    },
+    "EIOTCLUB_STORE": {
+      "source": "\"EIOTCLUB eSIM Store\"",
+      "translated": "\"EIOTCLUB eSIM Store\""
+    },
+    "ENABLE": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "ENABLED": {
+      "source": "\"Enabled\"",
+      "translated": "\"已启用\""
+    },
+    "ESIM_DELETE_PROFILE_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to delete the profile?\"",
+      "translated": "\"确定要删除此配置文件吗？\""
+    },
+    "ESIM_STATUS_ATTR_LABEL_TEXT": {
+      "source": "\"Current eSIM Status\"",
+      "translated": "\"当前 eSIM 状态\""
+    },
+    "ESIM_STATUS_EID@ATTR_LABEL_TEXT": {
+      "source": "\"EID\"",
+      "translated": "\"EID\""
+    },
+    "ESIM_STATUS_ICCID@ATTR_LABEL_TEXT": {
+      "source": "\"ICCID\"",
+      "translated": "\"ICCID\""
+    },
+    "ESIM_STATUS_IMSI@ATTR_LABEL_TEXT": {
+      "source": "\"IMSI\"",
+      "translated": "\"IMSI\""
+    },
+    "ESIM_STATUS_NUMBER@ATTR_LABEL_TEXT": {
+      "source": "\"eSIM Profile Number\"",
+      "translated": "\"eSIM 配置文件编号\""
+    },
+    "ESIM_STATUS_OSVER@ATTR_LABEL_TEXT": {
+      "source": "\"eSIM OS Version\"",
+      "translated": "\"eSIM 系统版本\""
+    },
+    "ESIM_STATUS_PROFILE@ATTR_LABEL_TEXT": {
+      "source": "\"eSIM Profile List\"",
+      "translated": "\"eSIM 配置文件列表\""
+    },
+    "ESIM_STATUS_REMINDER_LABEL_TEXT": {
+      "source": "\"Please wait a moment...\"",
+      "translated": "\"请稍候...\""
+    },
+    "ESIM_STATUS_STORAGE@ATTR_LABEL_TEXT": {
+      "source": "\"eSIM Storage (Remain/Total)\"",
+      "translated": "\"eSIM 存储（剩余/总计）\""
+    },
+    "ESIM_STORE_TITLE_LABEL_TEXT": {
+      "source": "\"Recommended Store\"",
+      "translated": "\"推荐商店\""
+    },
+    "ETHERNET_DROPIN_GATEWAY_REMINDER_TEXT": {
+      "source": "\"Drop-in gateway is enabled. If you want to modify the Ethernet settings,\\nplease disable Drop-in Gateway first in the Admin Panel(%s).\"",
+      "translated": "\"旁路网关已启用。如需修改以太网设置，\\n请先在管理面板（%s）中禁用旁路网关。\""
+    },
+    "ETHERNET_IPV4_LABEL_TEXT": {
+      "source": "\"IPv4 Address\"",
+      "translated": "\"IPv4 地址\""
+    },
+    "ETHERNET_IPV6_DNS_LABEL_TEXT": {
+      "source": "\"DNS Server\"",
+      "translated": "\"DNS 服务器\""
+    },
+    "ETHERNET_IPV6_GATEWAY_LABEL_TEXT": {
+      "source": "\"Gateway\"",
+      "translated": "\"网关\""
+    },
+    "ETHERNET_IPV6_LABEL_TEXT": {
+      "source": "\"IPv6 Address\"",
+      "translated": "\"IPv6 地址\""
+    },
+    "ETHERNET_IP_DNS_LABEL_TEXT": {
+      "source": "\"DNS Server\"",
+      "translated": "\"DNS 服务器\""
+    },
+    "ETHERNET_IP_GATEWAY_LABEL_TEXT": {
+      "source": "\"Gateway\"",
+      "translated": "\"网关\""
+    },
+    "ETHERNET_IP_LABEL_TEXT": {
+      "source": "\"IP Address\"",
+      "translated": "\"IP 地址\""
+    },
+    "ETHERNET_LAN_MODE_REMINDER_TEXT": {
+      "source": "\"Ethernet has been used as LAN (Local Area Network).You can set it back to WAN (Wide Area Network) in Ethernet Ports.\"",
+      "translated": "\"以太网已用作 LAN（局域网）。您可在以太网端口中将其改回 WAN（广域网）。\""
+    },
+    "ETHERNET_PORT_2P5G_OPTION_LABEL_TEXT": {
+      "source": "\"2.5G Ethernet Port\"",
+      "translated": "\"2.5G 以太网端口\""
+    },
+    "ETHERNET_PORT_AS_LAN_TEXT": {
+      "source": "\"As LAN\"",
+      "translated": "\"设为 LAN\""
+    },
+    "ETHERNET_PORT_AS_WAN_TEXT": {
+      "source": "\"As WAN\"",
+      "translated": "\"设为 WAN\""
+    },
+    "ETHERNET_PORT_DETAIL_TITLE_FORMAT": {
+      "source": "\"Port %02d: %s\"",
+      "translated": "\"端口 %02d：%s\""
+    },
+    "ETHERNET_PORT_DROPIN_GATEWAY_WARNING_TEXT": {
+      "source": "\"WAN/LAN switching is not allowed while the Drop-in Gateway feature is enabled.\"",
+      "translated": "\"启用旁路网关时无法切换 WAN/LAN。\""
+    },
+    "ETHERNET_PORT_LINK_STATUS_TYPE_LABEL_TEXT": {
+      "source": "\"Use As %s Port\"",
+      "translated": "\"用作 %s 端口\""
+    },
+    "ETHERNET_PORT_LIST_TITLE_LABEL_TEXT": {
+      "source": "\"Ethernet Ports\"",
+      "translated": "\"以太网端口\""
+    },
+    "ETHERNET_PORT_MODE_DESC_LAN_TEXT": {
+      "source": "\"Use As LAN Port\"",
+      "translated": "\"用作 LAN 端口\""
+    },
+    "ETHERNET_PORT_MODE_DESC_WAN_TEXT": {
+      "source": "\"Use As WAN Port\"",
+      "translated": "\"用作 WAN 端口\""
+    },
+    "ETHERNET_PORT_MODE_LAN_TEXT": {
+      "source": "\"LAN\"",
+      "translated": "\"LAN\""
+    },
+    "ETHERNET_PORT_MODE_WAN_TEXT": {
+      "source": "\"WAN\"",
+      "translated": "\"WAN\""
+    },
+    "ETHERNET_PORT_MODULE_INSERTED_TEXT": {
+      "source": "\"Inserted\"",
+      "translated": "\"已插入\""
+    },
+    "ETHERNET_PORT_MODULE_NOT_INSERTED_TEXT": {
+      "source": "\"Not Inserted\"",
+      "translated": "\"未插入\""
+    },
+    "ETHERNET_PORT_MODULE_STATUS_LABEL_TEXT": {
+      "source": "\"Module Status\"",
+      "translated": "\"模块状态\""
+    },
+    "ETHERNET_PORT_OPTION_LABEL_TEXT": {
+      "source": "\"Ethernet Port\"",
+      "translated": "\"以太网端口\""
+    },
+    "ETHERNET_PORT_STATUS_CONNECTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Connection status\"",
+      "translated": "\"连接状态\""
+    },
+    "ETHERNET_PORT_STATUS_LABEL_TEXT": {
+      "source": "\"Network Port\"",
+      "translated": "\"网络端口\""
+    },
+    "ETHERNET_PORT_STATUS_LINK_DOWN_TEXT": {
+      "source": "\"Link down\"",
+      "translated": "\"未连接\""
+    },
+    "ETHERNET_PORT_STATUS_LINK_UP_TEXT": {
+      "source": "\"Link up\"",
+      "translated": "\"已连接\""
+    },
+    "ETHERNET_PORT_STATUS_SPEED_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Speed\"",
+      "translated": "\"速率\""
+    },
+    "ETHERNET_PORT_STATUS_SPEED_DUPLEX_FULL": {
+      "source": "\"full duplex\"",
+      "translated": "\"全双工\""
+    },
+    "ETHERNET_PORT_STATUS_SPEED_DUPLEX_HALF": {
+      "source": "\"half duplex\"",
+      "translated": "\"半双工\""
+    },
+    "ETHERNET_PORT_STATUS_SWITCH_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"WAN/LAN Switch\"",
+      "translated": "\"WAN/LAN 切换\""
+    },
+    "ETHERNET_PORT_STATUS_SWITCH_LABEL_TEXT": {
+      "source": "\"As %s\"",
+      "translated": "\"作为 %s\""
+    },
+    "ETHERNET_PORT_STATUS_TITLE_LABEL_TEXT": {
+      "source": "\"Ethernet Ports\"",
+      "translated": "\"以太网端口\""
+    },
+    "ETHERNET_PORT_SWITCH_LABEL_TEXT": {
+      "source": "\"WAN/LAN Switch\"",
+      "translated": "\"WAN/LAN 切换\""
+    },
+    "ETHERNET_PORT_WAN_LIMIT_WARNING_TEXT": {
+      "source": "\"WAN port limit reached (maximum %d).\\nTo use this port as WAN, please reassign another WAN port first.\"",
+      "translated": "\"WAN 端口已达上限（最多 %d 个）。\\n如需将此端口设为 WAN，请先重新分配其他 WAN 端口。\""
+    },
+    "ETHERNET_PPPOE_PASSWORD_LABEL_TEXT": {
+      "source": "\"Password\"",
+      "translated": "\"密码\""
+    },
+    "ETHERNET_PPPOE_REMINDER_LABEL_TEXT": {
+      "source": "\"Static can only be set in the Admin Panel\\n(%s).\"",
+      "translated": "\"静态地址只能在管理面板中设置\\n（%s）。\""
+    },
+    "ETHERNET_PPPOE_USERNAME_LABEL_TEXT": {
+      "source": "\"Username\"",
+      "translated": "\"用户名\""
+    },
+    "ETHERNET_PRESET_TITLE_LABEL_TEXT": {
+      "source": "\"Pre-set Up\"",
+      "translated": "\"预设置\""
+    },
+    "ETHERNET_PROTO_ALL_NO_NETWORK_LABEL_TEXT": {
+      "source": "\"The interface is connected, but the Internet can't be accessed with IPv4 & IPv6 protocol.\"",
+      "translated": "\"接口已连接，但通过 IPv4 和 IPv6 均无法访问互联网。\""
+    },
+    "ETHERNET_PROTO_IPV4_NO_NETWORK_LABEL_TEXT": {
+      "source": "\"The interface is connected, but the Internet can't be accessed with IPv4 protocol.\"",
+      "translated": "\"接口已连接，但通过 IPv4 无法访问互联网。\""
+    },
+    "ETHERNET_PROTO_IPV6_NO_NETWORK_LABEL_TEXT": {
+      "source": "\"The interface is connected, but the Internet can't be accessed with IPv6 protocol.\"",
+      "translated": "\"接口已连接，但通过 IPv6 无法访问互联网。\""
+    },
+    "ETHERNET_PROTO_NO_NETWORK_LABEL_TEXT": {
+      "source": "\"The interface is connected, but the Internet can't be accessed.\"",
+      "translated": "\"接口已连接，但无法访问互联网。\""
+    },
+    "ETHERNET_REMINDER_LABEL_TEXT": {
+      "source": "\"No cable detected.\\nPlease insert a cable into the WAN port.\"",
+      "translated": "\"未检测到网线。\\n请将网线插入 WAN 口。\""
+    },
+    "ETHERNET_TITLE_LABEL_TEXT": {
+      "source": "\"Ethernet\"",
+      "translated": "\"以太网\""
+    },
+    "ETHERNET_TYPE_DHCP_LABEL_TEXT": {
+      "source": "\"DHCP\"",
+      "translated": "\"DHCP\""
+    },
+    "ETHERNET_TYPE_PPPOE_LABEL_TEXT": {
+      "source": "\"PPPoE\"",
+      "translated": "\"PPPoE\""
+    },
+    "ETHERNET_TYPE_SETTING_LABEL_TEXT": {
+      "source": "\"Ethernet Settings\"",
+      "translated": "\"以太网设置\""
+    },
+    "ETHERNET_TYPE_STATIC_LABEL_TEXT": {
+      "source": "\"Static\"",
+      "translated": "\"静态\""
+    },
+    "ETHERNET_USB_PORT_LABEL_TEXT": {
+      "source": "\"USB Ethernet\"",
+      "translated": "\"USB 以太网\""
+    },
+    "ETHERNET_USB_PORT_OPTION_LABEL_TEXT": {
+      "source": "\"USB Ethernet Port\"",
+      "translated": "\"USB 以太网端口\""
+    },
+    "ETHERNET_WAN_TYPE_LABEL_TEXT": {
+      "source": "\"Protocol\"",
+      "translated": "\"协议\""
+    },
+    "EXTERNAL_BOOT_CANEL_LABEL_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "EXTERNAL_BOOT_POWEROFF_LABELAREA@DISABLED_TEXT": {
+      "source": "\"Power Off Disabled\"",
+      "translated": "\"    关机已禁用\""
+    },
+    "EXTERNAL_BOOT_POWEROFF_LABELAREA_TEXT": {
+      "source": "\"Slide To Power Off\"",
+      "translated": "\"      滑动关机\""
+    },
+    "EXTERNAL_BOOT_REBOOT_LABELAREA_TEXT": {
+      "source": "\"Slide To Reboot\"",
+      "translated": "\"   滑动重启\""
+    },
+    "EXTERNAL_BOOT_REMINDER_LABEL_TEXT": {
+      "source": "\"Charging and “Power On with Charger” is enabled.\"",
+      "translated": "\"已启用充电和“充电时开机”。\""
+    },
+    "EXTERNAL_RESET_CANCEL@REMINDER_LABEL_TEXT": {
+      "source": "\"To reset or restart, please press the Reset button again.\"",
+      "translated": "\"要重置或重启，请再次按下 Reset 按钮。\""
+    },
+    "EXTERNAL_RESET_CANCEL@TITLE_LABEL_TEXT": {
+      "source": "\"Operation Canceled\"",
+      "translated": "\"操作已取消\""
+    },
+    "EXTERNAL_RESET_ESIM_REMINDER_LABEL_TEXT": {
+      "source": "\"Resetting the device will not delete installed eSIM profiles.\"",
+      "translated": "\"重置设备不会删除已安装的 eSIM 配置文件。\""
+    },
+    "EXTERNAL_RESET_PRESSING@REMINDER_LABEL_TEXT": {
+      "source": "\"to enter Repair Mode.\"",
+      "translated": "\"进入修复模式。\""
+    },
+    "EXTERNAL_RESET_PRESSING@TIME_LABEL_TEXT": {
+      "source": "\"3s\"",
+      "translated": "\"3s\""
+    },
+    "EXTERNAL_RESET_PRESSING@TITLE_LABEL_TEXT": {
+      "source": "\"Keep Pressing\"",
+      "translated": "\"持续按住\""
+    },
+    "EXTERNAL_RESET_REPAIR@REMINDER_LABEL_TEXT": {
+      "source": "\"Keep pressing to enter the Reset Mode.\"",
+      "translated": "\"继续按住进入重置模式。\""
+    },
+    "EXTERNAL_RESET_REPAIR@TIME_LABEL_TEXT": {
+      "source": "\"5s\"",
+      "translated": "\"5s\""
+    },
+    "EXTERNAL_RESET_REPAIR@TITLE_LABEL_TEXT": {
+      "source": "\"Release to Repair Mode\"",
+      "translated": "\"松开进入修复模式\""
+    },
+    "EXTERNAL_RESET_REPAIRING_LABEL_TEXT": {
+      "source": "\"Repairing...\"",
+      "translated": "\"修复中...\""
+    },
+    "EXTERNAL_RESET_RESET@REMINDER_LABEL_TEXT": {
+      "source": "\"Keep pressing to cancel the operation.\"",
+      "translated": "\"继续按住取消操作。\""
+    },
+    "EXTERNAL_RESET_RESET@TIME_LABEL_TEXT": {
+      "source": "\"12s\"",
+      "translated": "\"12s\""
+    },
+    "EXTERNAL_RESET_RESET@TITLE_LABEL_TEXT": {
+      "source": "\"Release to Reset Mode\"",
+      "translated": "\"松开进入重置模式\""
+    },
+    "EXTERNAL_RESET_RESETING_LABEL_TEXT": {
+      "source": "\"Resetting...\"",
+      "translated": "\"重置中...\""
+    },
+    "EXTERNAL_UPGRADE_ACTION_LABEL_TEXT": {
+      "source": "\"Go to Upgrade\"",
+      "translated": "\"前往升级\""
+    },
+    "EXTERNAL_UPGRADE_DOWNLOAD_LABEL_TEXT": {
+      "source": "\"Downloading...\"",
+      "translated": "\"下载中...\""
+    },
+    "EXTERNAL_UPGRADE_FAIL_ACTION_LABEL_TEXT": {
+      "source": "\"Retry\"",
+      "translated": "\"重试\""
+    },
+    "EXTERNAL_UPGRADE_FAIL_REMINDER_LABEL_TEXT": {
+      "source": "\"The firmware update did not complete. Please try again.\"",
+      "translated": "\"固件更新未完成，请重试。\""
+    },
+    "EXTERNAL_UPGRADE_FAIL_WARNING_LABEL_TEXT": {
+      "source": "\"Upgrade Failed\"",
+      "translated": "\"升级失败\""
+    },
+    "EXTERNAL_UPGRADE_LABEL_TEXT": {
+      "source": "\"Upgrading...\"",
+      "translated": "\"升级中...\""
+    },
+    "EXTERNAL_UPGRADE_REMINDER_LABEL_1_TEXT": {
+      "source": "\"Software upgrades and reboots take a few minutes.\"",
+      "translated": "\"软件升级和重启需要几分钟。\""
+    },
+    "EXTERNAL_UPGRADE_REMINDER_LABEL_2_TEXT": {
+      "source": "\"Progress shown here only covers upgrade, not reboot.\"",
+      "translated": "\"此处进度仅涵盖升级，不含重启。\""
+    },
+    "EXTERNAL_UPGRADE_REMINDER_LABEL_3_TEXT": {
+      "source": "\"Do not power off.\"",
+      "translated": "\"请勿断电。\""
+    },
+    "EXTERNAL_UPGRADE_REMINDER_LABEL_NUM": {
+      "source": "3",
+      "translated": "3"
+    },
+    "EXTERNAL_UPGRADE_SKIP_LABEL_TEXT": {
+      "source": "\"Skip This Version\"",
+      "translated": "\"跳过此版本\""
+    },
+    "EXTERNAL_UPGRADE_WARNING_LABEL_TEXT": {
+      "source": "\"Upgrade Available\"",
+      "translated": "\"有可用升级\""
+    },
+    "FASTSETTING_LOCK_SCREEN_LABEL_TEXT": {
+      "source": "\"Lock Screen\"",
+      "translated": "\"锁定屏幕\""
+    },
+    "FASTSETTING_SCREEN_OFF_LABEL_TEXT": {
+      "source": "\"Screen Off\"",
+      "translated": "\"关闭屏幕\""
+    },
+    "FONT_BOLD": {
+      "source": "\"default_bold\"",
+      "translated": "\"default_bold_zh-cn\""
+    },
+    "FONT_CN_MEDIUM": {
+      "source": "\"default_cn_medium\"",
+      "translated": "\"default_cn_medium_zh-cn\""
+    },
+    "FONT_MEDIUM": {
+      "source": "\"default_medium\"",
+      "translated": "\"default_medium_zh-cn\""
+    },
+    "FONT_MONO_MEDIUM": {
+      "source": "\"default_mono_medium\"",
+      "translated": "\"default_mono_medium_zh-cn\""
+    },
+    "FONT_SEMIBOLD": {
+      "source": "\"default_semibold\"",
+      "translated": "\"default_semibold_zh-cn\""
+    },
+    "GETTING": {
+      "source": "\"Getting...\"",
+      "translated": "\"获取中...\""
+    },
+    "GOT_IT": {
+      "source": "\"Got It\"",
+      "translated": "\"知道了\""
+    },
+    "HEADLINE_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "HIDDEN": {
+      "source": "\"Hidden\"",
+      "translated": "\"隐藏\""
+    },
+    "HOME_BADGE_AGH_LABEL_TEXT": {
+      "source": "\"AGH\"",
+      "translated": "\"AGH\""
+    },
+    "HOME_BADGE_AW_LABEL_TEXT": {
+      "source": "\"AW\"",
+      "translated": "\"AW\""
+    },
+    "HOME_BADGE_TOR_LABEL_TEXT": {
+      "source": "\"TOR\"",
+      "translated": "\"TOR\""
+    },
+    "HOME_CLIENTS_CARD_HAVE_DEVICE_LABEL_TEXT": {
+      "source": "\"%d Clients\"",
+      "translated": "\"%d 个客户端\""
+    },
+    "HOME_CLIENTS_CARD_HAVE_ONE@DEVICE_LABEL_TEXT": {
+      "source": "\"%d Client\"",
+      "translated": "\"%d 个客户端\""
+    },
+    "HOME_CLIENTS_CARD_NO_DEVICE_LABEL_TEXT": {
+      "source": "\"No Client\"",
+      "translated": "\"无客户端\""
+    },
+    "HOME_DPI_CARD_OFF_LABEL_TEXT": {
+      "source": "\"DPI\"",
+      "translated": "\"DPI\""
+    },
+    "HOME_ETHERNET_CARD_LABEL_TEXT": {
+      "source": "\"Ethernet\"",
+      "translated": "\"以太网\""
+    },
+    "HOME_INTERNET_ACTIVE_TEXT": {
+      "source": "\"Active\"",
+      "translated": "\"已启用\""
+    },
+    "HOME_INTERNET_CONNECTING_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"正在连接...\""
+    },
+    "HOME_INTERNET_FAILED_TEXT": {
+      "source": "\"Failed\"",
+      "translated": "\"连接失败\""
+    },
+    "HOME_INTERNET_LOCKED_TEXT": {
+      "source": "\"Locked\"",
+      "translated": "\"已锁定\""
+    },
+    "HOME_INTERNET_NOT_REG_TEXT": {
+      "source": "\"Not Reg.\"",
+      "translated": "\"未注册\""
+    },
+    "HOME_INTERNET_PAUSED_TEXT": {
+      "source": "\"Pausing\"",
+      "translated": "\"正在暂停\""
+    },
+    "HOME_NETNAT_WARNING_LABEL_TEXT": {
+      "source": "\"Hardware acceleration is enabled, speed data is unavailable.\"",
+      "translated": "\"硬件加速已启用，无法获取速度数据。\""
+    },
+    "HOME_REPEATER_CARD_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "HOME_SETTING_CARD_LABEL_TEXT": {
+      "source": "\"More\"",
+      "translated": "\"更多\""
+    },
+    "HOME_TRAFFIC_AIRPLANE@CL_LABEL_TEXT": {
+      "source": "\"Cellular %d : Airplane mode is on. \"",
+      "translated": "\"蜂窝网络 %d：飞行模式已开启。\""
+    },
+    "HOME_TRAFFIC_AIRPLANE_LABEL_TEXT": {
+      "source": "\"Airplane mode is on.\"",
+      "translated": "\"飞行模式已开启。\""
+    },
+    "HOME_TRAFFIC_BAR@REACH_LABEL_TEXT": {
+      "source": "\"Data limit reached\"",
+      "translated": "\"已达流量限额\""
+    },
+    "HOME_TRAFFIC_CONNECTING_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "HOME_TRAFFIC_CURRENT_LABEL_TEXT": {
+      "source": "\"Current\"",
+      "translated": "\"当前\""
+    },
+    "HOME_TRAFFIC_DISCONNECT_LABEL_TEXT": {
+      "source": "\"Disabled\"",
+      "translated": "\"已禁用\""
+    },
+    "HOME_TRAFFIC_ESIM@USAGE_LABEL_TEXT": {
+      "source": "\"eSIM Data Usage\"",
+      "translated": "\"eSIM 流量使用\""
+    },
+    "HOME_TRAFFIC_IDLE_ESIM_LABEL_TEXT": {
+      "source": "\"eSIM Idle\"",
+      "translated": "\"eSIM 空闲\""
+    },
+    "HOME_TRAFFIC_IDLE_LABEL_TEXT": {
+      "source": "\"SIM %d Idle\"",
+      "translated": "\"SIM %d 空闲\""
+    },
+    "HOME_TRAFFIC_LOW_POWER_CL_LABEL_TEXT": {
+      "source": "\"Cellular %d : Recovering from low power mode...\"",
+      "translated": "\"蜂窝网络 %d：正在从低功耗模式恢复...\""
+    },
+    "HOME_TRAFFIC_LOW_POWER_LABEL_TEXT": {
+      "source": "\"Recovering from low power mode...\"",
+      "translated": "\"正在从低功耗模式恢复...\""
+    },
+    "HOME_TRAFFIC_NO@NETWORK_LABEL_TEXT": {
+      "source": "\"No Internet\"",
+      "translated": "\"无互联网\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM@CL_LABEL_TEXT": {
+      "source": "\"Cellular %d : Please insert a SIM card or check.\"",
+      "translated": "\"蜂窝网络 %d：请插入 SIM 卡或检查。\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM@UL@CL_LABEL_TEXT": {
+      "source": "\"Cellular %d : %s is locked.\\nClick to view details and unlock.\"",
+      "translated": "\"蜂窝网络 %d：%s 已锁定。\\n点击查看详情并解锁。\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM@UL_LABEL_TEXT": {
+      "source": "\"%s is locked.\\nClick to view details and unlock.\"",
+      "translated": "\"%s 已锁定。\\n点击查看详情并解锁。\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM@UR@CL_LABEL_TEXT": {
+      "source": "\"Cellular %d : %s not registered.\\nClick to view details.\"",
+      "translated": "\"蜂窝网络 %d：%s 未注册。\\n点击查看详情。\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM@UR_LABEL_TEXT": {
+      "source": "\"%s not registered.\\nClick to view details.\"",
+      "translated": "\"%s 未注册。\\n点击查看详情。\""
+    },
+    "HOME_TRAFFIC_NOSIM@REM_LABEL_TEXT": {
+      "source": "\"Please insert a SIM card or check.\"",
+      "translated": "\"请插入 SIM 卡或检查。\""
+    },
+    "HOME_TRAFFIC_NOSIM@UL_LABEL_TEXT": {
+      "source": "\"Locked SIM\"",
+      "translated": "\"SIM 已锁定\""
+    },
+    "HOME_TRAFFIC_NOSIM@UR_LABEL_TEXT": {
+      "source": "\"Not Registered\"",
+      "translated": "\"未注册\""
+    },
+    "HOME_TRAFFIC_NOSIM_LABEL_TEXT": {
+      "source": "\"No SIM Card\"",
+      "translated": "\"无 SIM 卡\""
+    },
+    "HOME_TRAFFIC_SIM@USAGE_LABEL_TEXT": {
+      "source": "\"SIM %d Data Usage\"",
+      "translated": "\"SIM %d 流量使用\""
+    },
+    "HOME_TRAFFIC_UNSUPPORT_LABEL_TEXT": {
+      "source": "\"Statistics Not Supported\"",
+      "translated": "\"不支持统计\""
+    },
+    "HOME_VPN_CARD_OFF_LABEL_TEXT": {
+      "source": "\"VPN\"",
+      "translated": "\"VPN\""
+    },
+    "HOME_VPN_CARD_ON_LABEL_TEXT": {
+      "source": "\"VPN On\"",
+      "translated": "\"VPN 已开启\""
+    },
+    "HOME_WIFI_CARD_LABEL_TEXT": {
+      "source": "\"Wi-Fi\"",
+      "translated": "\"Wi-Fi\""
+    },
+    "HOME_WIFI_CHECKING_LABEL_TEXT": {
+      "source": "\"Wi-Fi Checking\"",
+      "translated": "\"正在检测 Wi-Fi\""
+    },
+    "HOME_WIFI_OFF_CARD_LABEL_TEXT": {
+      "source": "\"Wi-Fi Off\"",
+      "translated": "\"Wi-Fi 已关闭\""
+    },
+    "HOME_WIFI_SLEEPING_LABEL_TEXT": {
+      "source": "\"Wi-Fi Sleeping\"",
+      "translated": "\"Wi-Fi 休眠中\""
+    },
+    "INITIAL_ADMIN_PASSWORD_REMINDER_LABEL_TEXT": {
+      "source": "\"Password for the web admin panel.\\nThe last 9 characters of the S/N plus a '#' symbol are pre-filled.\"",
+      "translated": "\"Web 管理面板密码。已预填 S/N 后 9 位加 # 号。\""
+    },
+    "INITIAL_ADMIN_PASSWORD_SYMBOL_REMINDER_LABEL_TEXT": {
+      "source": "\"* 10-63 chars; Use 2 types (A, a, 1, !)\"",
+      "translated": "\"* 10-63 个字符；需包含 2 种类型（A、a、1、!）\""
+    },
+    "INITIAL_ADMIN_PASSWORD_TITLE_LABEL_TEXT": {
+      "source": "\"Set Admin Password\"",
+      "translated": "\"设置管理员密码\""
+    },
+    "INITIAL_ADMIN_WITI_NAME_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Set Wi-Fi Name\"",
+      "translated": "\"设置 Wi-Fi 名称\""
+    },
+    "INITIAL_ADMIN_WITI_PASSWORD_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Password\"",
+      "translated": "\"Wi-Fi 密码\""
+    },
+    "INITIAL_CUSTOM_WELCOME_LABEL_TEXT": {
+      "source": "\"Welcome!\"",
+      "translated": "\"欢迎！\""
+    },
+    "INITIAL_DONE_LABEL_TEXT": {
+      "source": "\"Done (%d/%d)\"",
+      "translated": "\"完成 (%d/%d)\""
+    },
+    "INITIAL_NEXT_LABEL_TEXT": {
+      "source": "\"Next (%d/%d)\"",
+      "translated": "\"下一步 (%d/%d)\""
+    },
+    "INITIAL_PART_WIFI_PASSWORD_SET_LABEL_TEXT": {
+      "source": "\"8-63 Characters\"",
+      "translated": "\"8-63 个字符\""
+    },
+    "INITIAL_PASSCODE_CONFIRM_TITLE_LABEL_TEXT": {
+      "source": "\"Confirm Passcode\"",
+      "translated": "\"确认密码\""
+    },
+    "INITIAL_PASSCODE_MISMATCH_LABEL_TEXT": {
+      "source": "\"Passcode Mismatch\"",
+      "translated": "\"密码不一致\""
+    },
+    "INITIAL_PASSCODE_TITLE_LABEL_TEXT": {
+      "source": "\"Set Device Passcode\"",
+      "translated": "\"设置设备密码\""
+    },
+    "INITIAL_RE_PASSCODE_TITLE_LABEL_TEXT": {
+      "source": "\"Re-Enter Passcode\"",
+      "translated": "\"再次输入密码\""
+    },
+    "INITIAL_SECURE_1_LABEL_TEXT": {
+      "source": "\"Keep your data safe by setting a passcode.It only takes a moment.\"",
+      "translated": "\"设置密码以保护您的数据，只需片刻。\""
+    },
+    "INITIAL_SECURE_LABEL_TEXT": {
+      "source": "\"Secure Your Device\"",
+      "translated": "\"保护您的设备\""
+    },
+    "INITIAL_SECURE_SKIP_LABEL_TEXT": {
+      "source": "\"Later\"",
+      "translated": "\"稍后\""
+    },
+    "INITIAL_SECURE_START_LABEL_TEXT": {
+      "source": "\"Set Now\"",
+      "translated": "\"立即设置\""
+    },
+    "INITIAL_SET_BAND_TITLE_LABEL_TEXT": {
+      "source": "\"Set Bands\"",
+      "translated": "\"设置频段\""
+    },
+    "INITIAL_SET_MUTEX_REMIDER_LABEL_TEXT": {
+      "source": "\"5GHz preferred. If repeating Wi-Fi, band will follow repeater.\"",
+      "translated": "\"优先使用 5GHz。若进行 Wi-Fi 中继，频段将跟随中继。\""
+    },
+    "INITIAL_SET_WIFI_PASSWORD_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Password\"",
+      "translated": "\"密码\""
+    },
+    "INITIAL_SET_WIFI_SSID_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Name\"",
+      "translated": "\"名称\""
+    },
+    "INITIAL_SET_WIFI_TITLE_LABEL_TEXT": {
+      "source": "\"Set Wi-Fi\"",
+      "translated": "\"设置 Wi-Fi\""
+    },
+    "INITIAL_WELCOME_1_LABEL_TEXT": {
+      "source": "\"Let's get started setting up your device.\"",
+      "translated": "\"开始设置您的设备吧。\""
+    },
+    "INITIAL_WELCOME_2_LABEL_TEXT": {
+      "source": "\"This may take a little time, but it's required to ensure your device works properly.\"",
+      "translated": "\"这可能需要一点时间，但这是确保设备正常工作的必要步骤。\""
+    },
+    "INITIAL_WELCOME_LABEL_TEXT": {
+      "source": "\"Welcome to GLiNet!\"",
+      "translated": "\"欢迎使用 GL.iNet！\""
+    },
+    "INITIAL_WELCOME_START_LABEL_TEXT": {
+      "source": "\"Get Started\"",
+      "translated": "\"开始\""
+    },
+    "INTERNET_CELLULAR_CARD_LABEL_TEXT": {
+      "source": "\"Cellular\"",
+      "translated": "\"蜂窝网络\""
+    },
+    "INTERNET_ETHERNET_CARD_LABEL_TEXT": {
+      "source": "\"Ethernet\"",
+      "translated": "\"以太网\""
+    },
+    "INTERNET_REPEATER_CARD_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "INTERNET_TETHERING_CARD_LABEL_TEXT": {
+      "source": "\"Tethering\"",
+      "translated": "\"USB 共享网络\""
+    },
+    "INTERNET_TITLE_LABEL_TEXT": {
+      "source": "\"Internet\"",
+      "translated": "\"互联网\""
+    },
+    "IP_PASSTHROUGH_INTRO_LABEL_TEXT": {
+      "source": "\"If IP Passthrough is enabled, the router will pass the carrier IP address to the LAN port.\"",
+      "translated": "\"启用 IP 透传后，路由器会将运营商分配的 IP 地址传递到 LAN 端口。\""
+    },
+    "IP_PASSTHROUGH_INVALID_FORMAT_LABEL_TEXT": {
+      "source": "LAN_IP_ERROR_LABEL_TEXT",
+      "translated": "LAN_IP_ERROR_LABEL_TEXT"
+    },
+    "IP_PASSTHROUGH_MAC_ADDRESS_LABEL_TEXT": {
+      "source": "\"MAC Address\"",
+      "translated": "\"MAC 地址\""
+    },
+    "IP_PASSTHROUGH_OPTIONAL_LABEL_TEXT": {
+      "source": "\"Optional\"",
+      "translated": "\"可选\""
+    },
+    "IP_PASSTHROUGH_SUBNET_AUTO_LABEL_TEXT": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "IP_PASSTHROUGH_SUBNET_FORCE_24_LABEL_TEXT": {
+      "source": "\"Force 24 Subnet\"",
+      "translated": "\"强制 /24 子网\""
+    },
+    "IP_PASSTHROUGH_SUBNET_MODE_LABEL_TEXT": {
+      "source": "\"Subnet Mode\"",
+      "translated": "\"子网模式\""
+    },
+    "IP_PASSTHROUGH_TITLE_LABEL_TEXT": {
+      "source": "\"IP Passthrough\"",
+      "translated": "\"IP 透传\""
+    },
+    "IP_PASSTHROUGH_WAN_WARNING_LABEL_TEXT": {
+      "source": "\"To enable IP passthrough, go to the Ethernet Port and set the Port Mode to LAN.\"",
+      "translated": "\"启用 IP 直通前，请先在以太网端口设置中将端口模式设为 LAN。\""
+    },
+    "IP_PASSTHROUGH_WARNING_LABEL_TEXT": {
+      "source": "\"*If you switch to this mode, Wireless, Clients, VPN, AdGuard Home will be disabled. This mode may not work if you have the following settings: enabled drop-in gateway mode, enabled IPv6, enabled TAP-S2S mode, manually set DNS, set Multi-WAN to load balanced mode, set WAN port as LAN, used VPN policy, added any firewall setting, manually set MAC address.\"",
+      "translated": "\"*切换到此模式后，无线网络、客户端、VPN 和 AdGuard Home 将被禁用。\\n存在以下设置时，此模式可能无法使用：已启用旁路网关、IPv6 或 TAP-S2S 模式；手动设置 DNS；多 WAN 为负载均衡模式；将 WAN 端口设为 LAN；使用 VPN 策略；添加了防火墙设置；手动设置 MAC 地址。\""
+    },
+    "KMWAN_FAILOVER_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Failover\"",
+      "translated": "\"故障转移\""
+    },
+    "KMWAN_INTERFACE_CELLULAR_LABEL_TEXT": {
+      "source": "\"Cellular\"",
+      "translated": "\"蜂窝网络\""
+    },
+    "KMWAN_INTERFACE_ETHERNET_LABEL_TEXT": {
+      "source": "\"Ethernet\"",
+      "translated": "\"以太网\""
+    },
+    "KMWAN_INTERFACE_REPEATER_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "KMWAN_INTERFACE_TETHERING_LABEL_TEXT": {
+      "source": "\"Tethering\"",
+      "translated": "\"USB 共享网络\""
+    },
+    "KMWAN_INTERFACE_UNKNOWN_LABEL_TEXT": {
+      "source": "\"Unknown\"",
+      "translated": "\"未知\""
+    },
+    "KMWAN_INTERFACE_USB_ETHERNET_LABEL_TEXT": {
+      "source": "\"USB Ethernet\"",
+      "translated": "\"USB 以太网\""
+    },
+    "KMWAN_LOAD_BALANCING_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Load Balancing\"",
+      "translated": "\"负载均衡\""
+    },
+    "KMWAN_TITLE_LABEL_TEXT": {
+      "source": "\"Multi-WAN\"",
+      "translated": "\"多 WAN\""
+    },
+    "KMWAN_WEIGHT_PART_TITLE_LABEL_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "LAN_IP_ERROR_LABEL_TEXT": {
+      "source": "\"Invalid Format\"",
+      "translated": "\"格式无效\""
+    },
+    "LOCK_SCREEN_DATA_STATISTICS_DISABLE_LABEL_TEXT": {
+      "source": "\"Data Statistics Not Enable\"",
+      "translated": "\"数据统计未启用\""
+    },
+    "LOCK_SCREEN_DPI_DISABLE_LABEL_TEXT": {
+      "source": "\"DPI Not Enable\"",
+      "translated": "\"DPI 未启用\""
+    },
+    "LOCK_SCREEN_NO_INTERNET_LABEL_TEXT": {
+      "source": "\"No Internet\"",
+      "translated": "\"无互联网\""
+    },
+    "LOCK_SCREEN_PASSCODE_BACK_LABEL_TEXT": {
+      "source": "\"Back\"",
+      "translated": "\"返回\""
+    },
+    "LOCK_SCREEN_PASSCODE_ROOT_LABEL_TEXT": {
+      "source": "\"Enter Passcode\"",
+      "translated": "\"输入密码\""
+    },
+    "LOCK_SCREEN_SWIPE_UP_REMINDER_LABEL_TEXT": {
+      "source": "\"Swipe up to unlock\"",
+      "translated": "\"上滑解锁\""
+    },
+    "LOCK_SCREEN_TOP_APP_CHART_REMINDER_LABEL_TEXT": {
+      "source": "\"No Data\"",
+      "translated": "\"暂无数据\""
+    },
+    "LOCK_SCREEN_WAIT_ATTEMPT_LABEL_TEXT": {
+      "source": "\"Max Attempts Reached\"",
+      "translated": "\"已达最大尝试次数\""
+    },
+    "LOCK_SCREEN_WAIT_COUNT_3_LABEL_TEXT": {
+      "source": "\"mins.\"",
+      "translated": "\"分钟。\""
+    },
+    "LOCK_SCREEN_WAIT_COUNT_4_LABEL_TEXT": {
+      "source": "\"Try again after countdown.\"",
+      "translated": "\"倒计时结束后重试。\""
+    },
+    "LOCK_SCREEN_WAIT_COUNT_LABEL_TEXT": {
+      "source": "\"Device locked for\"",
+      "translated": "\"设备已锁定\""
+    },
+    "LOW_BATTERY_REMINDER_LABEL_TEXT": {
+      "source": "\"Battery level is at 20%. Please connect to a power source to keep the device running.\"",
+      "translated": "\"电池电量为 20%。请连接电源以保持设备运行。\""
+    },
+    "LOW_BATTERY_WARNING_LABEL_TEXT": {
+      "source": "\"Low Battery\"",
+      "translated": "\"电量低\""
+    },
+    "LOW_POWER_MODE": {
+      "source": "\"Low Power Mode\"",
+      "translated": "\"低功耗模式\""
+    },
+    "MEDIUM_1_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_2_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_3_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_4_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_5_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_6_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "MEDIUM_CN_LABEL_FONT": {
+      "source": "FONT_CN_MEDIUM",
+      "translated": "FONT_CN_MEDIUM"
+    },
+    "MONO_MEIDUM_1_LABEL_FONT": {
+      "source": "FONT_MONO_MEDIUM",
+      "translated": "FONT_MONO_MEDIUM"
+    },
+    "MONO_MEIDUM_2_LABEL_FONT": {
+      "source": "FONT_MONO_MEDIUM",
+      "translated": "FONT_MONO_MEDIUM"
+    },
+    "MONO_MEIDUM_3_LABEL_FONT": {
+      "source": "FONT_MONO_MEDIUM",
+      "translated": "FONT_MONO_MEDIUM"
+    },
+    "MONO_MEIDUM_4_LABEL_FONT": {
+      "source": "FONT_MONO_MEDIUM",
+      "translated": "FONT_MONO_MEDIUM"
+    },
+    "MONTH": {
+      "source": "\"Month\"",
+      "translated": "\"月\""
+    },
+    "MONTH_APRIL_ABBR": {
+      "source": "\"Apr\"",
+      "translated": "\"4月\""
+    },
+    "MONTH_AUGUST_ABBR": {
+      "source": "\"Aug\"",
+      "translated": "\"8月\""
+    },
+    "MONTH_DECEMBER_ABBR": {
+      "source": "\"Dec\"",
+      "translated": "\"12月\""
+    },
+    "MONTH_FEBRUARY_ABBR": {
+      "source": "\"Feb\"",
+      "translated": "\"2月\""
+    },
+    "MONTH_JANUARY_ABBR": {
+      "source": "\"Jan\"",
+      "translated": "\"1月\""
+    },
+    "MONTH_JULY_ABBR": {
+      "source": "\"Jul\"",
+      "translated": "\"7月\""
+    },
+    "MONTH_JUNE_ABBR": {
+      "source": "\"Jun\"",
+      "translated": "\"6月\""
+    },
+    "MONTH_MARCH_ABBR": {
+      "source": "\"Mar\"",
+      "translated": "\"3月\""
+    },
+    "MONTH_MAY_ABBR": {
+      "source": "\"May\"",
+      "translated": "\"5月\""
+    },
+    "MONTH_NOVEMBER_ABBR": {
+      "source": "\"Nov\"",
+      "translated": "\"11月\""
+    },
+    "MONTH_OCTOBER_ABBR": {
+      "source": "\"Oct\"",
+      "translated": "\"10月\""
+    },
+    "MONTH_SEPTEMBER_ABBR": {
+      "source": "\"Sep\"",
+      "translated": "\"9月\""
+    },
+    "NAME": {
+      "source": "\"Name\"",
+      "translated": "\"名称\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_CLIENT_SPEED_LIMIT_LABEL_TEXT": {
+      "source": "\"Client Speed Limit\"",
+      "translated": "\"客户端限速\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_CONTENT_FILTER_LABEL_TEXT": {
+      "source": "\"Content Filter\"",
+      "translated": "\"内容过滤\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_DATA_STATISTICS_LABEL_TEXT": {
+      "source": "\"Data Statistics\"",
+      "translated": "\"数据统计\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_PARENTAL_CONTROL_LABEL_TEXT": {
+      "source": "\"Parental Control\"",
+      "translated": "\"家长控制\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_QOS_LABEL_TEXT": {
+      "source": "\"QoS\"",
+      "translated": "\"QoS\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_FEATURE_SQM_LABEL_TEXT": {
+      "source": "\"SQM\"",
+      "translated": "\"SQM\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_REMINDER_DESC_LABEL_TEXT": {
+      "source": "\"Enable this feature will disable\"",
+      "translated": "\"启用此功能将禁用\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_REMINDER_NOTE_LABEL_TEXT": {
+      "source": "\"Some features may need to be re-enabled in the Admin Panel (192.168.8.1). Do you want to continue?\"",
+      "translated": "\"部分功能可能需要在管理面板（192.168.8.1）中重新启用。是否继续？\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_REMINDER_WARNING_LABEL_TEXT": {
+      "source": "\"Conflict Alert\"",
+      "translated": "\"冲突提示\""
+    },
+    "NETWORK_ACCELERATION_CONFLICT_WARNING_LABEL_TEXT": {
+      "source": "\"This feature conflicts with the following features:\"",
+      "translated": "\"此功能与以下功能冲突：\""
+    },
+    "NETWORK_ACCELERATION_NOTE_CN_LABEL_TEXT": {
+      "source": "\"*Network acceleration reduces CPU load and speeds up traffic packet forwarding, but can conflict with some features.When Network acceleration is enabled, the following functions will not work properly: Client Speed and Traffic Statistics, Client Speed Limit, Parental Control.\"",
+      "translated": "\"*网络加速可降低 CPU 负载并加快流量转发，但可能与部分功能冲突。启用后，客户端速度与流量统计、客户端限速及家长控制将无法正常工作。\""
+    },
+    "NETWORK_ACCELERATION_NOTE_LABEL_TEXT": {
+      "source": "\"*Network acceleration reduces CPU load and speeds up traffic packet forwarding, but can conflict with some features.When Network acceleration is enabled, the following functions will not work properly: Client Speed and Traffic Statistics, Client Speed Limit, Parental Control, VPN with IPv6.\"",
+      "translated": "\"*网络加速可降低 CPU 负载并加快流量转发，但可能与部分功能冲突。启用后，客户端速度与流量统计、客户端限速、家长控制及基于 IPv6 的 VPN 将无法正常工作。\""
+    },
+    "NETWORK_ACCELERATION_SETTING_LABEL_TEXT": {
+      "source": "NETWORK_ACCELERATION_TITLE_LABEL_TEXT",
+      "translated": "NETWORK_ACCELERATION_TITLE_LABEL_TEXT"
+    },
+    "NETWORK_ACCELERATION_TITLE_LABEL_TEXT": {
+      "source": "\"Network Acceleration\"",
+      "translated": "\"网络加速\""
+    },
+    "NETWORK_ACCELERATION_TYPE_AUTO_LABEL_TEXT": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "NETWORK_ACCELERATION_TYPE_HARDWARE_LABEL_TEXT": {
+      "source": "\"Hardware Acceleration\"",
+      "translated": "\"硬件加速\""
+    },
+    "NETWORK_ACCELERATION_TYPE_SOFTWARE_LABEL_TEXT": {
+      "source": "\"Software Acceleration\"",
+      "translated": "\"软件加速\""
+    },
+    "NEXT": {
+      "source": "\"Next\"",
+      "translated": "\"下一步\""
+    },
+    "NOT_USE_VPN": {
+      "source": "\"Not Use VPN\"",
+      "translated": "\"不使用 VPN\""
+    },
+    "NO_INTERNET": {
+      "source": "\"No Internet\"",
+      "translated": "\"无互联网\""
+    },
+    "NO_SMS_REMINDER_LABEL_TEXT": {
+      "source": "\"No message\"",
+      "translated": "\"无消息\""
+    },
+    "OK": {
+      "source": "\"OK\"",
+      "translated": "\"确定\""
+    },
+    "OPTION_ATTRIBUTE_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "OPTION_VALUE_LABEL_FONT": {
+      "source": "FONT_MEDIUM",
+      "translated": "FONT_MEDIUM"
+    },
+    "PLACEHOLDER": {
+      "source": "\"-\"",
+      "translated": "\"-\""
+    },
+    "PORTAL_AUTHENTICATE_BTN_TEXT": {
+      "source": "\"Authenticate\"",
+      "translated": "\"认证\""
+    },
+    "PORTAL_AUTH_FAILED_TITLE": {
+      "source": "\"Authentication Failed\"",
+      "translated": "\"认证失败\""
+    },
+    "PORTAL_AUTH_REMINDER_TEXT": {
+      "source": "\"To access the internet, please complete the Wi-Fi Portal Authentication.\"",
+      "translated": "\"如需访问互联网，请先完成 Wi-Fi 门户认证。\""
+    },
+    "PORTAL_AUTH_SUCCESS_TITLE": {
+      "source": "\"Authentication Successful\"",
+      "translated": "\"认证成功\""
+    },
+    "PORTAL_AUTH_WARNING_TEXT": {
+      "source": "\"*Note: This will temporarily disable AdGuard Home, ZeroTier, Tailscale, Tor, Parental Control, and Custom DNS, routing traffic without a VPN, which may expose your data to the hotspot provider (e.g., hotel or mall).\"",
+      "translated": "\"*注意：此操作会暂时禁用 AdGuard Home、ZeroTier、Tailscale、Tor、家长控制和自定义 DNS，并绕过 VPN 路由流量，可能会将数据暴露给热点提供方（例如酒店或商场）。\""
+    },
+    "PORTAL_BACK_BTN_TEXT": {
+      "source": "\"Back\"",
+      "translated": "\"返回\""
+    },
+    "PORTAL_CANCEL_BTN_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "PORTAL_DONE_BTN_TEXT": {
+      "source": "\"Done\"",
+      "translated": "\"完成\""
+    },
+    "PORTAL_ENABLE_2G_WIFI_BTN_TEXT": {
+      "source": "\"Enable 2.4G WiFi\"",
+      "translated": "\"启用 2.4G Wi-Fi\""
+    },
+    "PORTAL_FAIL_DESC": {
+      "source": "\"The portal authentication attempt was unsuccessful. Please use your phone to complete authentication.\"",
+      "translated": "\"门户认证未成功，请使用手机完成认证。\""
+    },
+    "PORTAL_FORM_HINT_TEXT": {
+      "source": "\"Please enter the required information for network authentication.\"",
+      "translated": "\"请输入网络认证所需的信息。\""
+    },
+    "PORTAL_FORM_SUCCESS_DESC": {
+      "source": "\"Would you like to save the portal login credentials, so that you can access this network automatically next time?\"",
+      "translated": "\"是否保存门户登录凭据，以便下次自动访问此网络？\""
+    },
+    "PORTAL_GO_AUTH_BTN_TEXT": {
+      "source": "\"Go to Authentication\"",
+      "translated": "\"前往认证\""
+    },
+    "PORTAL_ONE_CLICK_DESC_TEXT": {
+      "source": "\"Press the button to proceed with authentication. Your router will handle the process automatically.\"",
+      "translated": "\"按下按钮开始认证，路由器将自动完成该过程。\""
+    },
+    "PORTAL_ONE_CLICK_SUCCESS_DESC": {
+      "source": "\"You are now connected to the network. Internet access has been granted.\"",
+      "translated": "\"已连接到网络并获得互联网访问权限。\""
+    },
+    "PORTAL_PASSWORD_PLACEHOLDER": {
+      "source": "\"Password\"",
+      "translated": "\"密码\""
+    },
+    "PORTAL_PHONE_QR_HINT_TEXT": {
+      "source": "\"Using a client connected to this router.\"",
+      "translated": "\"请使用连接到此路由器的客户端。\""
+    },
+    "PORTAL_REMINDER_LABEL_TEXT": {
+      "source": "\"This feature is unavailable until portal authentication is completed using a client connected to this router.\"",
+      "translated": "\"使用连接到此路由器的客户端完成门户认证后，才能使用此功能。\""
+    },
+    "PORTAL_RE_FAIL_DESC": {
+      "source": "\"Automatic re-authentication failed. Please use your phone to complete authentication.\"",
+      "translated": "\"自动重新认证失败，请使用手机完成认证。\""
+    },
+    "PORTAL_SAVED_AUTH_MODE_TEXT": {
+      "source": "\"Saved Portal Info\"",
+      "translated": "\"已保存的门户信息\""
+    },
+    "PORTAL_SAVE_BTN_TEXT": {
+      "source": "\"Save\"",
+      "translated": "\"保存\""
+    },
+    "PORTAL_SUBMIT_BTN_TEXT": {
+      "source": "\"Submit\"",
+      "translated": "\"提交\""
+    },
+    "PORTAL_TITLE_TEXT": {
+      "source": "\"Portal Authentication\"",
+      "translated": "\"门户认证\""
+    },
+    "PORTAL_TOS_PREFIX_TEXT": {
+      "source": "\"This portal requires you to agree to \"",
+      "translated": "\"此门户要求您同意\""
+    },
+    "PORTAL_TOS_SUFFIX_TEXT": {
+      "source": "\". Please check the boxes to proceed.\"",
+      "translated": "\"。请勾选复选框以继续。\""
+    },
+    "PORTAL_TOS_TERMS_CONTENT": {
+      "source": "\"These terms are required by the portal provider. For details, connect to the network on your mobile phone and open the portal page.\"",
+      "translated": "\"这些条款由门户提供方要求。如需了解详情，请用手机连接该网络并打开门户页面。\""
+    },
+    "PORTAL_TOS_TERMS_LINK_TEXT": {
+      "source": "\"terms\"",
+      "translated": "\"条款\""
+    },
+    "PORTAL_TOS_TERMS_TITLE": {
+      "source": "\"Terms of Service\"",
+      "translated": "\"服务条款\""
+    },
+    "PORTAL_USERNAME_PLACEHOLDER": {
+      "source": "\"Username\"",
+      "translated": "\"用户名\""
+    },
+    "PORTAL_USE_PHONE_BTN_TEXT": {
+      "source": "\"Use Phone\"",
+      "translated": "\"使用手机\""
+    },
+    "PORTAL_VOUCHER_PLACEHOLDER": {
+      "source": "\"Voucher Code\"",
+      "translated": "\"凭证代码\""
+    },
+    "PORTAL_WIFI_REQUIRED_DESC": {
+      "source": "\"To complete Portal authentication, please enable the router's 2.4G WiFi first.\"",
+      "translated": "\"如需完成门户认证，请先启用路由器的 2.4G Wi-Fi。\""
+    },
+    "PORTAL_WIFI_REQUIRED_TITLE": {
+      "source": "\"WiFi Required\"",
+      "translated": "\"需要 Wi-Fi\""
+    },
+    "POWER@CONNECTED_SELECTION_REMEMBER_LABEL_TEXT": {
+      "source": "\"Remember this selection, don't ask again.\"",
+      "translated": "\"记住此选择，不再询问。\""
+    },
+    "POWER_CONNECTED_REMINDER_LABEL_TEXT": {
+      "source": "\"When the device is powered, it will no longer enter idle timeout.\"",
+      "translated": "\"设备供电时，将不再进入空闲超时。\""
+    },
+    "POWER_CONNECTED_WARNING_LABEL_TEXT": {
+      "source": "\"Power Connected\"",
+      "translated": "\"已连接电源\""
+    },
+    "REPEATER_BAND_5G@MIXED_LABEL_TEXT": {
+      "source": "\"5G/Mixed\"",
+      "translated": "\"5G/Mixed\""
+    },
+    "REPEATER_BAND_6G@MIXED_LABEL_TEXT": {
+      "source": "\"6G/Mixed\"",
+      "translated": "\"6G/Mixed\""
+    },
+    "REPEATER_BAND_6G_REMINDER_LABEL_TEXT": {
+      "source": "\"6GHz Wi-Fi supports up to 160MHz bandwidth.\"",
+      "translated": "\"6GHz Wi-Fi 最高支持 160MHz 带宽。\""
+    },
+    "REPEATER_BAND_REMINDER_LABEL_TEXT": {
+      "source": "\"Wi-Fi is set to %s only. Repeating a %s network will switch it to \"Auto Band\" automatically.\"",
+      "translated": "\"Wi-Fi 当前仅设置为 %s。中继 %s 网络时将自动切换为自动频段。\""
+    },
+    "REPEATER_BAND_SWITCH_LABEL_TEXT": {
+      "source": "\"Band Auto-Switch\"",
+      "translated": "\"频段自动切换\""
+    },
+    "REPEATER_CAC_REMINDER_LABEL_TEXT": {
+      "source": "\"The device is running the DFS channel availability check and can not scan for nearby Wi-Fi please wait for the check to finish.\"",
+      "translated": "\"设备正在运行 DFS 信道可用性检查，无法扫描附近 Wi-Fi，请等待检查完成。\""
+    },
+    "REPEATER_NETWORK_DETAILS_DELETE_LABEL_TEXT": {
+      "source": "\"Delete\"",
+      "translated": "\"删除\""
+    },
+    "REPEATER_NETWORK_DETAILS_LABEL_TEXT": {
+      "source": "\"Network Details\"",
+      "translated": "\"网络详情\""
+    },
+    "REPEATER_PASSWORD_LABEL_TEXT": {
+      "source": "\"Wi-Fi Password\"",
+      "translated": "\"Wi-Fi 密码\""
+    },
+    "REPEATER_PASSWORD_TOO_LONG_LABEL_TEXT": {
+      "source": "\"Up to 256 characters allowed.\"",
+      "translated": "\"最多允许 256 个字符。\""
+    },
+    "REPEATER_SCANNING_LABEL_TEXT": {
+      "source": "\"Scanning for Wi-Fi, please wait a moment.\"",
+      "translated": "\"正在扫描 Wi-Fi，请稍候。\""
+    },
+    "REPEATER_SCAN_AVAILABLE_NETWORKS_LABEL_TEXT": {
+      "source": "\"Available Networks\"",
+      "translated": "\"可用网络\""
+    },
+    "REPEATER_SCAN_KNOWN_NETWORKS_LABEL_TEXT": {
+      "source": "\"Known Networks\"",
+      "translated": "\"已保存网络\""
+    },
+    "REPEATER_STATUS_ABORT_LABEL_TEXT": {
+      "source": "\"Abort\"",
+      "translated": "\"中止\""
+    },
+    "REPEATER_STATUS_AUTH_NEED_REMINDER_LABEL_TEXT": {
+      "source": "\"Please complete the portal authentication using a client connected to this router.\"",
+      "translated": "\"请使用已连接到本路由器的客户端完成认证门户登录。\""
+    },
+    "REPEATER_STATUS_BAND_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Band\"",
+      "translated": "\"Wi-Fi 频段\""
+    },
+    "REPEATER_STATUS_BSSID_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"BSSID\"",
+      "translated": "\"BSSID\""
+    },
+    "REPEATER_STATUS_CHANGE_PASSWORD_LABEL_TEXT": {
+      "source": "\"Change Password\"",
+      "translated": "\"修改密码\""
+    },
+    "REPEATER_STATUS_CONNECTING_REMINDER_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "REPEATER_STATUS_CONNECT_FAILED_INIT_REMINDER_LABEL_TEXT": {
+      "source": "\"The repeater is initializing...\"",
+      "translated": "\"中继初始化中...\""
+    },
+    "REPEATER_STATUS_CONNECT_FAILED_KEY_REMINDER_LABEL_TEXT": {
+      "source": "\"Incorrect password.\"",
+      "translated": "\"密码错误。\""
+    },
+    "REPEATER_STATUS_CONNECT_FAILED_NF_REMINDER_LABEL_TEXT": {
+      "source": "\"Could not find the network.\"",
+      "translated": "\"未找到该网络。\""
+    },
+    "REPEATER_STATUS_CONNECT_FAILED_REMINDER_LABEL_TEXT": {
+      "source": "\"Connection failed.\"",
+      "translated": "\"连接失败。\""
+    },
+    "REPEATER_STATUS_CONNECT_PAUSED_LABEL_TEXT": {
+      "source": "\"Internet is connected. Other connection is currently preferred. Repeater won't auto-reconnect to ensure Wi-Fi AP stability.\"",
+      "translated": "\"互联网已连接。当前优先使用其他连接。为确保 Wi-Fi AP 稳定，中继不会自动重连。\""
+    },
+    "REPEATER_STATUS_DISABLE_LABEL_TEXT": {
+      "source": "\"Disable\"",
+      "translated": "\"禁用\""
+    },
+    "REPEATER_STATUS_MACADDR_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"MAC Address\"",
+      "translated": "\"MAC 地址\""
+    },
+    "REPEATER_STATUS_NAME_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Name\"",
+      "translated": "\"Wi-Fi 名称\""
+    },
+    "REPEATER_STATUS_SWITCH_NETWORK_LABEL_TEXT": {
+      "source": "\"Switch Network\"",
+      "translated": "\"切换网络\""
+    },
+    "REPEATER_STATUS_TITLE_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "REPEATER_STATUS_USERNAME@PASSWORD_LABEL_TEXT": {
+      "source": "\"Username & Password\"",
+      "translated": "\"用户名和密码\""
+    },
+    "REPEATER_USERNAME_LABEL_TEXT": {
+      "source": "\"Wi-Fi Username\"",
+      "translated": "\"Wi-Fi 用户名\""
+    },
+    "SAVE_TITLE_LABEL_TEXT": {
+      "source": "\"Save\"",
+      "translated": "\"保存\""
+    },
+    "SEASON": {
+      "source": "\"Quarter\"",
+      "translated": "\"季度\""
+    },
+    "SECURITY_ALWAYS_ON_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Screen Always On\"",
+      "translated": "\"屏幕常亮\""
+    },
+    "SECURITY_AUTO_LOCK_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Auto Lock\"",
+      "translated": "\"自动锁定\""
+    },
+    "SECURITY_AUTO_LOCK_TITLE_LABEL_TEXT": {
+      "source": "\"Auto Lock\"",
+      "translated": "\"自动锁定\""
+    },
+    "SECURITY_DEVICE_PASSCODE_CONFIRM_TITLE_LABEL_TEXT": {
+      "source": "\"Confirm Passcode\"",
+      "translated": "\"确认密码\""
+    },
+    "SECURITY_DEVICE_PASSCODE_RE_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Re-Enter Passcode\"",
+      "translated": "\"再次输入密码\""
+    },
+    "SECURITY_DEVICE_PASSCODE_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Set Device Passcode\"",
+      "translated": "\"设置设备密码\""
+    },
+    "SECURITY_PASSCODE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Passcode\"",
+      "translated": "\"密码\""
+    },
+    "SECURITY_PASSCODE_CONFIRM_TITLE_LABEL_TEXT": {
+      "source": "\"Confirm New Passcode\"",
+      "translated": "\"确认新密码\""
+    },
+    "SECURITY_PASSCODE_DISABLE_CONFIRM_TITLE_LABEL_TEXT": {
+      "source": "\"Enter Passcode to Confirm\"",
+      "translated": "\"输入密码以确认\""
+    },
+    "SECURITY_PASSCODE_ENABLE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Enable Screen Passcode\"",
+      "translated": "\"启用屏幕密码\""
+    },
+    "SECURITY_PASSCODE_NOT_SET_1_LABEL_TEXT": {
+      "source": "\"Enable Screen Passcode is on but no passcode set. Going back will cancel it.\"",
+      "translated": "\"屏幕密码已启用但尚未设置密码，返回将取消启用。\""
+    },
+    "SECURITY_PASSCODE_NOT_SET_LABEL_TEXT": {
+      "source": "\"Passcode Not Set\"",
+      "translated": "\"未设置密码\""
+    },
+    "SECURITY_PASSCODE_NOT_SET_LATER_LABEL_TEXT": {
+      "source": "\"Back\"",
+      "translated": "\"返回\""
+    },
+    "SECURITY_PASSCODE_NOT_SET_SET_LABEL_TEXT": {
+      "source": "\"Set Now\"",
+      "translated": "\"立即设置\""
+    },
+    "SECURITY_PASSCODE_RE_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Re-Enter New Passcode\"",
+      "translated": "\"再次输入新密码\""
+    },
+    "SECURITY_PASSCODE_SET_TITLE_LABEL_TEXT": {
+      "source": "\"Enter New Passcode\"",
+      "translated": "\"输入新密码\""
+    },
+    "SECURITY_PASSCODE_SRC_TITLE_LABEL_TEXT": {
+      "source": "\"Enter Existing Passcode\"",
+      "translated": "\"输入现有密码\""
+    },
+    "SECURITY_TITLE_LABEL_TEXT": {
+      "source": "\"Security\"",
+      "translated": "\"安全\""
+    },
+    "SEMIBOLD_1_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "SEMIBOLD_2_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "SEMIBOLD_3_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "SEMIBOLD_4_LABEL_FONT": {
+      "source": "FONT_SEMIBOLD",
+      "translated": "FONT_SEMIBOLD"
+    },
+    "SETTINGS": {
+      "source": "\"Settings\"",
+      "translated": "\"设置\""
+    },
+    "SETTING_ABOUT@DEVICE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"About Device\"",
+      "translated": "\"关于设备\""
+    },
+    "SETTING_ABOUT@DEVICE_BATTERY@LEVEL_LABEL_TEXT": {
+      "source": "\"Battery Level\"",
+      "translated": "\"电池电量\""
+    },
+    "SETTING_ABOUT@DEVICE_BATTERY@TEMP_LABEL_TEXT": {
+      "source": "\"Battery Temp\"",
+      "translated": "\"电池温度\""
+    },
+    "SETTING_ABOUT@DEVICE_BATTERY_ERROR_TEXT": {
+      "source": "\"Battery Error\"",
+      "translated": "\"电池错误\""
+    },
+    "SETTING_ABOUT@DEVICE_CERTIFICATION_LABEL_TEXT": {
+      "source": "\"Certification\"",
+      "translated": "\"认证\""
+    },
+    "SETTING_ABOUT@DEVICE_CPU@LOAD_DENOMINATOR@LABEL_TEXT": {
+      "source": "\" / 4\"",
+      "translated": "\" / 4\""
+    },
+    "SETTING_ABOUT@DEVICE_CPU@LOAD_LABEL_TEXT": {
+      "source": "\"CPU Average Load\"",
+      "translated": "\"CPU 平均负载\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@ID_LABEL_TEXT": {
+      "source": "\"Device ID\"",
+      "translated": "\"设备 ID\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@IMEI_LABEL_TEXT": {
+      "source": "\"IMEI\"",
+      "translated": "\"IMEI\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@INFO_LABEL_TEXT": {
+      "source": "\"Device Info\"",
+      "translated": "\"设备信息\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@MAC_LABEL_TEXT": {
+      "source": "\"Device MAC\"",
+      "translated": "\"设备 MAC\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@MODEL_LABEL_TEXT": {
+      "source": "\"Model\"",
+      "translated": "\"型号\""
+    },
+    "SETTING_ABOUT@DEVICE_DEVICE@SN_LABEL_TEXT": {
+      "source": "\"Device S/N\"",
+      "translated": "\"设备 S/N\""
+    },
+    "SETTING_ABOUT@DEVICE_EXTERNAL_POWER_TEXT": {
+      "source": "\"Running on external power\"",
+      "translated": "\"外部电源供电中\""
+    },
+    "SETTING_ABOUT@DEVICE_FIRMWARE@VERSION_LABEL_TEXT": {
+      "source": "\"Firmware Version\"",
+      "translated": "\"固件版本\""
+    },
+    "SETTING_ABOUT@DEVICE_FLASH@INFO_LABEL_TEXT": {
+      "source": "\"Flash\"",
+      "translated": "\"闪存\""
+    },
+    "SETTING_ABOUT@DEVICE_MEMORY@INFO_LABEL_TEXT": {
+      "source": "\"Memory\"",
+      "translated": "\"内存\""
+    },
+    "SETTING_ABOUT@DEVICE_MODEM@NAME_LABEL2_TEXT": {
+      "source": "\"Name\"",
+      "translated": "\"名称\""
+    },
+    "SETTING_ABOUT@DEVICE_MODEM@NAME_LABEL_TEXT": {
+      "source": "\"Modem\"",
+      "translated": "\"调制解调器\""
+    },
+    "SETTING_ABOUT@DEVICE_NO_BATTERY_TEXT": {
+      "source": "\"No Battery\"",
+      "translated": "\"无电池\""
+    },
+    "SETTING_ABOUT@DEVICE_READ@BATTERY_ERROR_TEXT": {
+      "source": "\"Unable to read battery info\"",
+      "translated": "\"无法读取电池信息\""
+    },
+    "SETTING_ABOUT@DEVICE_REMINDER_LABEL_TEXT": {
+      "source": "\"*For more features and information, please visit the Admin Panel (%s).\"",
+      "translated": "\"*更多功能与信息，请访问管理面板 (%s)。\""
+    },
+    "SETTING_ABOUT@DEVICE_USB_PROTOCOL_SWITCH_LABEL_TEXT": {
+      "source": "\"USB Protocol Switch\"",
+      "translated": "\"USB 协议切换\""
+    },
+    "SETTING_ABOUT@FAN@ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Fan\"",
+      "translated": "\"风扇\""
+    },
+    "SETTING_ABOUT@FAN@REMINDER_LABEL_TEXT": {
+      "source": "\"*CPU temperature threshold for fan start.\"",
+      "translated": "\"*风扇启动的 CPU 温度阈值。\""
+    },
+    "SETTING_ABOUT@FAN@TEMP_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"CPU Temp\"",
+      "translated": "\"CPU 温度\""
+    },
+    "SETTING_ABOUT@FAN_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Fan Settings\"",
+      "translated": "\"风扇设置\""
+    },
+    "SETTING_ABOUT_DEVICE_UPGRADE_LABEL_TEXT": {
+      "source": "\"Version & Upgrade\"",
+      "translated": "\"版本与升级\""
+    },
+    "SETTING_ADGUARDHOME_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"AdGuard Home\"",
+      "translated": "\"AdGuard Home\""
+    },
+    "SETTING_AIRPLANE@MODE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Airplane Mode\"",
+      "translated": "\"飞行模式\""
+    },
+    "SETTING_BOOT@LIST_RESET_BUTTON_TEXT": {
+      "source": "\"Reset\"",
+      "translated": "\"重置\""
+    },
+    "SETTING_CLIENTS_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Clients\"",
+      "translated": "\"客户端\""
+    },
+    "SETTING_CLOUD@SERVICES_ACCOUNT@UNKNOWN_LABEL_TEXT": {
+      "source": "\"Unknown\"",
+      "translated": "\"未知\""
+    },
+    "SETTING_CLOUD@SERVICES_ASTRO@WRAP_LABEL_TEXT": {
+      "source": "\"AstroWrap\"",
+      "translated": "\"AstroWrap\""
+    },
+    "SETTING_CLOUD@SERVICES_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"GL.iNet Account\"",
+      "translated": "\"GL.iNet 账户\""
+    },
+    "SETTING_CLOUD@SERVICES_BOUND@REMINDER_LABEL_TEXT": {
+      "source": "\"*The device is bound by \"",
+      "translated": "\"*设备已绑定用户 \""
+    },
+    "SETTING_CLOUD@SERVICES_GOOD@CLOUD_LABEL_TEXT": {
+      "source": "\"GoodCloud\"",
+      "translated": "\"GoodCloud\""
+    },
+    "SETTING_CLOUD@SERVICES_REMOTE@SSH_LABEL_TEXT": {
+      "source": "\"Enable Remote SSH\"",
+      "translated": "\"启用远程 SSH\""
+    },
+    "SETTING_CLOUD@SERVICES_REMOTE@WEB_LABEL_TEXT": {
+      "source": "\"Enable Remote Web Access\"",
+      "translated": "\"启用远程 Web 访问\""
+    },
+    "SETTING_CLOUD@SERVICES_UNBIND@ACTION_LABEL_TEXT": {
+      "source": "\"Unbind\"",
+      "translated": "\"解绑\""
+    },
+    "SETTING_CLOUD@SERVICES_UNBIND@REMINDER_LABEL_TEXT": {
+      "source": "\"The device will be unbound from user: \"",
+      "translated": "\"设备将与用户解绑：\""
+    },
+    "SETTING_CLOUD@SERVICES_UNBIND@WARNING_LABEL_TEXT": {
+      "source": "\"Caution\"",
+      "translated": "\"注意\""
+    },
+    "SETTING_CLOUD@SERVICES_UNBLIND@BUTTON_LABEL_TEXT": {
+      "source": "\"Unbind\"",
+      "translated": "\"解绑\""
+    },
+    "SETTING_CLOUD@SERVICES_UNBOUND@REMINDER_LABEL_TEXT": {
+      "source": "\"The GL.iNet Account manages devices and cloud services, enabling seamless access to GoodCloud and GL.iNet App for secure use.\"",
+      "translated": "\"GL.iNet 账户用于管理设备和云服务，可安全、便捷地访问 GoodCloud 和 GL.iNet App。\""
+    },
+    "SETTING_CLOUD_SERVICES_ACCOUNT_BOUND_TIME_LABEL_TEXT": {
+      "source": "\"Bound Time\"",
+      "translated": "\"绑定时间\""
+    },
+    "SETTING_CLOUD_SERVICES_ACCOUNT_LABEL_TEXT": {
+      "source": "\"Bound Account\"",
+      "translated": "\"已绑定账户\""
+    },
+    "SETTING_CLOUD_SERVICES_ADMIN_REMINDER_LABEL_TEXT": {
+      "source": "\"Please log in through the admin panel (%s).\"",
+      "translated": "\"请通过管理面板（%s）登录。\""
+    },
+    "SETTING_CLOUD_SERVICES_FUNCTION_DISABLE_LABEL_TEXT": {
+      "source": "\"Disabled\"",
+      "translated": "\"已禁用\""
+    },
+    "SETTING_CLOUD_SERVICES_FUNCTION_ENABLE_LABEL_TEXT": {
+      "source": "\"Enabled\"",
+      "translated": "\"已启用\""
+    },
+    "SETTING_CLOUD_SERVICES_GLINET_APP_LABEL_TEXT": {
+      "source": "\"GL.iNet App\"",
+      "translated": "\"GL.iNet App\""
+    },
+    "SETTING_DATA_PORT_POWER_DIRECTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Power Direction (Data Port)\"",
+      "translated": "\"供电方向（数据口）\""
+    },
+    "SETTING_DISPLAY_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Display\"",
+      "translated": "\"显示\""
+    },
+    "SETTING_ENERGY_MANAGEMENT_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Power\"",
+      "translated": "\"电源\""
+    },
+    "SETTING_ENERGY_MANAGEMENT_LISTS_AUTO_SYSTEM_STANDBY_LABEL_TEXT": {
+      "source": "\"Auto System Standby\"",
+      "translated": "\"自动系统待机\""
+    },
+    "SETTING_ENERGY_MANAGEMENT_LISTS_POWER_ON_WITH_CHARGER_LABEL_TEXT": {
+      "source": "\"Power On with Charger\"",
+      "translated": "\"充电时开机\""
+    },
+    "SETTING_ENERGY_MANAGEMENT_REMINDER_LABEL_TEXT": {
+      "source": "\"When enabled, if networks are idle, no USB is connected, and the Repeater is not in use, the system will automatically enter standby.\"",
+      "translated": "\"启用后，若网络空闲、无 USB 连接且未使用中继，系统将自动进入待机。\""
+    },
+    "SETTING_ETHERNET_PORT_LOW_POWER_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Ethernet Idle Timeout\"",
+      "translated": "\"以太网空闲超时\""
+    },
+    "SETTING_GUEST_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Guest Network Gateway\"",
+      "translated": "\"访客网络网关\""
+    },
+    "SETTING_INTERNET_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Internet\"",
+      "translated": "\"互联网\""
+    },
+    "SETTING_IOT_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Iot Network Gateway\"",
+      "translated": "\"IoT 网络网关\""
+    },
+    "SETTING_IPV6@MANAGEMENT_DISABLE_LABEL_TEXT": {
+      "source": "\"Disable\"",
+      "translated": "\"禁用\""
+    },
+    "SETTING_IPV6_ADDR_LABEL_TEXT": {
+      "source": "\"IPv6 Address\"",
+      "translated": "\"IPv6 地址\""
+    },
+    "SETTING_IPV6_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"IPv6\"",
+      "translated": "\"IPv6\""
+    },
+    "SETTING_IPV6_DNS@AUTOMATIC_LABEL_TEXT": {
+      "source": "\"Automatic\"",
+      "translated": "\"自动\""
+    },
+    "SETTING_IPV6_DNS@MANUAL_LABEL_TEXT": {
+      "source": "\"Manual\"",
+      "translated": "\"手动\""
+    },
+    "SETTING_IPV6_DNS@METHOD_LABEL_TEXT": {
+      "source": "\"DNS Acquisition Method\"",
+      "translated": "\"DNS 获取方式\""
+    },
+    "SETTING_IPV6_DNS@SERVER1_LABEL_TEXT": {
+      "source": "\"DNS Server 1\"",
+      "translated": "\"DNS 服务器 1\""
+    },
+    "SETTING_IPV6_DNS@SERVER2_LABEL_TEXT": {
+      "source": "\"DNS Server 2\"",
+      "translated": "\"DNS 服务器 2\""
+    },
+    "SETTING_IPV6_ENABLE@LISTS_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "SETTING_IPV6_LAN@MODE_LABEL_TEXT": {
+      "source": "\"LAN Mode\"",
+      "translated": "\"LAN 模式\""
+    },
+    "SETTING_IPV6_MANAGEMENT_LABEL_TEXT": {
+      "source": "\"%s, %s\"",
+      "translated": "\"%s, %s\""
+    },
+    "SETTING_IPV6_NAT6_LABEL_TEXT": {
+      "source": "\"NAT6\"",
+      "translated": "\"NAT6\""
+    },
+    "SETTING_IPV6_NATIVE_LABEL_TEXT": {
+      "source": "\"Native\"",
+      "translated": "\"原生\""
+    },
+    "SETTING_IPV6_PASSTHROUGH_LABEL_TEXT": {
+      "source": "\"Passthrough\"",
+      "translated": "\"透传\""
+    },
+    "SETTING_IPV6_REMINDER_LABEL_TEXT": {
+      "source": "\"Static IPv6 can only be set in the Admin Panel (%s).\"",
+      "translated": "\"静态 IPv6 只能在管理面板（%s）中设置。\""
+    },
+    "SETTING_IPV6_STATIC_LABEL_TEXT": {
+      "source": "\"Static IPv6\"",
+      "translated": "\"静态 IPv6\""
+    },
+    "SETTING_LAN_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Router IP Address\"",
+      "translated": "\"路由器 IP 地址\""
+    },
+    "SETTING_NETWORK_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Network\"",
+      "translated": "\"网络\""
+    },
+    "SETTING_NETWORK_PART_TITLE_LABEL_TEXT": {
+      "source": "\"Network\"",
+      "translated": "\"网络\""
+    },
+    "SETTING_PORT_MANAGEMENT_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Ethernet Ports\"",
+      "translated": "\"以太网端口\""
+    },
+    "SETTING_POWER_OFF_LOW_POWER_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Auto Standby & Power Off\"",
+      "translated": "\"自动待机与关机\""
+    },
+    "SETTING_POWER_OFF_LOW_POWER_REMINDER_LABEL_TEXT": {
+      "source": "\"*When enabled, if Ethernet, Wi-Fi and Repeater are idle, and no USB device is connected, the device will enter system standby, Cellular will enter low power mode, and the power-off countdown will begin.\"",
+      "translated": "\"*启用后，若以太网、Wi-Fi 和中继均空闲且无 USB 设备连接，设备将进入系统待机，蜂窝网络进入低功耗模式，并开始关机倒计时。\""
+    },
+    "SETTING_POWER_OFF_NEVER_STANDBY_LABEL_TEXT": {
+      "source": "\"Never (Only Auto Standby)\"",
+      "translated": "\"从不（仅自动待机）\""
+    },
+    "SETTING_POWER_PORT_POWER_DIRECTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Power Direction (Power Port)\"",
+      "translated": "\"供电方向（电源口）\""
+    },
+    "SETTING_REBOOT@WINDOW_CANCEL_BUTTON_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "SETTING_REBOOT@WINDOW_REBOOT_BUTTON_TEXT": {
+      "source": "\"Reboot\"",
+      "translated": "\"重启\""
+    },
+    "SETTING_REBOOT@WINDOW_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to reboot your router?\"",
+      "translated": "\"确定要重启路由器吗？\""
+    },
+    "SETTING_REBOOT@WINDOW_WARNING_LABEL_TEXT": {
+      "source": "\"Caution\"",
+      "translated": "\"注意\""
+    },
+    "SETTING_RESET@WINDOW_CANCEL_BUTTON_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "SETTING_RESET@WINDOW_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to reset your router to factory defaults?\"",
+      "translated": "\"确定要将路由器恢复出厂设置吗？\""
+    },
+    "SETTING_RESET@WINDOW_RESET_BUTTON_TEXT": {
+      "source": "\"Reset\"",
+      "translated": "\"重置\""
+    },
+    "SETTING_RESET@WINDOW_WARNING_LABEL_TEXT": {
+      "source": "\"Delete All and Reboot\"",
+      "translated": "\"删除全部并重启\""
+    },
+    "SETTING_RESET_WINDOW_ESIM_REMINDER_LABEL_TEXT": {
+      "source": "\"*eSIM profiles will be retained after device reset.\"",
+      "translated": "\"*设备重置后将保留 eSIM 配置文件。\""
+    },
+    "SETTING_SECURITY_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Security\"",
+      "translated": "\"安全\""
+    },
+    "SETTING_SELECT@NETWORK_TITLE_LABEL_TEXT": {
+      "source": "\"Join a Network\"",
+      "translated": "\"加入网络\""
+    },
+    "SETTING_SMS_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"SMS\"",
+      "translated": "\"短信\""
+    },
+    "SETTING_SUBNET_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Subnet\"",
+      "translated": "\"子网\""
+    },
+    "SETTING_TITLE_LABEL_TEXT": {
+      "source": "\"More\"",
+      "translated": "\"更多\""
+    },
+    "SETTING_USB_ASK_REMINDER_LABEL_TEXT": {
+      "source": "\"*Prompt each time when plug in a dual role USB device\"",
+      "translated": "\"*每次插入双角色 USB 设备时提示\""
+    },
+    "SETTING_USB_DEVICE_REMINDER_LABEL_TEXT": {
+      "source": "\"*Acts as USB Tether Device (presents as a USB network adapter to a host)\"",
+      "translated": "\"*作为 USB 共享设备（向主机呈现为 USB 网卡）\""
+    },
+    "SETTING_USB_HOST_REMINDER_LABEL_TEXT": {
+      "source": "\"*Acts as USB Host (accepts compatible USB peripherals)\"",
+      "translated": "\"*作为 USB 主机（接受兼容 USB 外设）\""
+    },
+    "SETTING_USB_MANAGEMENT_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"USB\"",
+      "translated": "\"USB\""
+    },
+    "SETTING_USB_MANAGEMENT_DIRECTION_INPUT_LABEL_TEXT": {
+      "source": "\"Input Priority\"",
+      "translated": "\"输入优先\""
+    },
+    "SETTING_USB_MANAGEMENT_DIRECTION_OUTPUT_LABEL_TEXT": {
+      "source": "\"Output Priority\"",
+      "translated": "\"输出优先\""
+    },
+    "SETTING_USB_MANAGEMENT_DUAL_ROLE_USB_MODE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Dual Role USB Mode \"",
+      "translated": "\"双角色 USB 模式\""
+    },
+    "SETTING_USB_MANAGEMENT_POWER_THRESHOLD_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Power Threshold\"",
+      "translated": "\"电量阈值\""
+    },
+    "SETTING_USB_MANAGEMENT_POWER_THRESHOLD_PERCENT_LABEL_TEXT": {
+      "source": "\"%\"",
+      "translated": "\"%\""
+    },
+    "SETTING_USB_MANAGEMENT_POWER_THRESHOLD_REMINDER_LABEL_TEXT": {
+      "source": "\"*Minimum battery threshold for external power output (USB devices will be unavailable below this level)\"",
+      "translated": "\"*外部供电输出的最低电量阈值（低于此值 USB 设备不可用）\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_MODE_ASK_ME_LABEL_TEXT": {
+      "source": "\"Ask Me\"",
+      "translated": "\"每次询问\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_MODE_DEVICE_LABEL_TEXT": {
+      "source": "\"Device (USB Tethering)\"",
+      "translated": "\"设备（USB 共享网络）\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_MODE_HOST_LABEL_TEXT": {
+      "source": "\"Host (USB OTG)\"",
+      "translated": "\"主机（USB OTG）\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_PROTOCAL_2_0_LABEL_TEXT": {
+      "source": "\"USB 2.0\"",
+      "translated": "\"USB 2.0\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_PROTOCAL_3_0_LABEL_TEXT": {
+      "source": "\"USB 3.0\"",
+      "translated": "\"USB 3.0\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_PROTOCAL_3_1_LABEL_TEXT": {
+      "source": "\"USB 3.1\"",
+      "translated": "\"USB 3.1\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_PROTOCAL_SWITCH_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"USB Protocal\"",
+      "translated": "\"USB 协议\""
+    },
+    "SETTING_USB_MANAGEMENT_USB_PROTOCAL_SWITCH_REMINDER_LABEL_TEXT": {
+      "source": "\"*The USB protocol switch will apply to both USB ports simultaneously.\"",
+      "translated": "\"*USB 协议切换会同时应用于两个 USB 端口。\""
+    },
+    "SETTING_WIFI_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi\"",
+      "translated": "\"Wi-Fi\""
+    },
+    "SETTING_WIFI_LOW_POWER_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Idle Timeout\"",
+      "translated": "\"Wi-Fi 空闲超时\""
+    },
+    "SHOWN": {
+      "source": "\"Shown\"",
+      "translated": "\"显示\""
+    },
+    "SMS_CANCEL_LABEL_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "SMS_DATE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Time\"",
+      "translated": "\"时间\""
+    },
+    "SMS_DELETE_LABEL_TEXT": {
+      "source": "\"Delete\"",
+      "translated": "\"删除\""
+    },
+    "SMS_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to delete the entry?\"",
+      "translated": "\"确定要删除此条目吗？\""
+    },
+    "SMS_SEND_TO_LABEL_TEXT": {
+      "source": "\"Send to\"",
+      "translated": "\"发送至\""
+    },
+    "SMS_SIM_INFO_LABEL_TEXT": {
+      "source": "\"SIM%d\"",
+      "translated": "\"SIM%d\""
+    },
+    "SMS_WARNING_LABEL_TEXT": {
+      "source": "\"Caution\"",
+      "translated": "\"注意\""
+    },
+    "STATUS_ADGUARDHOME_LINK_LABEL_TEXT": {
+      "source": "\"AGH\"",
+      "translated": "\"AGH\""
+    },
+    "STATUS_ASTROWARP_LINK_LABEL_TEXT": {
+      "source": "\"AW\"",
+      "translated": "\"AW\""
+    },
+    "STATUS_EXPLANATION_ACTIVE_LABEL_TEXT": {
+      "source": "\"Active\"",
+      "translated": "\"活跃\""
+    },
+    "STATUS_EXPLANATION_ADGUARDHOME_LABEL_TEXT": {
+      "source": "\"AdGuardHome\"",
+      "translated": "\"AdGuardHome\""
+    },
+    "STATUS_EXPLANATION_AIRPLANE_LABEL_TEXT": {
+      "source": "\"Airplane Mode\"",
+      "translated": "\"飞行模式\""
+    },
+    "STATUS_EXPLANATION_ASTROWRAP_LABEL_TEXT": {
+      "source": "\"AstroWrap\"",
+      "translated": "\"AstroWrap\""
+    },
+    "STATUS_EXPLANATION_BATTERY@ERR_LABEL_TEXT": {
+      "source": "\"Battery Error\"",
+      "translated": "\"电池错误\""
+    },
+    "STATUS_EXPLANATION_BATTERY@LEVEL_LABEL_TEXT": {
+      "source": "\"Level: %d%%\"",
+      "translated": "\"电量：%d%%\""
+    },
+    "STATUS_EXPLANATION_BATTERY_LABEL_TEXT": {
+      "source": "\"Battery\"",
+      "translated": "\"电池\""
+    },
+    "STATUS_EXPLANATION_CHARGING_LABEL_TEXT": {
+      "source": "\"Charging\"",
+      "translated": "\"充电中\""
+    },
+    "STATUS_EXPLANATION_CONNECTED_LABEL_TEXT": {
+      "source": "\"Connected\"",
+      "translated": "\"已连接\""
+    },
+    "STATUS_EXPLANATION_CONNECTED_WIFI_LABEL_TEXT": {
+      "source": "\"Connected · Wi-Fi %d\"",
+      "translated": "\"已连接 · Wi-Fi %d\""
+    },
+    "STATUS_EXPLANATION_CONNECTED_WIFI_NO_NETWORK_LABEL_TEXT": {
+      "source": "\"No Internet · Wi-Fi %d\"",
+      "translated": "\"无互联网 · Wi-Fi %d\""
+    },
+    "STATUS_EXPLANATION_CONNECTING_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "STATUS_EXPLANATION_ETHERNET@PORT_LABEL_TEXT": {
+      "source": "\"Ethernet Port\"",
+      "translated": "\"以太网端口\""
+    },
+    "STATUS_EXPLANATION_EXTERNAL_STORAGE_LABEL_TEXT": {
+      "source": "\"External Storage\"",
+      "translated": "\"外部存储\""
+    },
+    "STATUS_EXPLANATION_FAST@CHARGING_LABEL_TEXT": {
+      "source": "\"Fast Charging\"",
+      "translated": "\"快速充电\""
+    },
+    "STATUS_EXPLANATION_NEW@SMS_LABEL_TEXT": {
+      "source": "\"New Message\"",
+      "translated": "\"新消息\""
+    },
+    "STATUS_EXPLANATION_NO@BATTERY_LABEL_TEXT": {
+      "source": "\"No Battery\"",
+      "translated": "\"无电池\""
+    },
+    "STATUS_EXPLANATION_NO_ACTIVE_LABEL_TEXT": {
+      "source": "\"There are currently \\nno active status indicators.\"",
+      "translated": "\"当前没有\\n活动状态指示。\""
+    },
+    "STATUS_EXPLANATION_ON_LABEL_TEXT": {
+      "source": "\"On\"",
+      "translated": "\"开启\""
+    },
+    "STATUS_EXPLANATION_OPERATOR_LABEL_TEXT": {
+      "source": "\"China Mobile\"",
+      "translated": "\"China Mobile\""
+    },
+    "STATUS_EXPLANATION_OTG_LABEL_TEXT": {
+      "source": "\"USB OTG\"",
+      "translated": "\"USB OTG\""
+    },
+    "STATUS_EXPLANATION_REPEATER_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "STATUS_EXPLANATION_SIM@LOCKED_LABEL_TEXT": {
+      "source": "\"Locked SIM\"",
+      "translated": "\"SIM 已锁定\""
+    },
+    "STATUS_EXPLANATION_SMS_LABEL_TEXT": {
+      "source": "\"SMS\"",
+      "translated": "\"SMS\""
+    },
+    "STATUS_EXPLANATION_TETHERING_LABEL_TEXT": {
+      "source": "\"Tethering\"",
+      "translated": "\"USB 共享网络\""
+    },
+    "STATUS_EXPLANATION_TOR_LABEL_TEXT": {
+      "source": "\"Tor\"",
+      "translated": "\"Tor\""
+    },
+    "STATUS_EXPLANATION_VPN_LABEL_TEXT": {
+      "source": "\"VPN\"",
+      "translated": "\"VPN\""
+    },
+    "STATUS_TOR_LINK_LABEL_TEXT": {
+      "source": "\"Tor\"",
+      "translated": "\"Tor\""
+    },
+    "STATUS_VPN_CLIENT_LINK_LABEL_TEXT": {
+      "source": "\"VPN\"",
+      "translated": "\"VPN\""
+    },
+    "SUPPLIER": {
+      "source": "\"Supplier\"",
+      "translated": "\"供应商\""
+    },
+    "SWITCH_BUTTON_ADGUARD_HOME_LABEL_TEXT": {
+      "source": "\"AdGuard Home\"",
+      "translated": "\"AdGuard Home\""
+    },
+    "SWITCH_BUTTON_GUEST_WIFI_LABEL_TEXT": {
+      "source": "\"Guest Wi-Fi\"",
+      "translated": "\"访客 Wi-Fi\""
+    },
+    "SWITCH_BUTTON_MAIN_WIFI_LABEL_TEXT": {
+      "source": "\"Main Wi-Fi\"",
+      "translated": "\"主 Wi-Fi\""
+    },
+    "SWITCH_BUTTON_NO_FUNCTION_LABEL_TEXT": {
+      "source": "\"No Function\"",
+      "translated": "\"无功能\""
+    },
+    "SWITCH_BUTTON_REPEATER_LABEL_TEXT": {
+      "source": "\"Repeater\"",
+      "translated": "\"中继\""
+    },
+    "SWITCH_BUTTON_TOGGLE_LABEL_TEXT": {
+      "source": "\"Toggle Button\"",
+      "translated": "\"拨动开关\""
+    },
+    "SWITCH_BUTTON_TOR_LABEL_TEXT": {
+      "source": "\"Tor\"",
+      "translated": "\"Tor\""
+    },
+    "SWITCH_BUTTON_VPN_CLIENT_LABEL_TEXT": {
+      "source": "\"VPN Client\"",
+      "translated": "\"VPN 客户端\""
+    },
+    "SWITCH_BUTTON_VPN_POLICY_LABEL_TEXT": {
+      "source": "\"VPN / %s\"",
+      "translated": "\"VPN / %s\""
+    },
+    "SWITCH_BUTTON_VPN_TUNNEL_LABEL_TEXT": {
+      "source": "\"VPN / Tunnel %s\"",
+      "translated": "\"VPN / 隧道 %s\""
+    },
+    "SWITCH_BUTTON_WIFI_LABEL_TEXT": {
+      "source": "\"Wi-Fi\"",
+      "translated": "\"Wi-Fi\""
+    },
+    "TEMPLATE_CARD_LABEL_TEXT": {
+      "source": "HOME_WIFI_CARD_LABEL_TEXT",
+      "translated": "HOME_WIFI_CARD_LABEL_TEXT"
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON0_TEXT": {
+      "source": "\"q\"",
+      "translated": "\"q\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON0_TEXT_UPPER": {
+      "source": "\"Q\"",
+      "translated": "\"Q\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON10_TEXT": {
+      "source": "\"a\"",
+      "translated": "\"a\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON10_TEXT_UPPER": {
+      "source": "\"A\"",
+      "translated": "\"A\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON11_TEXT": {
+      "source": "\"s\"",
+      "translated": "\"s\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON11_TEXT_UPPER": {
+      "source": "\"S\"",
+      "translated": "\"S\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON12_TEXT": {
+      "source": "\"d\"",
+      "translated": "\"d\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON12_TEXT_UPPER": {
+      "source": "\"D\"",
+      "translated": "\"D\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON13_TEXT": {
+      "source": "\"f\"",
+      "translated": "\"f\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON13_TEXT_UPPER": {
+      "source": "\"F\"",
+      "translated": "\"F\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON14_TEXT": {
+      "source": "\"g\"",
+      "translated": "\"g\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON14_TEXT_UPPER": {
+      "source": "\"G\"",
+      "translated": "\"G\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON15_TEXT": {
+      "source": "\"h\"",
+      "translated": "\"h\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON15_TEXT_UPPER": {
+      "source": "\"H\"",
+      "translated": "\"H\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON16_TEXT": {
+      "source": "\"j\"",
+      "translated": "\"j\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON16_TEXT_UPPER": {
+      "source": "\"J\"",
+      "translated": "\"J\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON17_TEXT": {
+      "source": "\"k\"",
+      "translated": "\"k\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON17_TEXT_UPPER": {
+      "source": "\"K\"",
+      "translated": "\"K\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON18_TEXT": {
+      "source": "\"l\"",
+      "translated": "\"l\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON18_TEXT_UPPER": {
+      "source": "\"L\"",
+      "translated": "\"L\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON19_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON1_TEXT": {
+      "source": "\"w\"",
+      "translated": "\"w\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON1_TEXT_UPPER": {
+      "source": "\"W\"",
+      "translated": "\"W\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON20_TEXT": {
+      "source": "\"z\"",
+      "translated": "\"z\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON20_TEXT_UPPER": {
+      "source": "\"Z\"",
+      "translated": "\"Z\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON21_TEXT": {
+      "source": "\"x\"",
+      "translated": "\"x\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON21_TEXT_UPPER": {
+      "source": "\"X\"",
+      "translated": "\"X\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON22_TEXT": {
+      "source": "\"c\"",
+      "translated": "\"c\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON22_TEXT_UPPER": {
+      "source": "\"C\"",
+      "translated": "\"C\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON23_TEXT": {
+      "source": "\"v\"",
+      "translated": "\"v\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON23_TEXT_UPPER": {
+      "source": "\"V\"",
+      "translated": "\"V\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON24_TEXT": {
+      "source": "\"b\"",
+      "translated": "\"b\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON24_TEXT_UPPER": {
+      "source": "\"B\"",
+      "translated": "\"B\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON25_TEXT": {
+      "source": "\"n\"",
+      "translated": "\"n\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON25_TEXT_UPPER": {
+      "source": "\"N\"",
+      "translated": "\"N\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON26_TEXT": {
+      "source": "\"m\"",
+      "translated": "\"m\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON26_TEXT_UPPER": {
+      "source": "\"M\"",
+      "translated": "\"M\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON27_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON28_TEXT": {
+      "source": "\"123\"",
+      "translated": "\"123\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON29_TEXT": {
+      "source": "\"space\"",
+      "translated": "\"空格\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON2_TEXT": {
+      "source": "\"e\"",
+      "translated": "\"e\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON2_TEXT_UPPER": {
+      "source": "\"E\"",
+      "translated": "\"E\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON3_TEXT": {
+      "source": "\"r\"",
+      "translated": "\"r\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON3_TEXT_UPPER": {
+      "source": "\"R\"",
+      "translated": "\"R\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON4_TEXT": {
+      "source": "\"t\"",
+      "translated": "\"t\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON4_TEXT_UPPER": {
+      "source": "\"T\"",
+      "translated": "\"T\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON5_TEXT": {
+      "source": "\"y\"",
+      "translated": "\"y\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON5_TEXT_UPPER": {
+      "source": "\"Y\"",
+      "translated": "\"Y\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON6_TEXT": {
+      "source": "\"u\"",
+      "translated": "\"u\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON6_TEXT_UPPER": {
+      "source": "\"U\"",
+      "translated": "\"U\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON7_TEXT": {
+      "source": "\"i\"",
+      "translated": "\"i\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON7_TEXT_UPPER": {
+      "source": "\"I\"",
+      "translated": "\"I\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON8_TEXT": {
+      "source": "\"o\"",
+      "translated": "\"o\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON8_TEXT_UPPER": {
+      "source": "\"O\"",
+      "translated": "\"O\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON9_TEXT": {
+      "source": "\"p\"",
+      "translated": "\"p\""
+    },
+    "TEMPLATE_LETTER_KEYBOARD_BUTTON9_TEXT_UPPER": {
+      "source": "\"P\"",
+      "translated": "\"P\""
+    },
+    "TEMPLATE_LIST_OPTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Device\"",
+      "translated": "\"设备\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON0_TEXT": {
+      "source": "\"1\"",
+      "translated": "\"1\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON10_TEXT": {
+      "source": "\"0\"",
+      "translated": "\"0\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON11_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON1_TEXT": {
+      "source": "\"2\"",
+      "translated": "\"2\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON2_TEXT": {
+      "source": "\"3\"",
+      "translated": "\"3\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON3_TEXT": {
+      "source": "\"4\"",
+      "translated": "\"4\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON4_TEXT": {
+      "source": "\"5\"",
+      "translated": "\"5\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON5_TEXT": {
+      "source": "\"6\"",
+      "translated": "\"6\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON6_TEXT": {
+      "source": "\"7\"",
+      "translated": "\"7\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON7_TEXT": {
+      "source": "\"8\"",
+      "translated": "\"8\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON8_TEXT": {
+      "source": "\"9\"",
+      "translated": "\"9\""
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON9_LABEL_FONT": {
+      "source": "OPTION_VALUE_LABEL_FONT",
+      "translated": "OPTION_VALUE_LABEL_FONT"
+    },
+    "TEMPLATE_NUMBER_KEYBOARD_BUTTON9_TEXT": {
+      "source": "\"OK\"",
+      "translated": "\"确定\""
+    },
+    "TEMPLATE_REMINDER_ACTION_LABEL_TEXT": {
+      "source": "\"Re-Detect\"",
+      "translated": "\"重新检测\""
+    },
+    "TEMPLATE_REMINDER_CANCEL_LABEL_TEXT": {
+      "source": "\"Cancel\"",
+      "translated": "\"取消\""
+    },
+    "TEMPLATE_REMINDER_LABEL_TEXT": {
+      "source": "\"First, please unplug the network cable inserted into the WAN port.\"",
+      "translated": "\"请先拔出插在 WAN 口上的网线。\""
+    },
+    "TEMPLATE_REMINDER_WARNING_LABEL_TEXT": {
+      "source": "\"Warning\"",
+      "translated": "\"警告\""
+    },
+    "TEMPLATE_SIMPLE_BUTTON_LABEL_TEXT": {
+      "source": "\"Done\"",
+      "translated": "\"完成\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON0_TEXT": {
+      "source": "\"[\"",
+      "translated": "\"[\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON10_TEXT": {
+      "source": "\"\\\"",
+      "translated": "\"\\\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON11_TEXT": {
+      "source": "\"|\"",
+      "translated": "\"|\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON12_TEXT": {
+      "source": "\"~\"",
+      "translated": "\"~\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON13_TEXT": {
+      "source": "\"<\"",
+      "translated": "\"<\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON14_TEXT": {
+      "source": "\">\"",
+      "translated": "\">\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON15_LABEL_FONT": {
+      "source": "MONO_MEIDUM_2_LABEL_FONT",
+      "translated": "MONO_MEIDUM_2_LABEL_FONT"
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON15_TEXT": {
+      "source": "\"123\"",
+      "translated": "\"123\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON16_TEXT": {
+      "source": "\"_\"",
+      "translated": "\"_\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON17_TEXT": {
+      "source": "\"`\"",
+      "translated": "\"`\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON18_TEXT": {
+      "source": "\"$\"",
+      "translated": "\"$\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON19_TEXT": {
+      "source": "\"&\"",
+      "translated": "\"&\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON1_TEXT": {
+      "source": "\"]\"",
+      "translated": "\"]\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON20_TEXT": {
+      "source": "\"@\"",
+      "translated": "\"@\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON21_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON22_TEXT": {
+      "source": "\"ABC\"",
+      "translated": "\"ABC\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON23_TEXT": {
+      "source": "\"space\"",
+      "translated": "\"空格\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON2_TEXT": {
+      "source": "\"{\"",
+      "translated": "\"{\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON3_TEXT": {
+      "source": "\"}\"",
+      "translated": "\"}\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON4_TEXT": {
+      "source": "\"#\"",
+      "translated": "\"#\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON5_TEXT": {
+      "source": "\"%\"",
+      "translated": "\"%\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON6_TEXT": {
+      "source": "\"^\"",
+      "translated": "\"^\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON7_TEXT": {
+      "source": "\"*\"",
+      "translated": "\"*\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON8_TEXT": {
+      "source": "\"+\"",
+      "translated": "\"+\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD2_BUTTON9_TEXT": {
+      "source": "\"=\"",
+      "translated": "\"=\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON0_TEXT": {
+      "source": "\"1\"",
+      "translated": "\"1\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON10_TEXT": {
+      "source": "\"-\"",
+      "translated": "\"-\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON11_TEXT": {
+      "source": "\"/\"",
+      "translated": "\"/\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON12_TEXT": {
+      "source": "\":\"",
+      "translated": "\":\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON13_TEXT": {
+      "source": "\";\"",
+      "translated": "\";\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON14_TEXT": {
+      "source": "\"(\"",
+      "translated": "\"(\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON15_TEXT": {
+      "source": "\")\"",
+      "translated": "\")\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON16_TEXT": {
+      "source": "\"\"\"",
+      "translated": "\"\"\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON17_TEXT": {
+      "source": "\"#+=\"",
+      "translated": "\"#+=\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON18_TEXT": {
+      "source": "\".\"",
+      "translated": "\".\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON19_TEXT": {
+      "source": "\",\"",
+      "translated": "\",\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON1_TEXT": {
+      "source": "\"2\"",
+      "translated": "\"2\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON20_TEXT": {
+      "source": "\"?\"",
+      "translated": "\"?\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON21_TEXT": {
+      "source": "\"!\"",
+      "translated": "\"!\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON22_TEXT": {
+      "source": "\"'\"",
+      "translated": "\"'\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON23_TEXT": {
+      "source": "\"\"",
+      "translated": "\"\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON24_TEXT": {
+      "source": "\"ABC\"",
+      "translated": "\"ABC\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON25_TEXT": {
+      "source": "\"space\"",
+      "translated": "\"空格\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON2_TEXT": {
+      "source": "\"3\"",
+      "translated": "\"3\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON3_TEXT": {
+      "source": "\"4\"",
+      "translated": "\"4\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON4_TEXT": {
+      "source": "\"5\"",
+      "translated": "\"5\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON5_TEXT": {
+      "source": "\"6\"",
+      "translated": "\"6\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON6_TEXT": {
+      "source": "\"7\"",
+      "translated": "\"7\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON7_TEXT": {
+      "source": "\"8\"",
+      "translated": "\"8\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON8_TEXT": {
+      "source": "\"9\"",
+      "translated": "\"9\""
+    },
+    "TEMPLATE_SYMBOL_KEYBOARD_BUTTON9_TEXT": {
+      "source": "\"0\"",
+      "translated": "\"0\""
+    },
+    "TEMPLATE_TITLE_BAR_SUBMIT_LABEL_TEXT": {
+      "source": "\"Submit\"",
+      "translated": "\"提交\""
+    },
+    "TEMPLATE_TITLE_BAR_TITLE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Password\"",
+      "translated": "\"Wi-Fi 密码\""
+    },
+    "TEMPLATE_WARNING_LABEL_TEXT": {
+      "source": "\"The entry cannot be modified when repeater is enabled.\"",
+      "translated": "\"启用中继时无法修改此条目。\""
+    },
+    "TETHERING_BUTTON_CONNECT_LABEL_TEXT": {
+      "source": "\"Connect\"",
+      "translated": "\"连接\""
+    },
+    "TETHERING_BUTTON_DISCONNECT_LABEL_TEXT": {
+      "source": "\"Disconnect\"",
+      "translated": "\"断开\""
+    },
+    "TETHERING_CONNECTING_LABEL_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "TETHERING_DEVICE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Device\"",
+      "translated": "\"设备\""
+    },
+    "TETHERING_REMINDER_LABEL_TEXT": {
+      "source": "\"No Tethering device found.Plugin your smartphone or USB Modem to start.\"",
+      "translated": "\"未找到共享网络设备。\\n请连接智能手机或 USB 调制解调器以开始。\""
+    },
+    "TETHERING_REMINDER_LABEL_TEXT1": {
+      "source": "\"No Tethering device found.\\nPlug in your smartphone or USB Modem to start. ( Please ensure that the power supply voltage exceeds 9V3A )\"",
+      "translated": "\"未发现网络共享设备。\\n请接入手机或 USB 调制解调器。（请确保供电规格高于 9V/3A）\""
+    },
+    "TETHERING_TITLE_LABEL_TEXT": {
+      "source": "\"Tethering\"",
+      "translated": "\"USB 共享网络\""
+    },
+    "TEXTAREA_USERNAME_HINT": {
+      "source": "\"Enter Username\"",
+      "translated": "\"输入用户名\""
+    },
+    "TIME_HOUR": {
+      "source": "\"Hour\"",
+      "translated": "\"小时\""
+    },
+    "TIME_HOURS": {
+      "source": "\"Hrs\"",
+      "translated": "\"小时\""
+    },
+    "TIME_MIN": {
+      "source": "\"Min\"",
+      "translated": "\"分钟\""
+    },
+    "TIME_MINS": {
+      "source": "\"Mins\"",
+      "translated": "\"分钟\""
+    },
+    "TIME_NEVER": {
+      "source": "\"Never\"",
+      "translated": "\"从不\""
+    },
+    "TIME_SECOND": {
+      "source": "\"Sec\"",
+      "translated": "\"秒\""
+    },
+    "TIME_SECONDS": {
+      "source": "\"Secs\"",
+      "translated": "\"秒\""
+    },
+    "TITLE_LABEL_FONT": {
+      "source": "FONT_BOLD",
+      "translated": "FONT_BOLD"
+    },
+    "TOPUP": {
+      "source": "\"Top Up\"",
+      "translated": "\"充值\""
+    },
+    "TOP_UP_REMINDER_LABEL_TEXT": {
+      "source": "\"Scan the QR code to top up your balance quickly and easily.\"",
+      "translated": "\"扫描二维码快速便捷充值。\""
+    },
+    "TOR_ENABLE_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "TOR_EXIT_NODE_TITLE_TEXT": {
+      "source": "\"Custom Exit Node\"",
+      "translated": "\"自定义出口节点\""
+    },
+    "TOR_SETTING_LIST_LABEL_TEXT": {
+      "source": "\"Tor\"",
+      "translated": "\"Tor\""
+    },
+    "TOR_STATUS_CONNECTED_TEXT": {
+      "source": "\"Connected\"",
+      "translated": "\"已连接\""
+    },
+    "TOR_STATUS_CONNECTING_TEXT": {
+      "source": "\"Connecting...\"",
+      "translated": "\"连接中...\""
+    },
+    "TOR_TITLE_LABEL_TEXT": {
+      "source": "\"Tor\"",
+      "translated": "\"Tor\""
+    },
+    "TOR_WARNING_TEXT": {
+      "source": "\"*When Tor is enabled, the following features will not work properly: VPN, DNS, IPv6, DPI features, AdGuard Home.\"",
+      "translated": "\"*启用 Tor 后，VPN、DNS、IPv6、DPI 功能和 AdGuard Home 将无法正常工作。\""
+    },
+    "TUGE_STORE": {
+      "source": "\"Tuge eSIM Store\"",
+      "translated": "\"Tuge eSIM Store\""
+    },
+    "TYPE": {
+      "source": "\"Type\"",
+      "translated": "\"类型\""
+    },
+    "UNAVAILABLE": {
+      "source": "\"Unavailable\"",
+      "translated": "\"不可用\""
+    },
+    "UNKNOWN": {
+      "source": "\"Unknown\"",
+      "translated": "\"未知\""
+    },
+    "UPGRADE_AUTOMATIC_CHECK_LABEL_TEXT": {
+      "source": "\"Automatic Update Check\"",
+      "translated": "\"自动检查更新\""
+    },
+    "UPGRADE_CHECK_FOR_UPDATES_BUTTON_LABEL_TEXT": {
+      "source": "\"Check for Updates\"",
+      "translated": "\"检查更新\""
+    },
+    "UPGRADE_CONFIG_INFO_LABEL_TEXT": {
+      "source": "\"Keep Settings\"",
+      "translated": "\"保留设置\""
+    },
+    "UPGRADE_CONFIRM_ACTION_LABEL_TEXT": {
+      "source": "\"Install\"",
+      "translated": "\"安装\""
+    },
+    "UPGRADE_CONFIRM_CANCEL_LABEL_TEXT": {
+      "source": "\"Not Now\"",
+      "translated": "\"暂不\""
+    },
+    "UPGRADE_CONFIRM_REMINDER_LABEL_TEXT": {
+      "source": "\"Firmware will be downloaded and installed. A restart is required.\"",
+      "translated": "\"将下载并安装固件，需要重启。\""
+    },
+    "UPGRADE_CONFIRM_WARNING_LABEL_TEXT": {
+      "source": "\"Ready to Update?\"",
+      "translated": "\"准备更新？\""
+    },
+    "UPGRADE_CURRENT_VERSION_INFO_LABEL_TEXT": {
+      "source": "\"Current Version\"",
+      "translated": "\"当前版本\""
+    },
+    "UPGRADE_DOWNLOAD_BUTTON_LABEL_TEXT": {
+      "source": "\"Download & Upgrade\"",
+      "translated": "\"下载并升级\""
+    },
+    "UPGRADE_FIRMWARE_SIZE_INFO_LABEL_TEXT": {
+      "source": "\"Size\"",
+      "translated": "\"大小\""
+    },
+    "UPGRADE_FIRMWARE_TYPE_INFO_LABEL_TEXT": {
+      "source": "\"Firmware Type\"",
+      "translated": "\"固件类型\""
+    },
+    "UPGRADE_NEW_VERSION_INFO_LABEL_TEXT": {
+      "source": "\"New Version\"",
+      "translated": "\"新版本\""
+    },
+    "UPGRADE_UPDATE_AVAILABLE_INFO_LABEL_TEXT": {
+      "source": "\"Update Available\"",
+      "translated": "\"有可用更新\""
+    },
+    "UPGRADE_UPDATE_TIME_INFO_LABEL_TEXT": {
+      "source": "\"Update Time\"",
+      "translated": "\"更新时间\""
+    },
+    "UPGRADE_UP_TO_DATE_LABEL_TEXT": {
+      "source": "\"Firmware is up-to-date\"",
+      "translated": "\"固件已是最新\""
+    },
+    "USB_DETECTED_CELLULAR_MODEM_REMINDER_LABEL_TEXT": {
+      "source": "\"An external cellular modem has been detected. You can manage it in the Cellular settings.\"",
+      "translated": "\"检测到外置蜂窝调制解调器，可在蜂窝网络设置中管理。\""
+    },
+    "USB_DETECTED_CELLULAR_MODEM_WARNING_LABEL_TEXT": {
+      "source": "\"Cellular Modem Detected\"",
+      "translated": "\"检测到蜂窝调制解调器\""
+    },
+    "USB_DETECTED_USB_STORAGE_REMINDER_LABEL_TEXT": {
+      "source": "\"A USB storage device has been detected.\"",
+      "translated": "\"已检测到 USB 存储设备。\""
+    },
+    "USB_DETECTED_USB_STORAGE_WARNING_LABEL_TEXT": {
+      "source": "\"USB Storage Detected\"",
+      "translated": "\"检测到 USB 存储设备\""
+    },
+    "USB_DETECTED_USB_TETHERING_REMINDER_LABEL_TEXT": {
+      "source": "\"A USB tethering device has been detected and can be user as a WAN source\"",
+      "translated": "\"检测到 USB 网络共享设备，可将其用作 WAN 来源。\""
+    },
+    "USB_DETECTED_USB_TETHERING_WARNING_LABEL_TEXT": {
+      "source": "\"USB Tethering Detected\"",
+      "translated": "\"检测到 USB 网络共享\""
+    },
+    "USB_DEVICE_DETECT_REMINDER_LABEL_TEXT": {
+      "source": "\"The device is locked. Unlock to choose the USB connection mode.\"",
+      "translated": "\"设备已锁定。请解锁以选择 USB 连接模式。\""
+    },
+    "USB_DEVICE_DETECT_WARNING_LABEL_TEXT": {
+      "source": "\"USB Device Detected\"",
+      "translated": "\"检测到 USB 设备\""
+    },
+    "USB_MODE_SELECTION_ACTION_LABEL_TEXT": {
+      "source": "\"Device (USB Tethering) \"",
+      "translated": "\"设备（USB 共享网络）\""
+    },
+    "USB_MODE_SELECTION_CANCEL_LABEL_TEXT": {
+      "source": "\"Host (USB OTG)\"",
+      "translated": "\"主机（USB OTG）\""
+    },
+    "USB_MODE_SELECTION_REMEMBER_LABEL_TEXT": {
+      "source": "\"Remember this selection, don't ask again.\"",
+      "translated": "\"记住此选择，不再询问。\""
+    },
+    "USB_MODE_SELECTION_REMINDER2_LABEL_TEXT": {
+      "source": "\"*Accepts compatible USB Peripherals\"",
+      "translated": "\"*接受兼容 USB 外设\""
+    },
+    "USB_MODE_SELECTION_REMINDER_LABEL_TEXT": {
+      "source": "\"*Presents as a USB network adapter to a host\"",
+      "translated": "\"*向主机呈现为 USB 网卡\""
+    },
+    "USB_MODE_SELECTION_WARNING_LABEL_TEXT": {
+      "source": "\"USB Mode Selection\"",
+      "translated": "\"USB 模式选择\""
+    },
+    "USB_OTG_NOTICE_REMINDER_LABEL_TEXT": {
+      "source": "\"Power supply may be insufficient for both device and USB OTG. Install a battery or use a higher-power adapter.\"",
+      "translated": "\"供电可能不足以同时支持设备和 USB OTG。请安装电池或使用更高功率适配器。\""
+    },
+    "USB_OTG_NOTICE_WARNING_LABEL_TEXT": {
+      "source": "\"USB OTG Notice\"",
+      "translated": "\"USB OTG 提示\""
+    },
+    "USE_VPN": {
+      "source": "\"Use VPN\"",
+      "translated": "\"使用 VPN\""
+    },
+    "VLAN_IP_WARNING_SUBNET_NOT_FOUND_LABEL_TEXT": {
+      "source": "\"Subnet does not exist.\"",
+      "translated": "\"子网不存在。\""
+    },
+    "VLAN_SUBNET_CONFLICT_LABEL_TEXT": {
+      "source": "\"%s is in conflict with the %s.\\nPlease Change %s to a different address.\"",
+      "translated": "\"%s 与 %s 冲突。\\n请将 %s 更改为其他地址。\""
+    },
+    "VLAN_SUBNET_CONFLICT_LABEL_TEXT_1": {
+      "source": "\"%s is in conflict with the %s.Please Change %s to a different address.\"",
+      "translated": "\"%s 与 %s 冲突。请将 %s 更改为其他地址。\""
+    },
+    "VLAN_SUBNET_TITLE_CUSTOM_LABEL_TEXT": {
+      "source": "\"%s Gateway\"",
+      "translated": "\"%s 网关\""
+    },
+    "VLAN_SUBNET_WARNING_CUSTOM_LABEL_TEXT": {
+      "source": "\"%s subnet\"",
+      "translated": "\"%s 子网\""
+    },
+    "VLAN_SUBNET_WARNING_GUEST_LABEL_TEXT": {
+      "source": "\"Guest subnet\"",
+      "translated": "\"访客子网\""
+    },
+    "VLAN_SUBNET_WARNING_IOT_LABEL_TEXT": {
+      "source": "\"IoT subnet\"",
+      "translated": "\"IoT 子网\""
+    },
+    "VLAN_SUBNET_WARNING_LAN_LABEL_TEXT": {
+      "source": "\"LAN subnet\"",
+      "translated": "\"LAN 子网\""
+    },
+    "VLAN_SUBNET_WARNING_WAN_LABEL_TEXT": {
+      "source": "\"WAN subnet\"",
+      "translated": "\"WAN 子网\""
+    },
+    "VPN@CLIENT_FROM_SELECT_LABEL_TEXT": {
+      "source": "\"Selected %d / Total %d\"",
+      "translated": "\"已选 %d / 共 %d\""
+    },
+    "VPN@CLIENT_FROM_SPEC@guest_LABEL_TEXT": {
+      "source": "\"Guest\"",
+      "translated": "\"访客\""
+    },
+    "VPN@CLIENT_FROM_SPEC@lan_LABEL_TEXT": {
+      "source": "\"LAN\"",
+      "translated": "\"LAN\""
+    },
+    "VPN@CLIENT_FROM_SPEC@wan_LABEL_TEXT": {
+      "source": "\"Drop-in Gateway\"",
+      "translated": "\"旁挂网关\""
+    },
+    "VPN@CLIENT_GLOBAL_MODE_LABEL_TEXT": {
+      "source": "\"Global Mode\"",
+      "translated": "\"全局模式\""
+    },
+    "VPN@CLIENT_GROUP_NOAVAILABLE_LABEL_TEXT": {
+      "source": "\"No available configurations.\\nTo complete the setup, please go to the Admin Panel at %s\"",
+      "translated": "\"无可用配置。\\n要完成设置，请前往管理面板 %s\""
+    },
+    "VPN@CLIENT_MODE_ATTENTION@REM_LABEL_TEXT": {
+      "source": "\"Before enabling Global Mode:\\n1. Retain only one VPN tunnel (delete all others).\\n2. The policy of the retained tunnel will be automatically cleared.\"",
+      "translated": "\"启用全局模式前：\\n1. 仅保留一个 VPN 隧道（删除其他所有隧道）。\\n2. 保留隧道的策略将自动清除。\""
+    },
+    "VPN@CLIENT_MODE_G@REM_LABEL_TEXT": {
+      "source": "\"If the VPN is connected, all traffic will be routed through the VPN. Only one VPN client instance can be activated.\"",
+      "translated": "\"VPN 连接后，所有流量将通过 VPN 路由。只能激活一个 VPN 客户端实例。\""
+    },
+    "VPN@CLIENT_MODE_P@REM_LABEL_TEXT": {
+      "source": "\"This mode supports advanced customization, enabling the configuration and activation of multiple VPN servers on a single device, along with the execution of complex policy logic.\"",
+      "translated": "\"此模式支持高级自定义，可在单设备上配置并激活多个 VPN 服务器，并执行复杂策略逻辑。\""
+    },
+    "VPN@CLIENT_MODE_TITLE_LABEL_TEXT": {
+      "source": "\"Switch VPN Mode\"",
+      "translated": "\"切换 VPN 模式\""
+    },
+    "VPN@CLIENT_POLICY_MODE_LABEL_TEXT": {
+      "source": "\"Policy Mode\"",
+      "translated": "\"策略模式\""
+    },
+    "VPN@CLIENT_PRIORITY_TITLE_LABEL_TEXT": {
+      "source": "\"Tunnels Priority\"",
+      "translated": "\"隧道优先级\""
+    },
+    "VPN@CLIENT_SETTING_ALLOW@ATTR_LABEL_TEXT": {
+      "source": "\"Allow Remote Access the LAN Subnet\"",
+      "translated": "\"允许远程访问 LAN 子网\""
+    },
+    "VPN@CLIENT_SETTING_KILL@ATTR_LABEL_TEXT": {
+      "source": "\"Kill Switch\"",
+      "translated": "\"Kill Switch\""
+    },
+    "VPN@CLIENT_SETTING_MASQ@ATTR_LABEL_TEXT": {
+      "source": "\"IP Masquerading\"",
+      "translated": "\"IP 伪装\""
+    },
+    "VPN@CLIENT_SETTING_MTU@ATTR_LABEL_TEXT": {
+      "source": "\"MTU\"",
+      "translated": "\"MTU\""
+    },
+    "VPN@CLIENT_SETTING_MTU@HINT_LABEL_TEXT": {
+      "source": "\"Optional (68-65535)\"",
+      "translated": "\"可选（68-65535）\""
+    },
+    "VPN@CLIENT_SETTING_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to delete this tunnel?\"",
+      "translated": "\"确定要删除此隧道吗？\""
+    },
+    "VPN@CLIENT_SETTING_SERVICE@ATTR_LABEL_TEXT": {
+      "source": "\"Services from GL.iNet Use VPN\"",
+      "translated": "\"GL.iNet 服务使用 VPN\""
+    },
+    "VPN@CLIENT_SETTING_TUN@ATTR_LABEL_TEXT": {
+      "source": "\"Tunnel Name\"",
+      "translated": "\"隧道名称\""
+    },
+    "VPN@CLIENT_STATUS_ADD@TUNNEL@ATTR_LABEL_TEXT": {
+      "source": "\"Add Tunnel\"",
+      "translated": "\"添加隧道\""
+    },
+    "VPN@CLIENT_STATUS_ADD@TUNNEL_LABEL_TEXT": {
+      "source": "\"+ Add Tunnel\"",
+      "translated": "\"+ 添加隧道\""
+    },
+    "VPN@CLIENT_STATUS_CONF@ATTR_LABEL_TEXT": {
+      "source": "\"Configuration File\"",
+      "translated": "\"配置文件\""
+    },
+    "VPN@CLIENT_STATUS_EXIT@S2S_LABEL_TEXT": {
+      "source": "\"Exit S2S Mode\"",
+      "translated": "\"退出 S2S 模式\""
+    },
+    "VPN@CLIENT_STATUS_FROM@ALL_LABEL_TEXT": {
+      "source": "\"All Clients\"",
+      "translated": "\"全部客户端\""
+    },
+    "VPN@CLIENT_STATUS_FROM@ATTR_LABEL_TEXT": {
+      "source": "\"From\"",
+      "translated": "\"来源\""
+    },
+    "VPN@CLIENT_STATUS_FROM@DEV_LABEL_TEXT": {
+      "source": "\"Specified Devices\"",
+      "translated": "\"指定设备\""
+    },
+    "VPN@CLIENT_STATUS_FROM@EDEV_LABEL_TEXT": {
+      "source": "\"Exclude Specified Devices\"",
+      "translated": "\"排除指定设备\""
+    },
+    "VPN@CLIENT_STATUS_FROM@TYPE_LABEL_TEXT": {
+      "source": "\"Specified Connection Types\"",
+      "translated": "\"指定连接类型\""
+    },
+    "VPN@CLIENT_STATUS_MODIFY@PRI_LABEL_TEXT": {
+      "source": "\"Modify Priority\"",
+      "translated": "\"修改优先级\""
+    },
+    "VPN@CLIENT_STATUS_NOAVAILABLE_LABEL_TEXT": {
+      "source": "\"No tunnels available. Add one to enable VPN.\\nFor more settings, please go to the Admin Panel at %s\"",
+      "translated": "\"无可用隧道。添加一个以启用 VPN。\\n更多设置请前往管理面板 %s\""
+    },
+    "VPN@CLIENT_STATUS_NOVPN_LABEL_TEXT": {
+      "source": "\"Not Use VPN\"",
+      "translated": "\"不使用 VPN\""
+    },
+    "VPN@CLIENT_STATUS_NO_CONF_LABEL_TEXT": {
+      "source": "\"No VPN Configuration\"",
+      "translated": "\"无 VPN 配置\""
+    },
+    "VPN@CLIENT_STATUS_POLICY@TITLE_LABEL_TEXT": {
+      "source": "\"VPN Dashboard\"",
+      "translated": "\"VPN 仪表盘\""
+    },
+    "VPN@CLIENT_STATUS_PRIORITY_LABEL_TEXT": {
+      "source": "\"Priority %d\"",
+      "translated": "\"优先级 %d\""
+    },
+    "VPN@CLIENT_STATUS_S2S@ATTR_LABEL_TEXT": {
+      "source": "\"TAP-S2S Mode\"",
+      "translated": "\"TAP-S2S 模式\""
+    },
+    "VPN@CLIENT_STATUS_S2S@TITLE_LABEL_TEXT": {
+      "source": "\"VPN\"",
+      "translated": "\"VPN\""
+    },
+    "VPN@CLIENT_STATUS_SELECT_LABEL_TEXT": {
+      "source": "\"Please select a file\"",
+      "translated": "\"请选择文件\""
+    },
+    "VPN@CLIENT_STATUS_SETTING_LABEL_TEXT": {
+      "source": "\"Settings\"",
+      "translated": "\"设置\""
+    },
+    "VPN@CLIENT_STATUS_TO@ALL_LABEL_TEXT": {
+      "source": "\"All targets\"",
+      "translated": "\"全部目标\""
+    },
+    "VPN@CLIENT_STATUS_TO@ATTR_LABEL_TEXT": {
+      "source": "\"To\"",
+      "translated": "\"目标\""
+    },
+    "VPN@CLIENT_STATUS_TO@ELIST_LABEL_TEXT": {
+      "source": "\"Exclude specified Domain / IP List\"",
+      "translated": "\"排除指定域名/IP 列表\""
+    },
+    "VPN@CLIENT_STATUS_TO@LIST_LABEL_TEXT": {
+      "source": "\"Specified Domain / IP List\"",
+      "translated": "\"指定域名/IP 列表\""
+    },
+    "VPN@CLIENT_STATUS_USE@ATTR_LABEL_TEXT": {
+      "source": "\"Use\"",
+      "translated": "\"使用\""
+    },
+    "VPN@CLIENT_STATUS_VIA@ATTR_LABEL_TEXT": {
+      "source": "\"Via\"",
+      "translated": "\"经由\""
+    },
+    "VPN@CLIENT_TO_IGNORE_LABEL_TEXT": {
+      "source": "\"Showing 100 items. More details in the Admin Panel\\n(%s).\"",
+      "translated": "\"显示 100 项。更多详情请前往管理面板\\n(%s)。\""
+    },
+    "VPN@CLIENT_TO_MANUAL@TOTAL_LABEL_TEXT": {
+      "source": "\"Total %d\"",
+      "translated": "\"共 %d 项\""
+    },
+    "VPN@CLIENT_TO_MANUAL_LABEL_TEXT": {
+      "source": "\"Manual\"",
+      "translated": "\"手动\""
+    },
+    "VPN@CLIENT_TO_SUB_LABEL_TEXT": {
+      "source": "\"Subscription URL\"",
+      "translated": "\"订阅 URL\""
+    },
+    "VPN_CLIENT_ALL_CLIENTS_IGNORE_LABEL_TEXT": {
+      "source": "\"For more settings, please go to the Admin Panel at %s\"",
+      "translated": "\"更多设置请前往管理面板 %s\""
+    },
+    "VPN_CLIENT_S2S_ENABLE_LABEL_TEXT": {
+      "source": "\"Enable\"",
+      "translated": "\"启用\""
+    },
+    "VPN_CLIENT_S2S_FEATURE_UNAVAILABLE_REMINDER_LABEL_TEXT": {
+      "source": "\"This feature does not work because TAP-S2S Mode is enabled.\"",
+      "translated": "\"由于已启用 TAP-S2S 模式，此功能无法使用。\""
+    },
+    "VPN_CLIENT_S2S_REMINDER1_LABEL_TEXT": {
+      "source": "\"Confirm to enable?\"",
+      "translated": "\"确认启用？\""
+    },
+    "VPN_CLIENT_S2S_REMINDER_LABEL_TEXT": {
+      "source": "\"Selecting a TAP-S2S configuration will switch the VPN to TAP-S2S Mode. Only one configuration profile is supported in this mode.\"",
+      "translated": "\"选择 TAP-S2S 配置会将 VPN 切换到 TAP-S2S 模式。此模式仅支持一个配置文件。\""
+    },
+    "VPN_CLIENT_S2S_WARNING_LABEL_TEXT": {
+      "source": "\"Enable TAP-S2S Mode?\"",
+      "translated": "\"启用 TAP-S2S 模式？\""
+    },
+    "VPN_CLIENT_STATUS_NO_CONFIG_LABEL_TEXT": {
+      "source": "\"No VPN configuration is available. Please go to the Admin Panel(%s) to sign in to a VPN provider, or upload a configuration file and create a tunnel to enable VPN.\"",
+      "translated": "\"没有可用的 VPN 配置。请前往管理面板（%s）登录 VPN 服务商，或上传配置文件并创建隧道以启用 VPN。\""
+    },
+    "WAKE_DISPLAY_STYLE_1_OPTION_LABEL_TEXT": {
+      "source": "\"Style1\"",
+      "translated": "\"Style1\""
+    },
+    "WAKE_DISPLAY_STYLE_2_OPTION_LABEL_TEXT": {
+      "source": "\"Style2\"",
+      "translated": "\"Style2\""
+    },
+    "WAKE_DISPLAY_STYLE_3_OPTION_LABEL_TEXT": {
+      "source": "\"Style3\"",
+      "translated": "\"样式 3\""
+    },
+    "WAKE_DISPLAY_STYLE_4_OPTION_LABEL_TEXT": {
+      "source": "\"Style4\"",
+      "translated": "\"样式 4\""
+    },
+    "WEEK": {
+      "source": "\"Week\"",
+      "translated": "\"周\""
+    },
+    "WEEK_FRIDAY_ABBR": {
+      "source": "\"FRI\"",
+      "translated": "\"周五\""
+    },
+    "WEEK_FRIDAY_ABBR_LOWER": {
+      "source": "\"Fri\"",
+      "translated": "\"周五\""
+    },
+    "WEEK_MONDAY_ABBR": {
+      "source": "\"MON\"",
+      "translated": "\"周一\""
+    },
+    "WEEK_MONDAY_ABBR_LOWER": {
+      "source": "\"Mon\"",
+      "translated": "\"周一\""
+    },
+    "WEEK_SATURDAY_ABBR": {
+      "source": "\"SAT\"",
+      "translated": "\"周六\""
+    },
+    "WEEK_SATURDAY_ABBR_LOWER": {
+      "source": "\"Sat\"",
+      "translated": "\"周六\""
+    },
+    "WEEK_SUNDAY_ABBR": {
+      "source": "\"SUN\"",
+      "translated": "\"周日\""
+    },
+    "WEEK_SUNDAY_ABBR_LOWER": {
+      "source": "\"Sun\"",
+      "translated": "\"周日\""
+    },
+    "WEEK_THURSDAY_ABBR": {
+      "source": "\"THU\"",
+      "translated": "\"周四\""
+    },
+    "WEEK_THURSDAY_ABBR_LOWER": {
+      "source": "\"Thu\"",
+      "translated": "\"周四\""
+    },
+    "WEEK_TUESDAY_ABBR": {
+      "source": "\"TUE\"",
+      "translated": "\"周二\""
+    },
+    "WEEK_TUESDAY_ABBR_LOWER": {
+      "source": "\"Tue\"",
+      "translated": "\"周二\""
+    },
+    "WEEK_WEDNESDAY_ABBR": {
+      "source": "\"WED\"",
+      "translated": "\"周三\""
+    },
+    "WEEK_WEDNESDAY_ABBR_LOWER": {
+      "source": "\"Wed\"",
+      "translated": "\"周三\""
+    },
+    "WIFI_BAND_2G_LABEL_TEXT": {
+      "source": "\"2.4GHz\"",
+      "translated": "\"2.4GHz\""
+    },
+    "WIFI_BAND_5G_LABEL_TEXT": {
+      "source": "\"5GHz\"",
+      "translated": "\"5GHz\""
+    },
+    "WIFI_BAND_6G_LABEL_TEXT": {
+      "source": "\"6GHz\"",
+      "translated": "\"6GHz\""
+    },
+    "WIFI_BAND_DELETE_REMINDER_DELETE_LABEL_TEXT": {
+      "source": "\"Delete\"",
+      "translated": "\"删除\""
+    },
+    "WIFI_BAND_DELETE_REMINDER_LABEL_TEXT": {
+      "source": "\"Are you sure you want to delete\"",
+      "translated": "\"确定要删除\""
+    },
+    "WIFI_BAND_DELETE_REMINDER_WARNING_LABEL_TEXT": {
+      "source": "\"Caution\"",
+      "translated": "\"注意\""
+    },
+    "WIFI_BAND_MIX_LABEL_TEXT": {
+      "source": "\"Mixed\"",
+      "translated": "\"混合\""
+    },
+    "WIFI_BAND_MODE_5G": {
+      "source": "\"5G\"",
+      "translated": "\"5G\""
+    },
+    "WIFI_BAND_MODE_6G": {
+      "source": "\"6G\"",
+      "translated": "\"6G\""
+    },
+    "WIFI_BAND_MODE_AUTO": {
+      "source": "\"Auto\"",
+      "translated": "\"自动\""
+    },
+    "WIFI_CAUTION_2G": {
+      "source": "\"6GHz Wi-Fi supports up to 160MHz bandwidth.\"",
+      "translated": "\"6GHz Wi-Fi 最高支持 160MHz 带宽。\""
+    },
+    "WIFI_CAUTION_GUEST": {
+      "source": "\"6GHz Wi-Fi supports up to 160MHz bandwidth.\"",
+      "translated": "\"6GHz Wi-Fi 最高支持 160MHz 带宽。\""
+    },
+    "WIFI_ENVIRONMENT_INDOOR_LABEL_TEXT": {
+      "source": "\"Indoor\"",
+      "translated": "\"室内\""
+    },
+    "WIFI_ENVIRONMENT_OUTDOOR_LABEL_TEXT": {
+      "source": "\"Outdoor\"",
+      "translated": "\"户外\""
+    },
+    "WIFI_ENVIRONMENT_REMINDER_LABEL_TEXT": {
+      "source": "\"*As required by regulations, Wi-Fi must switch to “Outdoor” mode when used outdoors.  6GHz Wi-Fi will be unavailable in this mode.\"",
+      "translated": "\"*根据法规要求，户外使用时 Wi-Fi 必须切换至户外模式。此模式下 6GHz Wi-Fi 不可用。\""
+    },
+    "WIFI_ENVIRONMENT_TITLE_LABEL_TEXT": {
+      "source": "\"Usage Environment\"",
+      "translated": "\"使用环境\""
+    },
+    "WIFI_GUEST_ADD_LABEL_TEXT": {
+      "source": "\"Add Guest Wi-Fi\"",
+      "translated": "\"添加访客 Wi-Fi\""
+    },
+    "WIFI_GUEST_OPTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Guest Wi-Fi\"",
+      "translated": "\"访客 Wi-Fi\""
+    },
+    "WIFI_GUEST_OPTION_REMINDER_LABEL_TEXT": {
+      "source": "\"Provide dedicated networks for visitors to ensure convenient and secure Internet access.\"",
+      "translated": "\"为访客提供独立网络，确保便捷、安全地访问互联网。\""
+    },
+    "WIFI_INTERFACE_BANDMODE_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Band\"",
+      "translated": "\"Wi-Fi 频段\""
+    },
+    "WIFI_INTERFACE_BANDMODE_REMINDER_LABEL_TEXT": {
+      "source": "\"5GHz preferred. If repeating Wi-Fi, band will follow repeater.\"",
+      "translated": "\"优先使用 5GHz。若进行中继 Wi-Fi，频段将跟随中继。\""
+    },
+    "WIFI_INTERFACE_BANDMODE_TITLE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Band\"",
+      "translated": "\"Wi-Fi 频段\""
+    },
+    "WIFI_INTERFACE_BAND_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Band\"",
+      "translated": "\"Wi-Fi 频段\""
+    },
+    "WIFI_INTERFACE_CAC_REM_LABEL_TEXT": {
+      "source": "\"Checking for channel availability. This Process will take 60 seconds.\\nPlease wait...\"",
+      "translated": "\"正在检查信道可用性。此过程需要 60 秒。\\n请稍候...\""
+    },
+    "WIFI_INTERFACE_CAC_REM_LABEL_TEXT_1": {
+      "source": "\"Checking for channel availability. This process will take 10 Minutes.\\nPlease wait……\"",
+      "translated": "\"正在检查信道可用性。此过程需要 10 分钟。\\n请稍候……\""
+    },
+    "WIFI_INTERFACE_CHANNEL_LABEL_TEXT": {
+      "source": "\"Channel\"",
+      "translated": "\"信道\""
+    },
+    "WIFI_INTERFACE_ENCRYPT_LABEL_TEXT": {
+      "source": "\"Wi-Fi Security\"",
+      "translated": "\"Wi-Fi 安全\""
+    },
+    "WIFI_INTERFACE_HIDDEN_LABEL_TEXT": {
+      "source": "\"SSID Visibility\"",
+      "translated": "\"SSID 可见性\""
+    },
+    "WIFI_INTERFACE_MODE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Mode\"",
+      "translated": "\"Wi-Fi 模式\""
+    },
+    "WIFI_INTERFACE_PASSWORD_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Password\"",
+      "translated": "\"Wi-Fi 密码\""
+    },
+    "WIFI_INTERFACE_PASSWORD_NONE_LABEL_TEXT": {
+      "source": "\"None\"",
+      "translated": "\"无\""
+    },
+    "WIFI_INTERFACE_PSC@ONLY_LABEL_TEXT": {
+      "source": "\"Enable PSC\"",
+      "translated": "\"启用 PSC\""
+    },
+    "WIFI_INTERFACE_RADIO_BANDS_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Radio Bands\"",
+      "translated": "\"无线频段\""
+    },
+    "WIFI_INTERFACE_RADIO_BANDS_TITLE_LABEL_TEXT": {
+      "source": "\"Radio Bands\"",
+      "translated": "\"无线频段\""
+    },
+    "WIFI_INTERFACE_RBSSID_LABEL_TEXT": {
+      "source": "\"Enable Randomized Bssid\"",
+      "translated": "\"启用随机 BSSID\""
+    },
+    "WIFI_INTERFACE_REMINDER_2G_LABEL_TEXT": {
+      "source": "\"Some devices may not recognize 6GHz networks. It is recommended to enable both 2.4GHz and 6GHz Wi-Fi for better compatibility.\"",
+      "translated": "\"部分设备可能无法识别 6GHz 网络。建议同时启用 2.4GHz 和 6GHz Wi-Fi 以获得更好兼容性。\""
+    },
+    "WIFI_INTERFACE_REPEATER_REMINDER_LABEL_TEXT": {
+      "source": "\"Repeater is enabled. Guest Wi-Fi has been automatically disabled.\"",
+      "translated": "\"中继模式已启用。访客 Wi-Fi 已自动禁用。\""
+    },
+    "WIFI_INTERFACE_SSID_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"Wi-Fi Name (SSID)\"",
+      "translated": "\"Wi-Fi 名称 (SSID)\""
+    },
+    "WIFI_INTERFACE_TX_POWER_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"TX Power\"",
+      "translated": "\"发射功率\""
+    },
+    "WIFI_INTERFACE_TX_POWER_HIGH": {
+      "source": "\"High\"",
+      "translated": "\"高\""
+    },
+    "WIFI_INTERFACE_TX_POWER_LOW": {
+      "source": "\"Low\"",
+      "translated": "\"低\""
+    },
+    "WIFI_INTERFACE_TX_POWER_MAX": {
+      "source": "\"Max\"",
+      "translated": "\"最大\""
+    },
+    "WIFI_INTERFACE_TX_POWER_MEDIUM": {
+      "source": "\"Medium\"",
+      "translated": "\"中\""
+    },
+    "WIFI_INTERFACE_TX_POWER_TITLE_LABEL_TEXT": {
+      "source": "\"Transmit Power\"",
+      "translated": "\"发射功率\""
+    },
+    "WIFI_INTERFACE_USEBAND_5G_LABEL_TEXT": {
+      "source": "\"Using 5GHz\"",
+      "translated": "\"使用 5GHz\""
+    },
+    "WIFI_INTERFACE_USEBAND_6G_LABEL_TEXT": {
+      "source": "\"Using 6GHz\"",
+      "translated": "\"使用 6GHz\""
+    },
+    "WIFI_INTERFICE_BANDWIDTH@REM_LABEL_TEXT": {
+      "source": "\"Bandwidth change may cause automatic channel adjustment.\"",
+      "translated": "\"更改带宽可能导致信道自动调整。\""
+    },
+    "WIFI_INTERFICE_CHANNEL@REM_LABEL_TEXT": {
+      "source": "\"When your bandwidth is set to 160 MHz, Wi-Fi will always use the DFS channel, even if you choose a non-DFS channel or the \"Auto\" option.\"",
+      "translated": "\"当带宽设置为 160 MHz 时，Wi-Fi 将始终使用 DFS 信道，即使您选择了非 DFS 信道或自动选项。\""
+    },
+    "WIFI_IOT_ADD_LABEL_TEXT": {
+      "source": "\"Add IoT Wi-Fi\"",
+      "translated": "\"添加 IoT Wi-Fi\""
+    },
+    "WIFI_IOT_OPTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"IoT Wi-Fi\"",
+      "translated": "\"IoT Wi-Fi\""
+    },
+    "WIFI_IOT_OPTION_REMINDER_LABEL_TEXT": {
+      "source": "\"Provide dedicated networks for IoT devices. It is recommended to connect IoT devices to the 2.4GHz band for better compatibility.\"",
+      "translated": "\"为 IoT 设备提供独立网络。建议连接 2.4GHz 频段以获得更佳兼容性。\""
+    },
+    "WIFI_MLO_ADD_LABEL_TEXT": {
+      "source": "\"Add MLO Wi-Fi\"",
+      "translated": "\"添加 MLO Wi-Fi\""
+    },
+    "WIFI_MLO_OPTION_ATTRIBUTE_LABEL_TEXT": {
+      "source": "\"MLO Wi-Fi\"",
+      "translated": "\"MLO Wi-Fi\""
+    },
+    "WIFI_MLO_OPTION_REMINDER_LABEL_TEXT": {
+      "source": "\"Wi-Fi 7 clients are recommended to use MLO for faster data transmission speed, better reliability, and lower latency.\"",
+      "translated": "\"建议 Wi-Fi 7 客户端使用 MLO，以获得更快速度、更高可靠性和更低延迟。\""
+    },
+    "WIFI_NO_PASSWORD_REMINDER_LABEL_TEXT": {
+      "source": "\"This will remove the Wi-Fi password and may expose your network to anyone nearby. Continue?\"",
+      "translated": "\"这将移除 Wi-Fi 密码，可能使附近任何人接入您的网络。是否继续？\""
+    },
+    "WIFI_PART_GUEST_INTERFACE_TITLE_LABEL_TEXT": {
+      "source": "\"Guest Wi-Fi\"",
+      "translated": "\"访客 Wi-Fi\""
+    },
+    "WIFI_PART_MAIN_INTERFACE_TITLE_LABEL_TEXT": {
+      "source": "\"Wi-Fi\"",
+      "translated": "\"Wi-Fi\""
+    },
+    "WIFI_PART_MLO_INTERFACE_TITLE_LABEL_TEXT": {
+      "source": "\"MLO Wi-Fi\"",
+      "translated": "\"MLO Wi-Fi\""
+    },
+    "WIFI_QRCODE_REMINDER_LABEL_TEXT": {
+      "source": "\"Scan the QR code to quickly connect Wi-Fi.\"",
+      "translated": "\"扫描二维码快速连接 Wi-Fi。\""
+    },
+    "WIFI_WAKE_UP_DFS_REMINDER_LABEL_TEXT": {
+      "source": "\"The device is waking up and performing DFS channel check, please wait.\"",
+      "translated": "\"设备正在唤醒并执行 DFS 信道检查，请稍候。\""
+    },
+    "WIFI_WAKE_UP_DFS_WARNING_LABEL_TEXT": {
+      "source": "\"Wi-Fi is Waking Up\"",
+      "translated": "\"Wi-Fi 唤醒中\""
+    },
+    "YEAR": {
+      "source": "\"Year\"",
+      "translated": "\"年\""
+    }
+  },
+  "layout": {
+    "LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_FORMAT": "\"%s%d日\"",
+    "LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_WIDTH": "64",
+    "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_FORMAT": "\"%s%d日\"",
+    "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_WIDTH": "64",
+    "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_X": "70",
+    "SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE": "4"
+  }
+}

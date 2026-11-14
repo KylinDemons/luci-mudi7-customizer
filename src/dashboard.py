@@ -30,6 +30,10 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 import screen_pin
+import screen_i18n
+from screen_modules import MODULES, get_modules, selected_index
+from vendor_services import VendorServices, empty as empty_vendor, LOGIN_NOTICE
+from screen_i18n import tr
 from link_probe_config import get_probe_host, host_family
 from openclash_config import DEFAULT_RULE_GROUP, get_rule_group
 
@@ -38,11 +42,14 @@ FB_PATH = "/dev/fb0"
 FONT_DIR = "/etc/gl_screen/language/ttf"
 CONFIG_DIR = Path("/etc/mudi7-customizer")
 CONFIG_FILE = CONFIG_DIR / "config.json"
+CHINESE_FONT_DIR = Path("/usr/share/mudi7-customizer/stock-i18n/payload/etc/gl_screen/language/ttf")
 
 BG = (11, 18, 32)
 FG = (230, 235, 245)
 DIM = (120, 130, 150)
 ACCENT = {
+    "adguardhome": (110, 200, 130),
+    "tailscale": (170, 185, 205),
     "settings": (86, 182, 255),
     "sim": (110, 220, 150),
     "openclash": (200, 140, 255),
@@ -58,10 +65,15 @@ DEFAULT_CONFIG = {
 _fonts = {}
 
 
-def font(name, size):
-    key = (name, size)
+def font(name, size, latin=False):
+    if screen_i18n.chinese() and not latin:
+        weight = 'bold' if name == 'default_bold' else 'semibold' if name == 'default_semibold' else 'medium'
+        path = str(CHINESE_FONT_DIR / ('default_' + weight + '_zh-cn.ttf'))
+    else:
+        path = f"{FONT_DIR}/{name}.ttf"
+    key = (path, size)
     if key not in _fonts:
-        _fonts[key] = ImageFont.truetype(f"{FONT_DIR}/{name}.ttf", size)
+        _fonts[key] = ImageFont.truetype(path, size)
     return _fonts[key]
 
 
@@ -494,16 +506,16 @@ def panel_power(kind, phase_deg=0.0, elapsed=None, final=False):
             _draw_arrow_circle(d, cx, cy, accent)
         else:
             _draw_power_glyph(d, cx, cy, accent)
-        title = "Restarting…" if reboot else "Powering off"
-        sub = "Back in about a minute" if reboot else "The screen will go dark"
+        title = tr("Restarting…") if reboot else tr("Powering off")
+        sub = tr("Back in about a minute") if reboot else tr("The screen will go dark")
     else:
         draw_ring_spinner(d, cx, cy, 28, phase_deg, accent, width=4)
-        title = "Restarting…" if reboot else "Shutting down…"
-        sub = "Please wait" + (f" · {int(elapsed)}s" if elapsed is not None else "")
+        title = tr("Restarting…") if reboot else tr("Shutting down…")
+        sub = tr("Please wait") + (f" · {int(elapsed)}s" if elapsed is not None else "")
     centered_text(d, W / 2, cy + 48, title, font("default_bold", 20), FG)
     centered_text(d, W / 2, cy + 76, sub, font("default_medium", 13), DIM)
     if not reboot:
-        centered_text(d, W / 2, cy + 96, "Don't unplug until it's off", font("default_medium", 11), DIM)
+        centered_text(d, W / 2, cy + 96, tr("Don't unplug until it's off"), font("default_medium", 11), DIM)
     return img
 
 
@@ -1264,6 +1276,7 @@ def draw_loading_overlay(base, label=None, phase_deg=0.0, accent=None):
     img = Image.blend(base, Image.new("RGB", (W, H), (0, 0, 0)), 0.62)
     d = ImageDraw.Draw(img)
     cx, cy = W // 2, H // 2 - (12 if label else 0)
+    label = tr(label)
     if label:
         f = font("default_medium", 13)
         tw = d.textlength(label, font=f)
@@ -1413,6 +1426,7 @@ def _header_text(d, x_right, text, f, color):
 
 
 def draw_header(d, label, accent, conn_type=None, cell_signal=None):
+    label, conn_type = tr(label), tr(conn_type)
     d.rectangle([0, 0, W, HEADER_H], fill=accent)
     f_title = font("default_bold", 18)
     d.text((14, 8), label, font=f_title, fill=BG)
@@ -1473,8 +1487,9 @@ def draw_header(d, label, accent, conn_type=None, cell_signal=None):
 
 
 def draw_back_header(d, label, accent):
+    label = tr(label)
     d.rectangle([0, 0, W, 34], fill=accent)
-    d.text((12, 5), "‹", font=font("default_bold", 24), fill=BG)
+    d.text((12, 5), "‹", font=font("default_bold", 24, latin=True), fill=BG)
     d.text((32, 8), label, font=font("default_bold", 16), fill=BG)
 
 
@@ -1588,7 +1603,7 @@ OC_NODE_ZONE = (146, 192)
 
 PICKER_TOP, PICKER_BOTTOM = 38, 316
 
-PANEL_NAMES = ["sim", "monitor", "battery", "openclash", "settings"]
+PANEL_NAMES = list(MODULES)
 
 
 # Charge-limit settings and status come from the independent controller.
@@ -1625,25 +1640,25 @@ def panel_battery(conn_type=None, cell_signal=None, current=None):
     cfg, st = battery_snapshot()
     img, d = new_canvas()
     a = ACCENT["battery"]
-    draw_header(d, "BATTERY", a, conn_type, cell_signal)
+    draw_header(d, tr("BATTERY"), a, conn_type, cell_signal)
     # The controller backs off to a 30 s heartbeat when no adapter is attached,
     # so allow one missed tick before calling the service dead.
     healthy = time.time() - st.get("updated", 0) < 45 and not st.get("error")
     pct = st.get("capacity")
     centered_text(d, 66, 42, f"{pct}%" if pct is not None else "--%", font("default_bold", 28), a)
-    d.text((125, 47), "USB power" if st.get("online") else "On battery", font=font("default_medium", 12), fill=FG)
-    d.text((125, 65), "Mudi 7 scale", font=font("default_medium", 11), fill=DIM)
-    message = st.get("message", "Service unavailable") if healthy else st.get("error") or "Service unavailable"
-    centered_text(d, W / 2, 88, truncate_to_width(d, message, font("default_medium", 12), 220), font("default_medium", 12), DIM)
-    d.text((16, 116), "Charge limit", font=font("default_bold", 15), fill=FG)
+    d.text((125, 47), tr("USB power") if st.get("online") else tr("On battery"), font=font("default_medium", 12), fill=FG)
+    d.text((125, 65), tr("Mudi 7 scale"), font=font("default_medium", 11), fill=DIM)
+    message = st.get("message", tr("Service unavailable")) if healthy else st.get("error") or tr("Service unavailable")
+    centered_text(d, W / 2, 88, truncate_to_width(d, tr(message), font("default_medium", 12), 220), font("default_medium", 12), DIM)
+    d.text((16, 116), tr("Charge limit"), font=font("default_bold", 15), fill=FG)
     draw_toggle(d, 174, 112, bool(cfg["enabled"]), a, w=50, h=26)
-    centered_text(d, W / 2, 151, "Target", font("default_medium", 12), DIM)
+    centered_text(d, W / 2, 151, tr("Target"), font("default_medium", 12), DIM)
     for x0, x1, label in [(16, 66, "-"), (174, 224, "+")]:
         d.rounded_rectangle([x0, 173, x1, 207], radius=8, outline=a, width=2)
         centered_text_box(d, x0, 173, x1, 207, label, font("default_bold", 20), a)
     centered_text(d, W / 2, 176, str(cfg["threshold"]) + "%", font("default_bold", 22), FG)
     d.line((16, 225, 224, 225), fill=(40, 44, 54))
-    centered_text(d, W / 2, 235, "Battery current", font("default_medium", 12), DIM)
+    centered_text(d, W / 2, 235, tr("Battery current"), font("default_medium", 12), DIM)
     current_text = "-- mA"
     if current is not None:
         current_text = f"{current:+d} mA" if current else "0 mA"
@@ -1689,31 +1704,31 @@ def pin_hit(x, y, rect):
 def pin_button(d, rect, label):
     accent = ACCENT["settings"]
     d.rounded_rectangle(rect, radius=8, fill=(22, 28, 40), outline=accent, width=1)
-    centered_text_box(d, *rect, label, font("default_bold", 16), FG)
+    centered_text_box(d, *rect, tr(label), font("default_bold", 16), FG)
 
 
 def panel_pin_settings(enabled):
     img, d = new_canvas()
-    draw_back_header(d, "Screen PIN", ACCENT["settings"])
-    centered_text(d, W / 2, 64, "Protection on" if enabled else "Protection off",
+    draw_back_header(d, tr("Screen PIN"), ACCENT["settings"])
+    centered_text(d, W / 2, 64, tr("Protection on") if enabled else tr("Protection off"),
                   font("default_medium", 14), DIM)
-    pin_button(d, PIN_CHANGE_RECT, "Change PIN" if enabled else "Set PIN and enable")
+    pin_button(d, PIN_CHANGE_RECT, tr("Change PIN") if enabled else tr("Set PIN and enable"))
     if enabled:
-        pin_button(d, PIN_DISABLE_RECT, "Turn off protection")
+        pin_button(d, PIN_DISABLE_RECT, tr("Turn off protection"))
     return img
 
 
 def panel_pin_keypad(step, count=0, notice=""):
     img, d = new_canvas()
     if step == "unlock":
-        draw_header(d, "LOCKED", ACCENT["settings"])
+        draw_header(d, tr("LOCKED"), ACCENT["settings"])
     else:
-        draw_back_header(d, "Screen PIN", ACCENT["settings"])
-    centered_text(d, W / 2, 43, PIN_TITLES[step], font("default_bold", 16), FG)
+        draw_back_header(d, tr("Screen PIN"), ACCENT["settings"])
+    centered_text(d, W / 2, 43, tr(PIN_TITLES[step]), font("default_bold", 16), FG)
     for i in range(4):
         x = W / 2 - 27 + 18 * i
         d.ellipse((x - 4, 72, x + 4, 80), outline=DIM, fill=FG if i < count else None)
-    centered_text(d, W / 2, 90, notice, font("default_medium", 12), DIM)
+    centered_text(d, W / 2, 90, tr(notice), font("default_medium", 12), DIM)
     for label, rect in pin_keys():
         pin_button(d, rect, label)
     return img
@@ -1844,24 +1859,24 @@ def _draw_band_row(d, cell):
     if total:
         caption += f" / {total:g} MHz"
     if not carriers:
-        caption = "No serving cell"
-    d.text((16, 105), caption, font=font("default_medium", 11), fill=DIM)
+        caption = tr("No serving cell")
+    d.text((16, 105), tr(caption), font=font("default_medium", 11), fill=DIM)
 
 
 def panel_sim(sim, conn_type=None, cell_signal=None, cell=None):
     cell = cell or {}
     img, d = new_canvas()
     accent = ACCENT["sim"]
-    draw_header(d, "CELLULAR", accent, conn_type, cell_signal)
+    draw_header(d, tr("CELLULAR"), accent, conn_type, cell_signal)
     f_carrier = font("default_cn_medium", 16)
-    carrier = sim.get("carrier") or "No service"
+    carrier = sim.get("carrier") or tr("No service")
     d.text((16, 41), truncate_to_width(d, carrier, f_carrier, 154), font=f_carrier, fill=FG)
     network = cell_network_label(cell)
     tech = " ".join(network) if network else "--"
     centered_text_box(d, 174, 39, 228, 62, tech, font("default_bold", 12), accent)
     slot = sim.get("slot") or "--"
-    data = "Connected" if sim.get("data_up") else "Disconnected"
-    d.text((16, 65), f"Slot {slot} / Data {data}", font=font("default_medium", 11), fill=DIM)
+    data = tr("Connected") if sim.get("data_up") else tr("Disconnected")
+    d.text((16, 65), tr(f"Slot {slot} / Data {data}"), font=font("default_medium", 11), fill=DIM)
     _draw_band_row(d, cell)
 
     carriers = cell.get("carriers") or []
@@ -1878,10 +1893,11 @@ def panel_sim(sim, conn_type=None, cell_signal=None, cell=None):
     # Fourth cell: one composite grade instead of the RSSI reading this
     # modem never reports (see carrier_quality).
     qx, qy = 128, 173
-    d.text((qx, qy), "QUALITY", font=font("default_medium", 10), fill=DIM)
+    d.text((qx, qy), tr("QUALITY"), font=font("default_medium", 10), fill=DIM)
     quality = carrier_quality(primary)
     if quality:
         grade, score, color = quality
+        grade = tr(grade)
         f_grade = font("default_mono_medium", 14)
         d.text((qx, qy + 14), grade, font=f_grade, fill=color)
         f_score = font("default_mono_medium", 11)
@@ -1894,10 +1910,10 @@ def panel_sim(sim, conn_type=None, cell_signal=None, cell=None):
     d.line((16, 217, W - 16, 217), fill=(40, 44, 54))
     primary_bw = primary.get("mhz")
     values = (
-        ("PCI / Channel", f"{primary.get('pci') if primary.get('pci') is not None else '--'} / "
+        (tr("PCI / Channel"), f"{primary.get('pci') if primary.get('pci') is not None else '--'} / "
                           f"{primary.get('earfcn') if primary.get('earfcn') is not None else '--'}"),
-        ("TAC / Cell ID", f"{cell.get('tac') or '--'} / {cell.get('cell_id') or '--'}"),
-        ("Primary BW", f"{primary_bw:g} MHz" if primary_bw else "--"),
+        (tr("TAC / Cell ID"), f"{cell.get('tac') or '--'} / {cell.get('cell_id') or '--'}"),
+        (tr("Primary BW"), f"{primary_bw:g} MHz" if primary_bw else "--"),
     )
     for i, (label, value) in enumerate(values):
         y = 223 + i * 24
@@ -1915,42 +1931,42 @@ def panel_openclash(oc, traf, conn_type=None, cell_signal=None):
     draw_header(d, "OPENCLASH", ACCENT["openclash"], conn_type, cell_signal)
 
     if not oc["installed"]:
-        centered_text(d, W / 2, 130, "OpenClash isn't installed", font("default_medium", 14), DIM)
-        centered_text(d, W / 2, 150, "on this device", font("default_medium", 14), DIM)
+        centered_text(d, W / 2, 130, tr("OpenClash isn't installed"), font("default_medium", 14), DIM)
+        centered_text(d, W / 2, 150, tr("on this device"), font("default_medium", 14), DIM)
         draw_page_dots(d, PANEL_NAMES.index("openclash"))
         return img
 
     d.text((16, 39), "OpenClash", font=font("default_medium", 16), fill=FG)
     status, status_color = openclash_status_text(oc)
-    d.text((16, 58), status, font=font("default_medium", 11), fill=status_color)
+    d.text((16, 58), tr(status), font=font("default_medium", 11), fill=status_color)
     tx0, ty0, tx1, ty1 = OC_TOGGLE_RECT
     draw_toggle(d, tx0, ty0, openclash_toggle_on(oc), ACCENT["openclash"], w=tx1 - tx0, h=ty1 - ty0)
 
     d.line([16, 72, W - 16, 72], fill=(40, 44, 54))
 
-    d.text((16, 80), "Mode", font=font("default_medium", 14), fill=DIM)
+    d.text((16, 80), tr("Mode"), font=font("default_medium", 14), fill=DIM)
     sx0, sy0, sx1, sy1 = OC_MODE_SEG_RECT
     sel_idx = 0 if oc["mode"] == "global" else 1
-    draw_segmented(d, sx0, sy0, sx1 - sx0, sy1 - sy0, ["Global", "Rule"], sel_idx, ACCENT["openclash"])
+    draw_segmented(d, sx0, sy0, sx1 - sx0, sy1 - sy0, [tr("Global"), tr("Rule")], sel_idx, ACCENT["openclash"])
 
     d.line([16, 138, W - 16, 138], fill=(40, 44, 54))
 
     group, title = openclash_selector("global" if sel_idx == 0 else "rule", traf)
     selection = traf["groups"].get(group)
-    d.text((16, 146), title + "  ›", font=font("default_medium", 14), fill=DIM)
+    d.text((16, 146), tr(title) + ("  >" if screen_i18n.chinese() else "  ›"), font=font("default_medium", 14), fill=DIM)
     if not traf["running"]:
-        value = "API unavailable" if oc["running"] else "Core stopped"
+        value = tr("API unavailable") if oc["running"] else tr("Core stopped")
     elif selection is None:
-        value = "Selector unavailable"
+        value = tr("Selector unavailable")
     else:
-        value = selection["now"] or "No selection"
+        value = selection["now"] or tr("No selection")
     f = font("default_cn_medium", 15)
     d.text((16, 164), truncate_to_width(d, value, f, W - 32), font=f,
            fill=FG if selection and selection["now"] else DIM)
 
     d.line([16, 192, W - 16, 192], fill=(40, 44, 54))
 
-    d.text((16, 200), "Traffic (session)", font=font("default_medium", 14), fill=DIM)
+    d.text((16, 200), tr("Traffic (session)"), font=font("default_medium", 14), fill=DIM)
     if traf["running"] and traf["up_mb"] is not None:
         stats = f"↑ {traf['up_mb']:.1f} MB   ↓ {traf['down_mb']:.1f} MB"
         d.text((16, 220), stats, font=font("default_mono_medium", 15), fill=FG)
@@ -1958,12 +1974,78 @@ def panel_openclash(oc, traf, conn_type=None, cell_signal=None):
         d.text((16, 220), "—", font=font("default_mono_medium", 15), fill=DIM)
 
     d.line((16, 248, W - 16, 248), fill=(40, 44, 54))
-    d.text((16, 260), "Mihomo core", font=font("default_medium", 14), fill=DIM)
+    d.text((16, 260), tr("Mihomo core"), font=font("default_medium", 14), fill=DIM)
     running = oc["running"]
-    centered_text(d, 180, 260, "Started" if running else "Stopped",
+    centered_text(d, 180, 260, tr("Started") if running else tr("Stopped"),
                   font("default_bold", 14), ACCENT["openclash"] if running else DIM)
     draw_page_dots(d, PANEL_NAMES.index("openclash"))
     return img
+
+
+# Official service pages: identifiers and names stay unchanged in both languages.
+VENDOR_TITLES = {'adguardhome': 'AdGuard Home', 'tailscale': 'Tailscale'}
+VENDOR_STATES = {
+    'not_installed': 'Not installed', 'unavailable': 'Status unavailable',
+    'disabled': 'Stopped', 'inactive': 'Enabled, but not running',
+    'running': 'Running', 'running_disabled': 'Running (disabled in config)',
+    'connected': 'Connected', 'connecting': 'Connecting…',
+    'needs_login': 'Login required', 'needs_authorization': 'Authorization required',
+}
+
+
+def panel_vendor(name, service, conn_type=None, cell_signal=None):
+    img, d = new_canvas()
+    accent = ACCENT[name]
+    draw_header(d, VENDOR_TITLES[name], accent, conn_type, cell_signal)
+    d.text((16, 43), tr('Service'), font=font('default_medium', 14), fill=FG)
+    if service.get('available'):
+        draw_toggle(d, *OC_TOGGLE_RECT[:2], service['enabled'], accent, w=46, h=22)
+    else:
+        centered_text(d, 196, 43, '—', font('default_medium', 14), DIM)
+    state = service.get('state', 'unavailable')
+    color = accent if state in ('running', 'connected') else DIM
+    status_text = tr(VENDOR_STATES.get(state, 'Status unavailable'))
+    d.text((16, 78), truncate_to_width(d, status_text, font('default_medium', 12), 208),
+           font=font('default_medium', 12), fill=color)
+    d.line((16, 102, 224, 102), fill=(40, 44, 54))
+    if name == 'adguardhome':
+        for y, label, key in [(114, 'Requests', 'queries'), (180, 'Blocked', 'blocked')]:
+            d.text((16, y), tr(label), font=font('default_medium', 13), fill=DIM)
+            value = service.get(key)
+            text = str(value) if value is not None else '—'
+            f = font('default_bold', 26)
+            number_color = (255, 106, 106) if key == 'blocked' and value is not None else accent
+            d.text((16, y + 21), truncate_to_width(d, text, f, 208), font=f, fill=number_color)
+        days = service.get('period_days')
+        period = tr('Last %s day' if days == 1 else 'Last %s days').replace('%s', str(days)) if days else tr('Statistics period unavailable')
+        centered_text(d, 120, 253, period, font('default_medium', 11), DIM)
+        dns = service.get('dns_enabled')
+        note = 'Client DNS handling enabled' if dns is True else 'Client DNS handling disabled' if dns is False else 'Statistics unavailable'
+        if service.get('queries') is None:
+            note = service.get('stats_error') or 'Statistics unavailable'
+        centered_text(d, 120, 275, tr(note), font('default_medium', 10), DIM)
+    else:
+        d.text((16, 117), tr('Tailscale address'), font=font('default_medium', 13), fill=DIM)
+        address = service.get('address') or '—'
+        d.text((16, 142), truncate_to_width(d, address, font('default_mono_medium', 17), 208),
+               font=font('default_mono_medium', 17), fill=FG)
+        if state in ('needs_login', 'needs_authorization'):
+            message = LOGIN_NOTICE if state == 'needs_login' else 'Authorize this device in the Tailscale WebUI.'
+        elif not service.get('enabled'):
+            message = 'Tailscale is off.'
+        elif service.get('authenticated'):
+            message = 'Manage network settings in the WebUI.'
+        else:
+            message = 'Complete login in the WebUI.'
+        lines = wrap_text_to_lines(d, tr(message), font('default_medium', 12), 208)
+        for i, line in enumerate(lines[:5]):
+            centered_text(d, 120, 194 + i * 19, line, font('default_medium', 12), DIM)
+    draw_page_dots(d, PANEL_NAMES.index(name))
+    return img
+
+
+def hit_vendor_toggle(x, y):
+    return OC_TOGGLE_RECT[0] - 10 <= x <= OC_TOGGLE_RECT[2] + 10 and OC_TOGGLE_RECT[1] - 8 <= y <= OC_TOGGLE_RECT[3] + 8
 
 
 def openclash_toggle_on(oc):
@@ -1989,10 +2071,10 @@ MONITOR_RAM_BAR = (16, 200, W - 16, 214)
 
 def panel_monitor(link_health, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp_c, uptime_min, conn_type=None, cell_signal=None):
     img, d = new_canvas()
-    draw_header(d, "MONITOR", ACCENT["monitor"], conn_type, cell_signal)
+    draw_header(d, tr("MONITOR"), ACCENT["monitor"], conn_type, cell_signal)
 
     link = link_health or {}
-    status = link.get("status", "Checking")
+    status = link.get("status", tr("Checking"))
     history = link.get("history", ())
     latest = history[-1] if history and status == "Reachable" else None
     latency = f"{latest:.0f} ms" if latest is not None else "—"
@@ -2004,17 +2086,18 @@ def panel_monitor(link_health, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp
         "No reply": (255, 170, 90),
         "No WAN": (255, 106, 106),
     }.get(status, DIM)
-    d.text((16, 44), "Link Health", font=f_label, fill=FG)
+    d.text((16, 44), tr("Link Health"), font=f_label, fill=FG)
+    status = tr(status)
     status_width = d.textlength(status, font=f_label)
     d.text((W - 16 - status_width, 44), status, font=f_label, fill=status_color)
-    d.text((16, 64), "Latency", font=f_label, fill=DIM)
-    d.text((128, 64), "Packet Loss", font=f_label, fill=DIM)
+    d.text((16, 64), tr("Latency"), font=f_label, fill=DIM)
+    d.text((128, 64), tr("Packet Loss"), font=f_label, fill=DIM)
     d.text((16, 81), latency, font=f_value, fill=FG)
     d.text((128, 81), loss, font=f_value, fill=FG)
 
     d.line([16, 116, W - 16, 116], fill=(40, 44, 54))
 
-    d.text((16, 124), "CPU", font=font("default_medium", 14), fill=FG)
+    d.text((16, 124), tr("CPU"), font=font("default_medium", 14), fill=FG)
     cpu_txt = f"{cpu_pct:.0f}%" if cpu_pct is not None else "—"
     centered_text(d, W - 30, 124, cpu_txt, font("default_medium", 13), DIM)
     bx0, by0, bx1, by1 = MONITOR_CPU_BAR
@@ -2030,7 +2113,7 @@ def panel_monitor(link_health, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp
             # this file for the same underlying PIL quirk).
             d.rectangle([bx0 + 2, by0 + 2, bx0 + 2 + bw, by1 - 2], fill=ACCENT["monitor"])
 
-    d.text((16, 180), "RAM", font=font("default_medium", 14), fill=FG)
+    d.text((16, 180), tr("RAM"), font=font("default_medium", 14), fill=FG)
     ram_txt = f"{ram_used_gb:.1f} / {ram_total_gb:.1f} GB" if ram_pct is not None else "—"
     centered_text(d, W - 60, 180, ram_txt, font("default_medium", 12), DIM)
     bx0, by0, bx1, by1 = MONITOR_RAM_BAR
@@ -2046,17 +2129,19 @@ def panel_monitor(link_health, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp
 
     f_row = font("default_medium", 15)
     temp_txt = f"{temp_c:.0f}°C" if temp_c is not None else "—"
-    d.text((16, 240), "Temp", font=f_row, fill=FG)
+    d.text((16, 240), tr("Temp"), font=f_row, fill=FG)
     d.text((76, 240), temp_txt, font=f_row, fill=FG)
     up_h, up_m = divmod(uptime_min, 60)
     up_txt = f"{up_h // 24}d {up_h % 24}h" if up_h >= 48 else f"{up_h}h {up_m}m"
-    d.text((16, 264), "Uptime", font=f_row, fill=FG)
-    d.text((76, 264), up_txt, font=f_row, fill=FG)
+    d.text((16, 264), tr("Uptime"), font=font("default_medium", 12) if screen_i18n.chinese() else f_row, fill=FG)
+    uptime_font = font("default_medium", 12) if screen_i18n.chinese() else f_row
+    uptime_text = truncate_to_width(d, tr(up_txt), uptime_font, 60)
+    d.text((76, 264), uptime_text, font=uptime_font, fill=FG)
 
     x0, y0, x1, y1 = MONITOR_SPEEDTEST_BTN
     d.rounded_rectangle([x0, y0, x1, y1], radius=10, fill=(22, 28, 40), outline=(42, 48, 60), width=1)
     _icon_speedometer(d, (x0 + x1) / 2, y0 + 17, 11, ACCENT["monitor"])
-    centered_text(d, (x0 + x1) / 2, y0 + 27, "Speed test", font("default_bold", 12), FG)
+    centered_text(d, (x0 + x1) / 2, y0 + 27, tr("Speed test"), font("default_bold", 12), FG)
 
     draw_page_dots(d, PANEL_NAMES.index("monitor"))
     return img
@@ -2198,7 +2283,7 @@ def _draw_arrow(d, cx, cy, up, color, size=6):
 
 def panel_speedtest(snap, spin_phase=0.0):
     img, d = new_canvas()
-    draw_back_header(d, "Speed test", ACCENT["monitor"])
+    draw_back_header(d, tr("Speed test"), ACCENT["monitor"])
     phase = snap["phase"]
     running = phase in ("download", "upload")
     cx, cy = SPEEDTEST_GAUGE_C
@@ -2206,11 +2291,11 @@ def panel_speedtest(snap, spin_phase=0.0):
     if running:
         color = SPEEDTEST_DOWN_COLOR if phase == "download" else SPEEDTEST_UP_COLOR
         value = snap["live"]
-        caption = "Download" if phase == "download" else "Upload"
+        caption = tr("Download") if phase == "download" else tr("Upload")
     elif phase == "done":
-        color, value, caption = SPEEDTEST_DOWN_COLOR, snap["down"], "Download"
+        color, value, caption = SPEEDTEST_DOWN_COLOR, snap["down"], tr("Download")
     else:
-        color, value, caption = SPEEDTEST_DOWN_COLOR, None, "Ready"
+        color, value, caption = SPEEDTEST_DOWN_COLOR, None, tr("Ready")
     _draw_speed_gauge(d, _speed_frac(value), color)
 
     f_cap = font("default_medium", 12)
@@ -2232,8 +2317,8 @@ def panel_speedtest(snap, spin_phase=0.0):
         if pw > 0:
             _draw_pill(d, bx0, cy + 44, bx0 + pw, cy + 48, color)
 
-    for rect, label, key, up, col in ((SPEEDTEST_DOWN_CARD, "Download", "down", False, SPEEDTEST_DOWN_COLOR),
-                                      (SPEEDTEST_UP_CARD, "Upload", "up", True, SPEEDTEST_UP_COLOR)):
+    for rect, label, key, up, col in ((SPEEDTEST_DOWN_CARD, tr("Download"), "down", False, SPEEDTEST_DOWN_COLOR),
+                                      (SPEEDTEST_UP_CARD, tr("Upload"), "up", True, SPEEDTEST_UP_COLOR)):
         x0, y0, x1, y1 = rect
         active = running and phase == ("upload" if up else "download")
         d.rounded_rectangle([x0, y0, x1, y1], radius=10, fill=(22, 28, 40),
@@ -2255,23 +2340,23 @@ def panel_speedtest(snap, spin_phase=0.0):
     bx0, by0, bx1, by1 = SPEEDTEST_BUTTON
     if running:
         d.rounded_rectangle([bx0, by0, bx1, by1], radius=8, outline=DIM, width=2)
-        centered_text_box(d, bx0, by0, bx1, by1, "Cancel", font("default_medium", 14), DIM)
+        centered_text_box(d, bx0, by0, bx1, by1, tr("Cancel"), font("default_medium", 14), DIM)
     else:
         d.rounded_rectangle([bx0, by0, bx1, by1], radius=8, fill=ACCENT["monitor"])
-        centered_text_box(d, bx0, by0, bx1, by1, "Start" if phase == "idle" else "Run again",
+        centered_text_box(d, bx0, by0, bx1, by1, tr("Start") if phase == "idle" else tr("Run again"),
                           font("default_bold", 14), BG)
 
     f_foot = font("default_medium", 10)
     if phase == "error":
-        foot, fcol = snap["error"] or "Test failed", (255, 150, 150)
+        foot, fcol = snap["error"] or tr("Test failed"), (255, 150, 150)
     elif phase == "cancelled":
-        foot, fcol = "Cancelled", DIM
+        foot, fcol = tr("Cancelled"), DIM
     elif phase == "idle":
-        foot, fcol = "~12s · Cloudflare · uses up to ~330 MB", DIM
+        foot, fcol = tr("~12s · Cloudflare · uses up to ~330 MB"), DIM
     else:
         via = f"via {snap['via']} · " if snap.get("via") else ""
         foot, fcol = f"{via}{snap['bytes'] / 1e6:.0f} MB used", DIM
-    centered_text(d, W / 2, 298, truncate_to_width(d, foot, f_foot, W - 24), f_foot, fcol)
+    centered_text(d, W / 2, 298, truncate_to_width(d, tr(foot), f_foot, W - 24), f_foot, fcol)
     return img
 
 
@@ -2299,7 +2384,7 @@ def panel_confirm(title, message, accent, yes_label="Yes", danger=False, acknowl
     # and stack the lines centered in the space above the Yes/Cancel
     # buttons instead of assuming everything fits on one line.
     f_msg = font("default_medium", 15)
-    lines = wrap_text_to_lines(d, message, f_msg, W - 32)
+    lines = wrap_text_to_lines(d, tr(message), f_msg, W - 32)
     line_h = 20
     y0 = 110 - (len(lines) - 1) * line_h / 2
     for i, line in enumerate(lines):
@@ -2308,14 +2393,14 @@ def panel_confirm(title, message, accent, yes_label="Yes", danger=False, acknowl
     yx0, yy0, yx1, yy1 = CONFIRM_YES_RECT
     yes_color = (200, 80, 80) if danger else accent
     d.rounded_rectangle([yx0, yy0, yx1, yy1], radius=8, fill=yes_color)
-    centered_text(d, (yx0 + yx1) / 2, yy0 + 9, yes_label, font("default_bold", 14), BG)
+    centered_text(d, (yx0 + yx1) / 2, yy0 + 9, tr(yes_label), font("default_bold", 14), BG)
 
     if acknowledge_only:
         return img
 
     nx0, ny0, nx1, ny1 = CONFIRM_NO_RECT
     d.rounded_rectangle([nx0, ny0, nx1, ny1], radius=8, outline=DIM, width=2)
-    centered_text(d, (nx0 + nx1) / 2, ny0 + 9, "Cancel", font("default_medium", 14), DIM)
+    centered_text(d, (nx0 + nx1) / 2, ny0 + 9, tr("Cancel"), font("default_medium", 14), DIM)
     return img
 
 
@@ -2347,14 +2432,14 @@ SETTINGS_CONFIRM_ACTIONS = {
 def panel_settings(acceleration, pin_enabled, conn_type=None, cell_signal=None):
     img, d = new_canvas()
     accent = ACCENT["settings"]
-    draw_header(d, "SETTINGS", accent, conn_type, cell_signal)
+    draw_header(d, tr("SETTINGS"), accent, conn_type, cell_signal)
     rows = (
-        ("Network Accel.", None),
-        ("Screen", ""),
-        ("Screen PIN", "On" if pin_enabled else "Off"),
-        ("Stock UI", "Return"),
-        ("Reboot", ""),
-        ("Shutdown", ""),
+        (tr("Network Accel."), None),
+        (tr("Screen"), ""),
+        (tr("Screen PIN"), tr("On") if pin_enabled else tr("Off")),
+        (tr("Stock UI"), tr("Return")),
+        (tr("Reboot"), ""),
+        (tr("Shutdown"), ""),
     )
     for i, (label, value) in enumerate(rows):
         y = SETTINGS_TOP + i * SETTINGS_ROW_H
@@ -2366,7 +2451,7 @@ def panel_settings(acceleration, pin_enabled, conn_type=None, cell_signal=None):
             text_y = y + 3
         d.text((16, text_y), label, font=f, fill=color)
         if i == 0:
-            mode = ACCELERATION_MODES.get(acceleration["actype"], "Unavailable")
+            mode = tr(ACCELERATION_MODES.get(acceleration["actype"], tr("Unavailable")))
             mode_label = mode + "  >" if acceleration["enable"] else mode
             d.text((16, y + 24), mode_label, font=font("default_medium", 11), fill=DIM)
             if acceleration["available"]:
@@ -2422,11 +2507,11 @@ def set_screen_brightness(percent):
 
 def panel_screen_settings(cfg):
     img, d = new_canvas()
-    draw_back_header(d, "Screen", ACCENT["settings"])
+    draw_back_header(d, tr("Screen"), ACCENT["settings"])
     brightness = cfg["screen_brightness"]
     if brightness is None:
         brightness = screen_brightness()
-    rows = (("Brightness", f"{brightness}%"), ("Screen timeout", SCREEN_TIMEOUTS[cfg["screen_timeout"]]))
+    rows = ((tr("Brightness"), f"{brightness}%"), (tr("Screen timeout"), tr(SCREEN_TIMEOUTS[cfg["screen_timeout"]])))
     for i, (label, value) in enumerate(rows):
         y = SETTINGS_TOP + i * 56
         d.text((16, y + 5), label, font=font("default_medium", 15), fill=FG)
@@ -2436,8 +2521,8 @@ def panel_screen_settings(cfg):
 
 
 def panel_acceleration_modes(acceleration, scroll_px=0):
-    items = [(mode, ACCELERATION_MODES[mode]) for mode in acceleration["list"]]
-    return panel_scroll_picker("Acceleration", ACCENT["settings"], items,
+    items = [(mode, tr(ACCELERATION_MODES[mode])) for mode in acceleration["list"]]
+    return panel_scroll_picker(tr("Acceleration"), ACCENT["settings"], items,
                                acceleration["actype"], scroll_px)
 
 
@@ -2458,7 +2543,7 @@ def panel_scroll_picker(title, accent, items, selected, scroll_px, font_name="de
     list_img = Image.new("RGB", (W, list_h), BG)
     ld = ImageDraw.Draw(list_img)
     f = font(font_name, SCROLL_FONT_SIZE)
-    check_f = font("default_medium", SCROLL_FONT_SIZE)  # CJK fonts may lack a ✓ glyph
+    check_f = font("default_medium", SCROLL_FONT_SIZE, latin=True)  # CJK fonts may lack a ✓ glyph
     max_label_w = W - 56  # room for left margin + checkmark on the right
     for i, (key, label) in enumerate(items):
         y0 = i * SCROLL_ROW_H - scroll_px
@@ -2467,6 +2552,8 @@ def panel_scroll_picker(title, accent, items, selected, scroll_px, font_name="de
         sel = key == selected
         if sel:
             ld.rectangle([0, y0, W, y0 + SCROLL_ROW_H], fill=(28, 40, 56))
+        if font_name != "default_cn_medium":
+            label = tr(label)
         label = truncate_to_width(ld, label, f, max_label_w)
         bbox = ld.textbbox((0, 0), label, font=f)
         th = bbox[3] - bbox[1]
@@ -2511,8 +2598,8 @@ def panel_node_picker(traf, mode, scroll_px=0):
                                    font_name="default_cn_medium")
     img, d = new_canvas()
     draw_back_header(d, title, ACCENT["openclash"])
-    message = "Mihomo API unavailable" if not traf["running"] else (
-        "Selector unavailable" if selection is None else "No choices available")
+    message = tr("Mihomo API unavailable") if not traf["running"] else (
+        tr("Selector unavailable") if selection is None else tr("No choices available"))
     centered_text(d, W / 2, 140, message, font("default_medium", 14), DIM)
     return img
 
@@ -2599,7 +2686,10 @@ def mode_preview(outdir):
     _cell_info = _get_active_cell_info()
     conn_type = get_wan_conn_type(_cell_info)
     cell_signal = get_cell_signal(_cell_info)
+    vendor_preview = VendorServices(gl_lua_rpc)
     screens = [
+        ("adguardhome", panel_vendor("adguardhome", vendor_preview.snapshot("adguardhome"), conn_type, cell_signal)),
+        ("tailscale", panel_vendor("tailscale", vendor_preview.snapshot("tailscale"), conn_type, cell_signal)),
         ("sim", panel_sim(sim, conn_type, cell_signal, _cell_info)),
         ("monitor", panel_monitor(None, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp_c, sysinfo["uptime_min"], conn_type, cell_signal)),
         ("battery", panel_battery()),
@@ -2854,6 +2944,12 @@ def mode_live():
     # already-fetched values, so a slow curl or a wedged ubus call can no
     # longer stall drawing or touch handling.
     refresher = Refresher()
+    vendor = VendorServices(gl_lua_rpc)
+    vendor_visible = None
+    vendor_states = {name: empty_vendor(name) for name in VENDOR_TITLES}
+    for name in VENDOR_TITLES:
+        refresher.add(name, lambda n=name: vendor.snapshot(n), 5,
+                      enabled=lambda n=name: vendor_visible == n)
     # 10s: the toggle now shows whether the core is actually running, and
     # OpenClash also gets started/stopped from LuCI or the GL app.
     refresher.add("oc", get_openclash_status, 10)
@@ -2924,12 +3020,12 @@ def mode_live():
         if err:
             d = ImageDraw.Draw(img)
             d.rectangle([0, H - 20, W, H], fill=(90, 26, 34))
-            centered_text(d, W / 2, H - 17, err, font("default_medium", 11), (255, 220, 220))
+            centered_text(d, W / 2, H - 17, tr(err), font("default_medium", 11), (255, 220, 220))
         elif notice["text"] and time.time() < notice["until"]:
             d = ImageDraw.Draw(img)
             f = font("default_medium", 11)
             d.rectangle([0, H - 22, W, H], fill=(84, 62, 18))
-            centered_text(d, W / 2, H - 18, truncate_to_width(d, notice["text"], f, W - 12), f, (255, 230, 180))
+            centered_text(d, W / 2, H - 18, truncate_to_width(d, tr(notice["text"]), f, W - 12), f, (255, 230, 180))
         return img
 
     acceleration = acceleration_empty()
@@ -2944,11 +3040,15 @@ def mode_live():
             return panel_sim(sim, conn_type, cell_signal, cell_info)
         elif name == "openclash":
             return panel_openclash(oc, traf, conn_type, cell_signal)
+        elif name in VENDOR_TITLES:
+            return panel_vendor(name, vendor_states[name], conn_type, cell_signal)
         elif name == "battery":
             return panel_battery(conn_type, cell_signal, battery_current)
         else:
             return panel_monitor(link_health, cpu_pct, ram_pct, ram_used_gb, ram_total_gb, temp_c, mon_uptime_min, conn_type, cell_signal)
 
+    PANEL_NAMES[:] = get_modules()
+    modules_checked_at = -1e9
     panel_idx = 0
     pin_enabled = screen_pin.enabled()
     view = "pin_keypad" if pin_enabled else "main"
@@ -3075,6 +3175,8 @@ def mode_live():
         return action.startswith("oc_")
 
     def confirm_accent():
+        if confirm_action.startswith("vendor:"):
+            return ACCENT[confirm_action.split(":")[1]]
         if is_openclash_action(confirm_action):
             return ACCENT["openclash"]
         return ACCENT["settings"]
@@ -3236,6 +3338,37 @@ def mode_live():
 
     while not _stop:
         now = time.time()
+        if time.monotonic() - modules_checked_at >= 1:
+            modules_checked_at = time.monotonic()
+            visible = get_modules()
+            if visible != PANEL_NAMES:
+                removed = PANEL_NAMES[panel_idx] not in visible
+                panel_idx = selected_index(PANEL_NAMES, panel_idx, visible)
+                PANEL_NAMES[:] = visible
+                state, neighbor_img, drag_strip = 'idle', None, None
+                anim_next_idx = panel_idx
+                last_dx_drawn = None
+                if removed:
+                    speedtest.cancel()
+                    if not (view == 'pin_keypad' and pin_step == 'unlock'):
+                        view = 'main'
+                        pin_input = new_pin = pin_notice = ''
+                        pending_conflict = None
+                with touch_state.lock:
+                    touch_state.release_pending = False
+                    ignore_wake_touch = touch_state.active
+                last_draw, sub_dirty = 0, True
+                if view == 'main':
+                    cur_img = render_main(panel_idx)
+                    write_frame(cur_img)
+        if screen_i18n.refresh_language():
+            _fonts.clear()
+            _truncate_cache.clear()
+            last_draw = 0
+            sub_dirty = True
+            if view == "main":
+                cur_img = render_main(panel_idx)
+                write_frame(cur_img)
 
         screen_asleep = is_screen_asleep()
         monotonic_now = time.monotonic()
@@ -3259,6 +3392,11 @@ def mode_live():
         if settings_now and not settings_visible:
             refresher.request("acceleration")
         settings_visible = settings_now
+        vendor_now = PANEL_NAMES[panel_idx] if not screen_asleep and view == 'main' and PANEL_NAMES[panel_idx] in VENDOR_TITLES else None
+        if vendor_now != vendor_visible:
+            vendor_visible = vendor_now
+            if vendor_visible:
+                refresher.request(vendor_visible)
         sim_now = not screen_asleep and view == "main" and PANEL_NAMES[panel_idx] == "sim"
         if sim_now != sim_visible:
             sim_visible = sim_now
@@ -3370,6 +3508,10 @@ def mode_live():
                 # very next pass.
                 if refresher.version != refresher_seen:
                     refresher_seen = refresher.version
+                    for vendor_name in VENDOR_TITLES:
+                        fresh = refresher.get(vendor_name)
+                        if fresh and fresh['observed_at'] >= vendor_states[vendor_name]['observed_at']:
+                            vendor_states[vendor_name] = fresh
                     oc = refresher.get("oc", oc)
                     traf = refresher.get("traf", traf)
                     acceleration = refresher.get("acceleration", acceleration)
@@ -3452,13 +3594,30 @@ def mode_live():
                             zone = hit_settings(down_x, down_y, acceleration)
                         elif name == "openclash":
                             zone = hit_main_openclash(down_x, down_y)
+                        elif name in VENDOR_TITLES:
+                            zone = "toggle" if hit_vendor_toggle(down_x, down_y) else None
                         elif name == "battery":
                             zone = hit_main_battery(down_x, down_y)
                         elif name == "monitor":
                             zone = hit_main_monitor(down_x, down_y)
 
                         new_view = None
-                        if name == "battery" and zone:
+                        if name in VENDOR_TITLES and zone == 'toggle':
+                            fresh = run_with_spinner(cur_img, 'Checking settings…', lambda: vendor.snapshot(name), ACCENT[name])
+                            if fresh:
+                                vendor_states[name] = fresh
+                                refresher.put(name, fresh)
+                            if not fresh or not fresh['available']:
+                                show_notice('Official service settings are unavailable.')
+                            else:
+                                want = not fresh['enabled']
+                                confirm_title = VENDOR_TITLES[name]
+                                confirm_message = ('Start AdGuard Home? DNS settings may change.' if want else 'Stop AdGuard Home? DNS settings may change.') if name == 'adguardhome' else ('Start Tailscale? If login is required, complete it in the WebUI.' if want else 'Stop Tailscale? Remote access may disconnect.')
+                                confirm_yes_label = 'Start' if want else 'Stop'
+                                confirm_action = 'vendor:' + name + (':on' if want else ':off')
+                                confirm_return_view, confirm_danger = 'main', not want
+                                new_view = 'confirm'
+                        elif name == "battery" and zone:
                             bc, _ = battery_snapshot()
                             if zone == "enable":
                                 action, value = "enable", "0" if bc["enabled"] else "1"
@@ -3620,7 +3779,7 @@ def mode_live():
                     write_frame(cur_img)
                     last_draw = now
                     continue
-                items = [(mode, ACCELERATION_MODES[mode]) for mode in acceleration["list"]]
+                items = [(mode, tr(ACCELERATION_MODES[mode])) for mode in acceleration["list"]]
                 handle_scroll_picker(now, items, lambda scroll: panel_acceleration_modes(acceleration, scroll),
                                      lambda mode, img: apply_acceleration(mode, img))
                 time.sleep(0.012)
@@ -3705,7 +3864,29 @@ def mode_live():
                         write_frame(cur_img)
                         last_draw = now
                 elif confirm_hit == "yes":
-                    if is_openclash_action(confirm_action):
+                    if confirm_action.startswith('vendor:'):
+                        _, name, desired = confirm_action.split(':')
+                        outcome = run_with_spinner(cur_img, 'Applying service setting…',
+                                                   lambda: vendor.toggle(name, desired == 'on'), ACCENT[name])
+                        if outcome:
+                            fresh, message = outcome
+                            vendor_states[name] = fresh
+                            refresher.put(name, fresh)
+                            if message in (LOGIN_NOTICE, 'Authorize this device in the Tailscale WebUI.'):
+                                confirm_title, confirm_message, confirm_yes_label = 'Tailscale', message, 'OK'
+                                confirm_action, confirm_danger = 'conflict_ack', False
+                                sub_dirty = True
+                            else:
+                                if message:
+                                    show_notice(message)
+                                view = 'main'
+                                cur_img = render_main(panel_idx)
+                                write_frame(cur_img)
+                                last_draw = time.time()
+                        else:
+                            show_notice('Official service settings are unavailable.')
+                            view, sub_dirty = 'main', True
+                    elif is_openclash_action(confirm_action):
                         message = run_openclash_action(confirm_action)
                         if message:
                             show_notice(message)

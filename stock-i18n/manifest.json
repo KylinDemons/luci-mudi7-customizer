@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "firmware": "4.10.2",
+    "screen_package": "git-2026.289.31233-a105142-1"
+  },
+  "guards": {
+    "etc/gl_screen/language/ttf/default_bold.ttf": "cf74841e461235ac7205369329b14fd13a126af4c93927f8b287cad9aa6ffaab",
+    "etc/gl_screen/language/ttf/default_medium.ttf": "0ebb5ad4c9c57f2a2860f43ae9fa69024c045b380b2a73b332d6f40c39f4a294",
+    "etc/gl_screen/language/ttf/default_cn_medium.ttf": "6e6a084fd3f43c2c6f6d662cbc4c7b09987bafd928c43e91c8e8f68c6ae01e31",
+    "etc/gl_screen/language/ttf/default_semibold.ttf": "659f916ce1922bd4fecac7cd5f26018817a2946327a5dd00169c8bab14ae2c58",
+    "etc/gl_screen/language/ttf/default_mono_medium.ttf": "e61d37ab6b5470dc32ed35eeb150ed98a7dc3f6eda9fca7f8093d3c3c9ea5b13",
+    "usr/bin/gl_screen": "8527d15dfd52e8a2e6f3b3359588f80f8ab60e4d0c34b610e4dd8ee7d7db1a87"
+  },
+  "baseline": {
+    "etc/gl_screen/language/ttf/default_medium_zh-cn.ttf": null,
+    "etc/gl_screen/language/ttf/default_semibold_zh-cn.ttf": null,
+    "etc/gl_screen/language/ttf/default_mono_medium_zh-cn.ttf": null,
+    "etc/gl_screen/language/ttf/default_bold_zh-cn.ttf": null,
+    "etc/gl_screen/language/ttf/default_cn_medium_zh-cn.ttf": null,
+    "etc/gl_screen/language/text/default": "a71cbe199921a24c93624ea77a74209f394bc58fd88eb3defff10544be638ff4"
+  },
+  "targets": {
+    "etc/gl_screen/language/ttf/default_medium_zh-cn.ttf": "a1ac205d44d088f36f592d85f53b9e055d9f9d35b891e36a0c5ee07144cca338",
+    "etc/gl_screen/language/ttf/default_semibold_zh-cn.ttf": "87c81b1f1164d098f337cde6ed1c7beb7462e04c6339bbc07ea53ef8f1253a5e",
+    "etc/gl_screen/language/ttf/default_mono_medium_zh-cn.ttf": "a1ac205d44d088f36f592d85f53b9e055d9f9d35b891e36a0c5ee07144cca338",
+    "etc/gl_screen/language/ttf/default_bold_zh-cn.ttf": "d5a2eaaf968f48bd232afdd72de35a93c29bef541f70293820c606f27089a46d",
+    "etc/gl_screen/language/ttf/default_cn_medium_zh-cn.ttf": "c1107bce20bcf9e7cff4914b1f34fee1a907a7dca2fc021eee7d69e0307ac2d4",
+    "etc/gl_screen/language/text/default": "841da49d976096ebdf4c2ec62be0bc8a62f125638102c298653e07057bab2b77"
+  },
+  "catalog_sha256": "dc6e0993ae3cf90ed295566ae405ce33d9fb147087676ad025840b8ff0209d9d"
+}

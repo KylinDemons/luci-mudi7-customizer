@@ -11,6 +11,9 @@ import time
 sys.dont_write_bytecode = True
 DASH = Path('/usr/libexec/mudi7-customizer')
 sys.path.insert(0, str(DASH))
+import stock_i18n
+from screen_i18n import get_language, set_language
+from screen_modules import get_modules, set_modules
 import battery_control as battery
 from link_probe_config import get_probe_host, set_probe_host
 from openclash_config import get_rule_group, set_rule_group
@@ -18,12 +21,21 @@ from openclash_config import get_rule_group, set_rule_group
 DISABLED = battery.ROOT / 'screen-disabled'
 METHODS = {
     'status': {},
+    'stock_i18n': {'action': ''},
     'set_screen': {'enabled': True},
+    'set_screen_language': {'language': ''},
+    'set_screen_modules': {'modules': []},
     'set_battery': {'enabled': True, 'threshold': 0},
     'set_rule_group': {'name': ''},
     'set_link_host': {'host': ''},
     'cleanup': {'confirm': True},
 }
+
+
+class TranslatableError(RuntimeError):
+    def __init__(self, message, *params):
+        super().__init__(message)
+        self.params = params
 
 
 def service(name, action):
@@ -39,9 +51,9 @@ def run(what, *args):
     try:
         subprocess.run(args, check=True, stdout=subprocess.DEVNULL, timeout=15)
     except subprocess.TimeoutExpired as exc:
-        raise RuntimeError(f'{what}超时，请稍后重试。') from exc
+        raise TranslatableError('%s timed out. Please try again later.', what) from exc
     except subprocess.CalledProcessError as exc:
-        raise RuntimeError(f'{what}失败（退出码 {exc.returncode}），请稍后重试。') from exc
+        raise TranslatableError('%s failed (exit code %s). Please try again later.', what, exc.returncode) from exc
 
 
 def read_int(path):
@@ -77,8 +89,11 @@ def status():
     else:
         control = 'armed'
     return {
+        'stock_i18n': stock_i18n.status(),
         'rule_group': get_rule_group(),
         'link_host': get_probe_host(),
+        'screen_language': get_language(),
+        'screen_modules': get_modules(),
         'screen_enabled': not DISABLED.exists() and service('homebutton', 'enabled'),
         'screen_active': service('mudi7-dashboard', 'running'),
         'stock_active': service('gl_screen', 'running'),
@@ -113,13 +128,15 @@ def restore_pump():
 
 
 def cleanup():
-    run('切回原厂屏幕', DASH / 'toggle.sh', 'disable')
+    if stock_i18n.BACKUP.exists():
+        stock_i18n.operate('restore')
+    run('Switch to the stock screen', DASH / 'toggle.sh', 'disable')
     if not service('batterycontrol', 'disable'):
-        raise RuntimeError('无法禁用限充服务的开机自启。')
+        raise RuntimeError('Unable to disable charge limit service autostart.')
     # procd refuses to stop an instance that is already gone; only a service
     # that is still running after a failed stop is a real problem.
     if not service('batterycontrol', 'stop') and service('batterycontrol', 'running'):
-        raise RuntimeError('限充服务未能停止，请重试。')
+        raise RuntimeError('The charge limit service failed to stop. Please try again.')
 
     # Wait for the daemon's shutdown handler. Keep its original voltage record
     # until the restoration has succeeded, including after an unclean exit.
@@ -134,16 +151,16 @@ def cleanup():
                         break
                     except BlockingIOError:
                         if time.monotonic() >= deadline:
-                            raise RuntimeError('限充服务尚未停止，请重试。')
+                            raise RuntimeError('The charge limit service has not stopped yet. Please try again.')
                         time.sleep(0.05)
             battery.release()
             restore_pump()
-    labels = {'mudi7-dashboard': '第三方屏幕', 'homebutton': '按键切换', 'batterycontrol': '限充'}
+    labels = {'mudi7-dashboard': 'Custom screen', 'homebutton': 'Button switching', 'batterycontrol': 'Charge limit'}
     leftover = [labels[name] for name in labels if service(name, 'running')]
     if leftover:
-        raise RuntimeError('以下服务仍在运行，请稍后重试：' + '、'.join(leftover))
+        raise TranslatableError('These services are still running. Please try again later: %s', leftover)
     if not service('gl_screen', 'running'):
-        raise RuntimeError('原厂屏幕尚未启动，请重试。')
+        raise RuntimeError('The stock screen has not started yet. Please try again.')
 
     for directory in (
         runtime, Path('/tmp/mudi7-customizer'),
@@ -158,16 +175,22 @@ def cleanup():
 def handle(method, args):
     if method == 'status':
         return status()
-    if method == 'set_screen':
+    if method == 'stock_i18n':
+        stock_i18n.operate(args.get('action'))
+    elif method == 'set_screen_modules':
+        set_modules(args.get('modules'))
+    elif method == 'set_screen_language':
+        set_language(args.get('language'))
+    elif method == 'set_screen':
         enabled = args.get('enabled')
         if type(enabled) is not bool:
-            raise ValueError('屏幕开关必须为布尔值。')
-        run('启用第三方屏幕' if enabled else '切回原厂屏幕',
+            raise ValueError('The screen switch must be a boolean.')
+        run('Enable the custom screen' if enabled else 'Switch to the stock screen',
             DASH / 'toggle.sh', 'enable' if enabled else 'disable')
     elif method == 'set_battery':
         enabled, threshold = args.get('enabled'), args.get('threshold')
         if type(enabled) is not bool or type(threshold) is not int or not 50 <= threshold <= 100:
-            raise ValueError('限充目标必须为 50–100 的整数。')
+            raise ValueError('The charge target must be an integer from 50 to 100.')
         battery.LOCK.parent.mkdir(parents=True, exist_ok=True)
         battery.ensure_daemon()
         battery.operate('configure', (enabled, threshold))
@@ -177,7 +200,7 @@ def handle(method, args):
         set_probe_host(args.get('host'))
     elif method == 'cleanup':
         if args.get('confirm') is not True:
-            raise ValueError('请先确认清理。')
+            raise ValueError('Please confirm cleanup first.')
         cleanup()
     return status()
 
@@ -197,12 +220,12 @@ def main():
             fcntl.flock(lock, flags | fcntl.LOCK_NB)
             args = json.load(sys.stdin) if method != 'status' else {}
             if not isinstance(args, dict):
-                raise ValueError('无效的请求参数。')
+                raise ValueError('Invalid request parameters.')
             print(json.dumps({'ok': True, **handle(method, args)}, ensure_ascii=True))
     except BlockingIOError:
-        print(json.dumps({'ok': False, 'error': '另一项操作正在运行，请稍后重试。'}))
+        print(json.dumps({'ok': False, 'error': 'Another operation is running. Please try again later.'}))
     except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
-        print(json.dumps({'ok': False, 'error': str(exc)}))
+        print(json.dumps({'ok': False, 'error': str(exc), 'error_params': getattr(exc, 'params', [])}))
 
 
 if __name__ == '__main__':

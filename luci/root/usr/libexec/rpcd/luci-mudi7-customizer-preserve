@@ -15,7 +15,7 @@ METHODS = {'status': {}, 'set_enabled': {'enabled': True, 'revision': ''}}
 
 def read_rule():
     if RULE.is_symlink():
-        raise ValueError('规则文件不能是符号链接。')
+        raise ValueError('The rule file must not be a symbolic link.')
     try:
         return RULE.read_bytes()
     except FileNotFoundError:
@@ -32,11 +32,11 @@ def state(data):
 def set_enabled(args):
     enabled, revision = args.get('enabled'), args.get('revision')
     if not isinstance(enabled, bool) or not isinstance(revision, str):
-        raise ValueError('开关状态或规则版本无效。')
+        raise ValueError('Invalid switch state or rule revision.')
     data = read_rule()
     current = state(data)
     if current['revision'] != revision:
-        raise ValueError('规则文件已被其他操作修改，请刷新后重试。')
+        raise ValueError('The rule file has been modified by another operation. Refresh the page and try again.')
     if enabled:
         lines = {line.strip() for line in data.splitlines()}
         missing = [entry for entry in ENTRIES if entry not in lines]
@@ -70,7 +70,7 @@ def main():
     try:
         args = json.load(sys.stdin)
         if not isinstance(args, dict):
-            raise ValueError('请求无效。')
+            raise ValueError('Invalid request.')
         result = state(read_rule()) if sys.argv[2] == 'status' else set_enabled(args)
         print(json.dumps({'ok': True, **result}, ensure_ascii=True))
     except (OSError, ValueError) as exc:

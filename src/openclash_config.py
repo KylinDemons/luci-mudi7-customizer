@@ -10,7 +10,7 @@ def validate_rule_group(name):
     if (not isinstance(name, str) or not name.strip()
             or any(ord(char) < 32 or ord(char) == 127 for char in name)
             or len(name.encode('utf-8')) > 256 or name == 'GLOBAL'):
-        raise ValueError('请输入实际的 Rule 策略组名称（最多 256 字节，不能使用 GLOBAL）。')
+        raise ValueError('Enter the actual Rule mode proxy group name (maximum 256 bytes; GLOBAL is not allowed).')
     return name
 
 

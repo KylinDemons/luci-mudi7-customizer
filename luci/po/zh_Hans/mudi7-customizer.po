@@ -1,0 +1,442 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\nLanguage: zh_Hans\n"
+
+msgid "(positive: charging, negative: discharging, zero: battery inactive)"
+msgstr "（正值表示充电，负值表示放电，零值表示电池未工作）"
+
+msgid "Enable battery charge limit"
+msgstr "启用电池限充"
+
+msgid "Enable custom screen"
+msgstr "启用第三方屏幕"
+
+msgid "Please refresh the page and try again."
+msgstr "请刷新页面后重试。"
+
+msgid "Preserve custom package feed configuration"
+msgstr "保留自定义软件源配置"
+
+#, javascript-format
+msgid "%s failed (exit code %s). Please try again later."
+msgstr "%s失败（退出码 %s），请稍后重试。"
+
+#, javascript-format
+msgid "%s timed out. Please try again later."
+msgstr "%s超时，请稍后重试。"
+
+#, javascript-format
+msgid "%s%% (GL scale)"
+msgstr "%s%%（GL 刻度）"
+
+msgid "; charging current is still detected"
+msgstr "，当前仍测得充电电流"
+
+#, javascript-format
+msgid "; stops at approximately %s%% on the gauge and resumes below this level"
+msgstr "，约电量计 %s%% 停止，低于此值恢复"
+
+msgid "Another operation is running. Please try again later."
+msgstr "另一项操作正在运行，请稍后重试。"
+
+msgid "Apply charge limit settings"
+msgstr "应用限充设置"
+
+msgid "Applying…"
+msgstr "正在应用…"
+
+msgid "Battery charge limit"
+msgstr "电池限充"
+
+msgid "Battery current"
+msgstr "电池电流"
+
+msgid "Battery level"
+msgstr "当前电量"
+
+msgid "Battery status"
+msgstr "电池状态"
+
+msgid "Battery voltage"
+msgstr "电池电压"
+
+msgid "Button switching"
+msgstr "按键切换"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Charge limit"
+msgstr "限充"
+
+msgid "Charge limit control failed"
+msgstr "限充控制失败"
+
+msgid "Charge limit disabled"
+msgstr "限充已关闭"
+
+msgid "Charge limit enabled, charging allowed"
+msgstr "限充已开启，允许充电"
+
+msgid "Charge limit interface unavailable"
+msgstr "设备未提供限充接口"
+
+msgid "Charge limit settings applied."
+msgstr "限充设置已应用。"
+
+msgid "Charge target (GL interface scale, 50–100%)"
+msgstr "充电目标（GL 界面刻度，50–100%）"
+
+msgid "Clean up before uninstalling"
+msgstr "卸载前清理"
+
+msgid "Cleanup complete. You can now uninstall luci-mudi7-customizer."
+msgstr "清理完成。现在可以卸载 luci-mudi7-customizer。"
+
+msgid "Cleanup tools"
+msgstr "清理工具"
+
+msgid "Confirm cleanup"
+msgstr "确认清理"
+
+msgid "Connected"
+msgstr "已接入"
+
+msgid "Control status"
+msgstr "控制状态"
+
+msgid "Current display: custom screen"
+msgstr "当前显示：第三方屏幕"
+
+msgid "Current display: stock screen"
+msgstr "当前显示：原厂屏幕"
+
+msgid "Custom screen"
+msgstr "第三方屏幕"
+
+msgid "Custom screen enabled."
+msgstr "第三方屏幕已启用。"
+
+msgid "Disconnected"
+msgstr "未接入"
+
+msgid "Enable the custom screen"
+msgstr "启用第三方屏幕"
+
+msgid "Enter a probe address, such as 1.1.1.1, 2400:3200::1 or www.baidu.com."
+msgstr "请输入探测地址，例如 1.1.1.1、2400:3200::1 或 www.baidu.com。"
+
+msgid "Enter a proxy group name."
+msgstr "请输入策略组名称。"
+
+msgid "Enter a valid domain name (e.g. www.baidu.com), IPv4 address (e.g. 1.1.1.1) or IPv6 address (e.g. 2400:3200::1)."
+msgstr "请输入有效的域名（如 www.baidu.com）、IPv4 地址（如 1.1.1.1）或 IPv6 地址（如 2400:3200::1）。"
+
+msgid "Enter an IPv4 / IPv6 address or domain name."
+msgstr "请输入 IPv4 / IPv6 地址或域名。"
+
+msgid "Enter an integer from 50 to 100."
+msgstr "请输入 50–100 的整数。"
+
+msgid "Enter only the address, without prefixes such as http://."
+msgstr "只填写地址本身，不要包含 http:// 等前缀。"
+
+msgid "Enter the actual Rule mode proxy group name (maximum 256 bytes; GLOBAL is not allowed)."
+msgstr "请输入实际的 Rule 策略组名称（最多 256 字节，不能使用 GLOBAL）。"
+
+msgid "Enter the full name of the manual selection group in your Mihomo configuration. It is case-sensitive. The default is “默认代理”. Global mode uses GLOBAL."
+msgstr "填写 Mihomo 配置中的完整手动选择组名称，区分大小写。默认是「默认代理」。Global 模式使用 GLOBAL。"
+
+msgid "GL.iNet firmware can automatically reinstall existing plugins after an upgrade. This requires package feeds. If you use custom feeds, you can add /etc/opkg/customfeeds.conf or the configuration files under /etc/opkg/customfeeds.conf.d/ to /lib/upgrade/keep.d/opkg to preserve them during upgrades."
+msgstr "GL.iNet 固件有升级后自动重装已有插件的功能，此功能依赖软件源。如果使用了自定义软件源，可以将 /etc/opkg/customfeeds.conf 或 /etc/opkg/customfeeds.conf.d/ 下的配置文件加入 /lib/upgrade/keep.d/opkg，以便升级时保留。"
+
+#, javascript-format
+msgid "Gauge %s%% / GL interface approximately %s%%"
+msgstr "电量计 %s%% / GL 界面约 %s%%"
+
+msgid "Invalid IPv4 address."
+msgstr "这不是有效的 IPv4 地址。"
+
+msgid "Invalid IPv6 address. Remove any port number (probes do not use ports)."
+msgstr "不是有效的 IPv6 地址；如需指定端口，请去掉端口号（探测不使用端口）。"
+
+msgid "Invalid request parameters."
+msgstr "无效的请求参数。"
+
+msgid "Invalid request."
+msgstr "请求无效。"
+
+msgid "Invalid switch state or rule revision."
+msgstr "开关状态或规则版本无效。"
+
+msgid "Link Health on the Monitor page sends ICMP probes to this address. Enter an IPv4 address (e.g. 1.1.1.1), an IPv6 address (e.g. 2400:3200::1), or a domain name (e.g. www.baidu.com, probed over IPv4). The default is www.baidu.com. Probing runs only while the Monitor page is visible and stops when you leave it. Changes take effect within about 3 seconds, without restarting the screen service."
+msgstr "Monitor 页的 Link Health 会向此地址发送 ICMP 探测：可填 IPv4（如 1.1.1.1）、IPv6（如 2400:3200::1）或域名（如 www.baidu.com，按 IPv4 探测），默认 www.baidu.com。探测只在 Monitor 页显示时进行，离开该页即停止。保存后约 3 秒内生效，无需重启屏幕服务。"
+
+msgid "Loading battery status…"
+msgstr "正在读取电池状态…"
+
+msgid "Loading rules…"
+msgstr "正在读取规则…"
+
+msgid "Loading screen status…"
+msgstr "正在读取屏幕状态…"
+
+msgid "Monitor link probing"
+msgstr "Monitor 链路探测"
+
+msgid "Mudi7 Customizer"
+msgstr "Mudi7 个性化"
+
+msgid "Only some paths are currently listed. Enable this option to add both rules."
+msgstr "当前仅有部分路径在规则中，开启可补全两条规则。"
+
+msgid "OpenClash touchscreen settings"
+msgstr "OpenClash 触屏设置"
+
+msgid "Operation failed."
+msgstr "操作失败。"
+
+msgid "Please confirm cleanup first."
+msgstr "请先确认清理。"
+
+msgid "Preserve package feeds during firmware upgrades"
+msgstr "系统升级软件源保留"
+
+msgid "Probe address"
+msgstr "探测地址"
+
+msgid "Probe address is too long (maximum 253 characters)."
+msgstr "探测地址过长（最多 253 个字符）。"
+
+msgid "Probe address saved. The Monitor page will use it for the next probe (about 3 seconds)."
+msgstr "探测地址已保存，Monitor 页将在下一次探测时使用（约 3 秒）。"
+
+msgid "Proxy group saved. The touchscreen will read it on the next refresh."
+msgstr "策略组已保存，触屏将在下一次刷新时读取。"
+
+msgid "Rule mode proxy group"
+msgstr "规则模式策略组"
+
+msgid "Rules saved."
+msgstr "规则已保存。"
+
+msgid "Save failed."
+msgstr "保存失败。"
+
+msgid "Save probe address"
+msgstr "保存探测地址"
+
+msgid "Save proxy group"
+msgstr "保存策略组"
+
+msgid "Saved threshold"
+msgstr "已保存阈值"
+
+msgid "Saving…"
+msgstr "正在保存…"
+
+msgid "Settings are shared with the custom touchscreen. The battery charge limit can remain active after switching to the stock screen."
+msgstr "与第三方触屏共用设置。切回原厂屏幕后，电池限充可继续工作。"
+
+msgid "Switch to the stock screen"
+msgstr "切回原厂屏幕"
+
+msgid "Switched to the stock screen."
+msgstr "已切回原厂屏幕。"
+
+msgid "Switching screen services"
+msgstr "屏幕服务正在切换"
+
+msgid "Target reached, charging limited"
+msgstr "已达到目标，正在限制充电"
+
+msgid "The charge limit service failed to stop. Please try again."
+msgstr "限充服务未能停止，请重试。"
+
+msgid "The charge limit service has not stopped yet. Please try again."
+msgstr "限充服务尚未停止，请重试。"
+
+msgid "The charge target must be an integer from 50 to 100."
+msgstr "限充目标必须为 50–100 的整数。"
+
+msgid "The probe address must be text."
+msgstr "探测地址必须为文本。"
+
+msgid "The rule file has been modified by another operation. Refresh the page and try again."
+msgstr "规则文件已被其他操作修改，请刷新后重试。"
+
+msgid "The rule file must not be a symbolic link."
+msgstr "规则文件不能是符号链接。"
+
+msgid "The screen switch must be a boolean."
+msgstr "屏幕开关必须为布尔值。"
+
+msgid "The stock screen has not started yet. Please try again."
+msgstr "原厂屏幕尚未启动，请重试。"
+
+#, javascript-format
+msgid "These services are still running. Please try again later: %s"
+msgstr "以下服务仍在运行，请稍后重试：%s"
+
+msgid "This switch manages both /etc/opkg/customfeeds.conf and /etc/opkg/customfeeds.conf.d/. Restoration during upgrades depends on the preservation logic in the current firmware version. Back up important settings separately."
+msgstr "开关同时管理 /etc/opkg/customfeeds.conf 和 /etc/opkg/customfeeds.conf.d/ 两条规则。升级时是否恢复取决于当前版本固件的保留逻辑，请另行备份重要配置。"
+
+msgid "This will switch to the stock screen, stop the custom screen, button switching and charge limit services, and delete brightness, PIN, charge limit settings, the link probe address and runtime data. You can then uninstall this plugin in the package manager."
+msgstr "此操作会切回原厂屏幕，停止第三方屏幕、按键切换和限充服务，并删除亮度、PIN、限充设置、链路探测地址和运行数据。清理后可在软件包管理中卸载本插件。"
+
+msgid "USB-C power"
+msgstr "USB-C 电源"
+
+msgid "Unable to disable charge limit service autostart."
+msgstr "无法禁用限充服务的开机自启。"
+
+msgid "Unable to read device status."
+msgstr "无法读取设备状态。"
+
+msgid "Unable to read preservation rules."
+msgstr "无法读取保留规则。"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Waiting for USB-C power"
+msgstr "等待接入 USB-C 电源"
+
+msgid "Waiting for the charge limit service"
+msgstr "等待限充服务"
+
+msgid "When enabled, switches to the custom screen and enables button switching between the stock and custom screens (hold Home for about 2 seconds). When disabled, the stock screen handles button input."
+msgstr "开启后切到第三方屏幕，并启用原厂与第三方屏幕之间的按键切换（长按 Home 键 2 秒左右切换）。关闭后由原厂屏幕处理按键。"
+
+
+msgid "Stock UI Chinese support"
+msgstr "原厂屏幕中文支持"
+
+msgid "Loading stock UI status…"
+msgstr "正在读取原厂屏幕状态…"
+
+msgid "Current status"
+msgstr "当前状态"
+
+msgid "Chinese localization applied"
+msgstr "已应用汉化"
+
+msgid "Original stock UI"
+msgstr "未应用汉化（原厂状态）"
+
+msgid "Unknown (resources changed or backup incomplete)"
+msgstr "未知（资源被修改或备份不完整）"
+
+msgid "Apply Chinese localization"
+msgstr "应用汉化"
+
+msgid "Restore changes"
+msgstr "还原更改"
+
+msgid "Stock UI Chinese localization applied."
+msgstr "原厂屏幕汉化已应用。"
+
+msgid "Stock UI resources restored from the backup."
+msgstr "已从备份还原原厂屏幕资源。"
+
+msgid "Checks firmware compatibility before applying and backs up all resources it changes. Restore changes returns those resources to their state before localization."
+msgstr "应用前会检查固件适配情况，并备份所有将要修改的资源。还原更改会将这些资源恢复至应用汉化前的状态。"
+
+msgid "This firmware is not supported by the bundled stock UI language pack. Check for plugin updates."
+msgstr "当前固件不适配插件内置的原厂屏幕语言包，请检查插件更新。"
+
+msgid "Unexpected symbolic link in stock screen resources."
+msgstr "原厂屏幕资源中存在异常符号链接。"
+
+msgid "The stock UI backup is damaged or belongs to another resource layout. Keep it for recovery."
+msgstr "原厂屏幕备份已损坏或属于其他资源布局，请保留备份以便恢复。"
+
+msgid "The stock UI failed to restart."
+msgstr "原厂屏幕重启失败。"
+
+msgid "Stock UI restoration verification failed."
+msgstr "原厂屏幕还原校验失败。"
+
+msgid "No stock UI backup is available."
+msgstr "没有可用的原厂屏幕备份。"
+
+msgid "The backup belongs to another firmware version. Refusing to restore it."
+msgstr "备份属于其他固件版本，已拒绝还原。"
+
+msgid "Invalid stock UI action."
+msgstr "原厂屏幕操作无效。"
+
+msgid "Stock UI resources have unknown changes. Restore the previous backup or original firmware resources first."
+msgstr "原厂屏幕资源存在未知更改，请先还原已有备份或恢复固件原始资源。"
+
+msgid "The bundled stock UI language pack is damaged."
+msgstr "插件内置的原厂屏幕语言包已损坏。"
+
+msgid "Stock UI language pack verification failed."
+msgstr "原厂屏幕语言包校验失败。"
+
+msgid "Interface language"
+msgstr "界面语言"
+
+msgid "Chinese"
+msgstr "中文"
+
+msgid "English"
+msgstr "English"
+
+msgid "Custom screen language saved."
+msgstr "第三方屏幕界面语言已保存。"
+
+msgid "The custom screen switches language within about one second, without restarting. Proxy node and group names stay unchanged."
+msgstr "第三方屏幕约一秒内切换界面语言，无需重启。代理节点名和分组名保持原样。"
+
+msgid "Choose Chinese or English for the custom screen."
+msgstr "请选择中文或英文作为第三方屏幕界面语言。"
+
+msgid "This screen version or some language entries are not fully verified. Problems may occur. If they do, restore changes and wait for adaptation."
+msgstr "当前屏幕版本或部分语言条目尚未完全适配，可能出现问题。出现问题请还原并等待适配。"
+
+msgid "The stock UI resource format or device is not supported. Check for plugin updates."
+msgstr "不支持当前设备或原厂屏幕资源格式，请检查插件更新。"
+
+msgid "The stock UI font mapping is not supported. Check for plugin updates."
+msgstr "不支持当前原厂屏幕字体映射，请检查插件更新。"
+
+msgid "The screen resources changed since the backup was made. Refusing to restore across incompatible screen versions."
+msgstr "备份后原厂屏幕资源已变化，已拒绝跨不兼容屏幕版本还原。"
+
+msgid "Invalid stock UI language resource."
+msgstr "原厂屏幕语言资源格式无效。"
+
+msgid "Conflicting stock UI language entries."
+msgstr "原厂屏幕语言资源中存在冲突条目。"
+
+msgid "Matches the original language resources before applying and backs up all changed files. Unknown or changed entries stay unchanged. Layout fixes are applied only to verified screen resources. Restore changes returns files to their pre-localization state."
+msgstr "应用前匹配原厂语言资源并备份所有将要修改的文件。未知或原文发生变化的条目保留原样，布局修正仅用于已验证的屏幕资源。还原更改会恢复至汉化前的状态。"
+
+msgid "Cellular"
+msgstr "蜂窝网络"
+
+msgid "Monitor"
+msgstr "系统监控"
+
+msgid "Battery"
+msgstr "电池"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Visible screen modules"
+msgstr "显示的屏幕模块"
+
+msgid "Select at least one screen module."
+msgstr "请至少选择一个屏幕模块。"
+
+msgid "Invalid screen module selection."
+msgstr "屏幕模块选择无效。"
+
+msgid "Screen modules saved."
+msgstr "屏幕模块设置已保存。"
+
+msgid "Checked modules appear on the custom screen. Select at least one. Hiding a module does not disable its service. Changes take effect within about one second."
+msgstr "勾选的模块会在第三方屏幕显示，至少保留一个。隐藏模块不会关闭对应服务，修改约一秒内生效。"
