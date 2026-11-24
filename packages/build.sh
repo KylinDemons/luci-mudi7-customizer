@@ -30,12 +30,12 @@ cp ../init.d/batterycontrol ../init.d/mudi7-dashboard ../init.d/homebutton "$WOR
 chmod 755 "$WORK/data/usr/libexec/mudi7-customizer/"* "$WORK/data/etc/init.d/"*
 
 cp -R ../luci/root/. "$WORK/data/"
-find "$WORK/data" -name .DS_Store -type f -delete
 chmod 755 "$WORK/data/usr/libexec/rpcd/luci-mudi7-customizer" "$WORK/data/usr/libexec/rpcd/luci-mudi7-customizer-preserve"
 
 mkdir -p "$WORK/data/usr/share/mudi7-customizer/stock-i18n"
 cp -R ../stock-i18n/payload ../stock-i18n/manifest.json ../stock-i18n/catalog.json ../stock-i18n/OFL.txt ../stock-i18n/LICENSE.tutugreen "$WORK/data/usr/share/mudi7-customizer/stock-i18n/"
 python3 stage-private-deps.py "$WORK/data" "$DEP_DIR"
+find "$WORK/data" -name .DS_Store -type f -delete
 
 printf '%s\n' /etc/mudi7-customizer/ /etc/mudi7-stock-i18n/ > "$WORK/data/lib/upgrade/keep.d/mudi7-customizer"
 
