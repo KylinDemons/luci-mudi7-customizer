@@ -308,3 +308,102 @@ msgstr ""
 msgid "When enabled, switches to the custom screen and enables button switching between the stock and custom screens (hold Home for about 2 seconds). When disabled, the stock screen handles button input."
 msgstr ""
 
+msgid "One-click link tracking address replacement"
+msgstr ""
+
+msgid "Replace the status tracking addresses for all links with the addresses below."
+msgstr ""
+
+#, javascript-format
+msgid "IPv%s address %s"
+msgstr ""
+
+msgid "Replace for all links"
+msgstr ""
+
+msgid "Link tracking addresses applied to all links."
+msgstr ""
+
+#, javascript-format
+msgid "Enter exactly four IPv%s addresses."
+msgstr ""
+
+#, javascript-format
+msgid "Enter a valid IPv%s address in field %s."
+msgstr ""
+
+msgid "Link tracking configuration is unavailable on this firmware."
+msgstr ""
+
+msgid "Multi-WAN has pending configuration changes. Apply or discard them first."
+msgstr ""
+
+msgid "Unable to save all link tracking addresses. Please try again."
+msgstr ""
+
+msgid "Addresses were saved, but Multi-WAN could not restart. Try applying them again."
+msgstr ""
+
+msgid "GL Admin Panel Simplified Chinese feature unlock"
+msgstr ""
+
+msgid "Unlock access to VPN and other features in Simplified Chinese."
+msgstr ""
+
+msgid "Apply unlock"
+msgstr ""
+
+msgid "Loading GL Admin Panel unlock status…"
+msgstr ""
+
+msgid "Checking GL Admin Panel files and restarting the web server…"
+msgstr ""
+
+msgid "Unlock applied. Refresh the GL Admin Panel."
+msgstr ""
+
+msgid "GL Admin Panel unlock is off."
+msgstr ""
+
+msgid "GL Admin Panel unlock status is unknown."
+msgstr ""
+
+msgid "GL Admin Panel unlock warning"
+msgstr ""
+
+#, javascript-format
+msgid "The GL Admin Panel compatibility check failed at %s. Applying the unlock on this firmware may cause problems."
+msgstr ""
+
+msgid "The GL Admin Panel web server failed to restart."
+msgstr ""
+
+msgid "The GL Admin Panel backup is incomplete or damaged."
+msgstr ""
+
+msgid "No GL Admin Panel backup is available."
+msgstr ""
+
+msgid "The GL Admin Panel backup belongs to a different firmware build."
+msgstr ""
+
+#, javascript-format
+msgid "The GL Admin Panel file %s has changed since the backup was made."
+msgstr ""
+
+msgid "Restore the previous GL Admin Panel backup before applying the unlock again."
+msgstr ""
+
+msgid "The unlock could not be completed. Use Restore changes to retry recovery from the backup."
+msgstr ""
+
+msgid "The GL Admin Panel operation was interrupted. Check its status before trying again."
+msgstr ""
+
+msgid "Invalid GL Admin Panel unlock action."
+msgstr ""
+
+#, javascript-format
+msgid "The GL Admin Panel operation failed at %s."
+msgstr ""
+

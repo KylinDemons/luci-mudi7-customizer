@@ -1,2 +1,5 @@
-.workbuddy/
+# macOS
 .DS_Store
+
+# IPK output
+*.ipk

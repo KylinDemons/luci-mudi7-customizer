@@ -7,12 +7,14 @@
 var object = 'luci-mudi7-customizer';
 var status = rpc.declare({ object: object, method: 'status', reject: true });
 var setStockI18n = rpc.declare({ object: object, method: 'stock_i18n', params: ['action'], reject: true });
+var setGlUiUnlock = rpc.declare({ object: object, method: 'gl_ui_unlock', params: ['action'], reject: true });
 var setScreenModules = rpc.declare({ object: object, method: 'set_screen_modules', params: ['modules'], reject: true });
 var setScreenLanguage = rpc.declare({ object: object, method: 'set_screen_language', params: ['language'], reject: true });
 var setScreen = rpc.declare({ object: object, method: 'set_screen', params: ['enabled'], reject: true });
 var setBattery = rpc.declare({ object: object, method: 'set_battery', params: ['enabled', 'threshold'], reject: true });
 var setRuleGroup = rpc.declare({ object: object, method: 'set_rule_group', params: ['name'], reject: true });
 var setLinkHost = rpc.declare({ object: object, method: 'set_link_host', params: ['host'], reject: true });
+var setLinkTracking = rpc.declare({ object: object, method: 'set_link_tracking', params: ['ipv4', 'ipv6'], reject: true });
 var cleanup = rpc.declare({ object: object, method: 'cleanup', params: ['confirm'], reject: true });
 
 var preserveObject = 'luci-mudi7-customizer-preserve';
@@ -111,6 +113,9 @@ return view.extend({
 		var stockState = E('p', { role: 'status', 'aria-live': 'polite' }, _("Loading stock UI status…"));
 		var stockWarning = E('p', { 'class': 'alert-message warning', role: 'alert', 'aria-live': 'polite', style: 'display: none' });
 		var stockData = {};
+		var unlockState = E('p', { role: 'status', 'aria-live': 'polite' }, _("Loading GL Admin Panel unlock status…"));
+		var unlockWarning = E('p', { 'class': 'alert-message warning', role: 'alert', hidden: true });
+		var unlockData = {}, watchedUnlockJob = null;
 		var screenLanguage = E('select', { disabled: true }, [
 			E('option', { value: 'zh-cn' }, _("Chinese")),
 			E('option', { value: 'en' }, _("English"))
@@ -130,6 +135,19 @@ return view.extend({
 		var battery = E('input', { type: 'checkbox', disabled: true });
 		var ruleGroup = E('input', { type: 'text', disabled: true });
 		var linkHost = E('input', { type: 'text', placeholder: 'www.baidu.com', disabled: true });
+		var trackingInputs = [
+			['223.5.5.5', '180.76.76.76', '1.1.1.1', '8.8.8.8'],
+			['2400:3200:baba::1', '2400:3200::1', '2001:4860:4860::8844', '2001:4860:4860::8888']
+		].map(function (addresses, family) {
+			return addresses.map(function (address, index) {
+				return E('input', {
+					type: 'text', value: address, disabled: true, spellcheck: 'false',
+					style: 'width: 16em; max-width: 100%',
+					'aria-label': _("IPv%s address %s").format(family === 0 ? 4 : 6, index + 1)
+				});
+			});
+		});
+		var trackingFeedback = E('p', { role: 'status', 'aria-live': 'polite' });
 		var target = E('input', { type: 'number', min: 50, max: 100, step: 1, disabled: true });
 		var screenLabel = E('p', {}, _("Loading screen status…"));
 		var live = E('div', {}, _("Loading battery status…"));
@@ -144,9 +162,42 @@ return view.extend({
 			});
 			applyStock.disabled = busy || !available || !stockData.supported || stockData.state !== 'original';
 			restoreStock.disabled = busy || !available || !stockData.can_restore;
+			applyUnlock.disabled = busy || !available || unlockData.pending || unlockData.state !== 'original';
+			restoreUnlock.disabled = busy || !available || unlockData.pending || !unlockData.can_restore;
 			battery.disabled = target.disabled = save.disabled = busy || !available;
-			ruleGroup.disabled = saveGroup.disabled = clean.disabled = busy || !available;
+			ruleGroup.disabled = saveGroup.disabled = busy || !available;
+			clean.disabled = busy || !available || unlockData.pending;
 			linkHost.disabled = saveHost.disabled = busy || !available;
+			replaceTracking.disabled = busy || !available;
+			trackingInputs.forEach(function (inputs) {
+				inputs.forEach(function (input) { input.disabled = replaceTracking.disabled; });
+			});
+		}
+
+		function showUnlockWarning(message) {
+			ui.showModal(_("GL Admin Panel unlock warning"), [
+				E('p', {}, message),
+				E('div', { 'class': 'right' }, [
+					E('button', { 'class': 'btn', type: 'button', click: ui.hideModal }, _("Close"))
+				])
+			]);
+		}
+
+		function updateUnlock(data) {
+			unlockData = data || {};
+			var job = unlockData.job || {};
+			var message = job.error ? rpcError(job) : '';
+			unlockState.textContent = unlockData.pending ? _("Checking GL Admin Panel files and restarting the web server…") :
+				unlockData.state === 'applied' ? _("Unlock applied. Refresh the GL Admin Panel.") :
+					unlockData.state === 'original' ? _("GL Admin Panel unlock is off.") :
+						_("GL Admin Panel unlock status is unknown.");
+			unlockWarning.textContent = message;
+			unlockWarning.hidden = !message;
+			if (watchedUnlockJob && watchedUnlockJob === job.id && !unlockData.pending) {
+				watchedUnlockJob = null;
+				if (message)
+					showUnlockWarning(message);
+			}
 		}
 
 		function update(data) {
@@ -160,6 +211,7 @@ return view.extend({
 				stockState.textContent += '. ' + _(stockData.reason || "The stock UI resource format or device is not supported. Check for plugin updates.");
 			stockWarning.textContent = stockData.warning ? _(stockData.warning) : '';
 			stockWarning.style.display = stockData.warning ? '' : 'none';
+			updateUnlock(data.gl_ui_unlock);
 			available = true;
 			screen.checked = data.screen_enabled;
 			screenLanguage.value = data.screen_language || 'zh-cn';
@@ -208,22 +260,23 @@ return view.extend({
 			});
 		}
 
-		function apply(action, message, resetInputs) {
+		function apply(action, message, resetInputs, notice) {
 			if (busy)
 				return Promise.resolve();
+			notice = notice || feedback;
 			busy = true;
 			revision++;
 			controls();
-			feedback.textContent = _("Applying…");
+			notice.textContent = _("Applying…");
 			return Promise.resolve().then(action).then(function (data) {
 				if (!data || !data.ok)
 					throw new Error(rpcError(data, _("Operation failed.")));
 				if (resetInputs)
 					resetInputs();
 				update(data);
-				feedback.textContent = message;
+				notice.textContent = message;
 			}).catch(function (error) {
-				feedback.textContent = error.message;
+				notice.textContent = error.message;
 			}).finally(function () {
 				busy = false;
 				controls();
@@ -262,6 +315,37 @@ return view.extend({
 		restoreStock.addEventListener('click', function () {
 			return apply(function () { return setStockI18n('restore'); }, _("Stock UI resources restored from the backup."));
 		});
+
+		function startUnlock(action) {
+			if (busy || unlockData.pending)
+				return Promise.resolve();
+			busy = true;
+			revision++;
+			controls();
+			unlockWarning.hidden = true;
+			unlockState.textContent = _("Checking GL Admin Panel files and restarting the web server…");
+			return setGlUiUnlock(action).then(function (data) {
+				if (!data || !data.ok)
+					throw new Error(rpcError(data, _("Operation failed.")));
+				watchedUnlockJob = data.job_id;
+				unlockData.pending = true;
+			}).catch(function (error) {
+				showUnlockWarning(error.message);
+			}).finally(function () {
+				busy = false;
+				controls();
+				return refresh();
+			});
+		}
+
+		var applyUnlock = E('button', {
+			'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true,
+			click: function () { return startUnlock('apply'); }
+		}, _("Apply unlock"));
+		var restoreUnlock = E('button', {
+			'class': 'btn cbi-button cbi-button-reset', type: 'button', disabled: true,
+			click: function () { return startUnlock('restore'); }
+		}, _("Restore changes"));
 
 		var save = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Apply charge limit settings"));
 		save.addEventListener('click', function () {
@@ -305,6 +389,21 @@ return view.extend({
 			});
 		});
 
+		var replaceTracking = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Replace for all links"));
+		replaceTracking.addEventListener('click', function () {
+			var addresses = trackingInputs.map(function (inputs) {
+				return inputs.map(function (input) { return input.value.trim(); });
+			});
+			return apply(function () { return setLinkTracking(addresses[0], addresses[1]); },
+				_("Link tracking addresses applied to all links."), null, trackingFeedback);
+		});
+		var trackingFields = trackingInputs.map(function (inputs, family) {
+			return E('fieldset', { style: 'min-width: 0; margin-bottom: .75em' }, [
+				E('legend', {}, family === 0 ? 'IPv4' : 'IPv6'),
+				E('div', { style: 'display: flex; flex-wrap: wrap; gap: .5em' }, inputs)
+			]);
+		});
+
 		var clean = E('button', { 'class': 'btn cbi-button cbi-button-negative', type: 'button', disabled: true }, _("Clean up before uninstalling"));
 		clean.addEventListener('click', function () {
 			ui.showModal(_("Clean up before uninstalling"), [
@@ -330,10 +429,16 @@ return view.extend({
 		return E('div', {}, [
 			E('h2', {}, _("Mudi7 Customizer")),
 			section(_("Stock UI Chinese support"), [
-				E('p', {}, _("Matches the original language resources before applying and backs up all changed files. Unknown or changed entries stay unchanged. Layout fixes are applied only to verified screen resources. Restore changes returns files to their pre-localization state.")),
+				E('p', {}, _("Matches the original language resources before applying and backs up all changed files. Restore changes returns files to their pre-localization state.")),
 				stockState,
 				stockWarning,
 				E('p', {}, [applyStock, ' ', restoreStock])
+			]),
+			section(_("GL Admin Panel Simplified Chinese feature unlock"), [
+				E('p', {}, _("Unlock access to VPN and other features in Simplified Chinese.")),
+				unlockState,
+				unlockWarning,
+				E('p', {}, [applyUnlock, ' ', restoreUnlock])
 			]),
 			section(_("Custom screen"), [
 				E('p', {}, [E('label', {}, [_("Interface language"), ' ', screenLanguage])]),
@@ -352,6 +457,10 @@ return view.extend({
 				E('p', {}, [E('strong', {}, _("Monitor link probing"))]),
 				E('p', {}, [E('label', {}, [_("Probe address"), ' ', linkHost]), ' ', saveHost]),
 				E('p', {}, _("Link Health on the Monitor page sends ICMP probes to this address. Enter an IPv4 address (e.g. 1.1.1.1), an IPv6 address (e.g. 2400:3200::1), or a domain name (e.g. www.baidu.com, probed over IPv4). The default is www.baidu.com. Probing runs only while the Monitor page is visible and stops when you leave it. Changes take effect within about 3 seconds, without restarting the screen service."))
+			]),
+			section(_("One-click link tracking address replacement"), [
+				E('p', {}, _("Replace the status tracking addresses for all links with the addresses below.")),
+				trackingFields[0], trackingFields[1], replaceTracking, trackingFeedback
 			]),
 			section(_("Battery charge limit"), [
 				E('p', {}, [E('label', {}, [battery, ' ', _("Enable battery charge limit")])]),

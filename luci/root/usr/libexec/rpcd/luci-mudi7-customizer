@@ -6,28 +6,32 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+from tempfile import TemporaryDirectory
 import time
 
 sys.dont_write_bytecode = True
 DASH = Path('/usr/libexec/mudi7-customizer')
 sys.path.insert(0, str(DASH))
+import gl_ui_unlock
 import stock_i18n
 from screen_i18n import get_language, set_language
 from screen_modules import get_modules, set_modules
 import battery_control as battery
-from link_probe_config import get_probe_host, set_probe_host
+from link_probe_config import get_probe_host, host_family, set_probe_host
 from openclash_config import get_rule_group, set_rule_group
 
 DISABLED = battery.ROOT / 'screen-disabled'
 METHODS = {
     'status': {},
     'stock_i18n': {'action': ''},
+    'gl_ui_unlock': {'action': ''},
     'set_screen': {'enabled': True},
     'set_screen_language': {'language': ''},
     'set_screen_modules': {'modules': []},
     'set_battery': {'enabled': True, 'threshold': 0},
     'set_rule_group': {'name': ''},
     'set_link_host': {'host': ''},
+    'set_link_tracking': {'ipv4': [], 'ipv6': []},
     'cleanup': {'confirm': True},
 }
 
@@ -63,6 +67,36 @@ def read_int(path):
         return None
 
 
+def set_link_tracking(ipv4, ipv6):
+    addresses = []
+    for version, values in ((4, ipv4), (6, ipv6)):
+        if not isinstance(values, list) or len(values) != 4:
+            raise TranslatableError('Enter exactly four IPv%s addresses.', version)
+        for index, value in enumerate(values, 1):
+            address = value.strip() if isinstance(value, str) else ''
+            if '%' in address or host_family(address) != 'ipv' + str(version):
+                raise TranslatableError('Enter a valid IPv%s address in field %s.', version, index)
+            addresses.append(address)
+
+    with TemporaryDirectory(prefix='mudi7-kmwan-', dir='/tmp') as savedir:
+        result = subprocess.run(
+            ['/usr/bin/lua', DASH / 'kmwan-tracks.lua', savedir, *addresses], timeout=10,
+        )
+    if result.returncode == 2:
+        raise RuntimeError('Link tracking configuration is unavailable on this firmware.')
+    if result.returncode == 3:
+        raise RuntimeError('Multi-WAN has pending configuration changes. Apply or discard them first.')
+    if result.returncode != 0:
+        raise RuntimeError('Unable to save all link tracking addresses. Please try again.')
+
+    try:
+        if service('kmwan', 'restart'):
+            return
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    raise RuntimeError('Addresses were saved, but Multi-WAN could not restart. Try applying them again.')
+
+
 def status():
     cfg = battery.load(battery.CONFIG, battery.DEFAULT)
     state = battery.load(battery.STATE, {})
@@ -90,6 +124,7 @@ def status():
         control = 'armed'
     return {
         'stock_i18n': stock_i18n.status(),
+        'gl_ui_unlock': gl_ui_unlock.status(),
         'rule_group': get_rule_group(),
         'link_host': get_probe_host(),
         'screen_language': get_language(),
@@ -175,6 +210,8 @@ def cleanup():
 def handle(method, args):
     if method == 'status':
         return status()
+    if method == 'gl_ui_unlock':
+        return {'job_id': gl_ui_unlock.schedule(args.get('action'))}
     if method == 'stock_i18n':
         stock_i18n.operate(args.get('action'))
     elif method == 'set_screen_modules':
@@ -198,6 +235,8 @@ def handle(method, args):
         set_rule_group(args.get('name'))
     elif method == 'set_link_host':
         set_probe_host(args.get('host'))
+    elif method == 'set_link_tracking':
+        set_link_tracking(args.get('ipv4'), args.get('ipv6'))
     elif method == 'cleanup':
         if args.get('confirm') is not True:
             raise ValueError('Please confirm cleanup first.')

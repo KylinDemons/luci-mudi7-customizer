@@ -6,6 +6,9 @@ set -e
 if [ "${1:-}" = remove ] && [ -d /etc/mudi7-stock-i18n ]; then
     /usr/bin/python3 /usr/libexec/mudi7-customizer/stock_i18n.py restore
 fi
+if [ "${1:-}" = remove ]; then
+    /usr/bin/python3 /usr/libexec/mudi7-customizer/gl_ui_unlock.py restore-if-needed
+fi
 
 # If the custom dashboard is currently the active screen, switch back to
 # the stock gl_screen UI before removing its files, so uninstalling never

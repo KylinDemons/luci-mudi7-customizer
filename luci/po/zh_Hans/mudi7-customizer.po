@@ -411,8 +411,8 @@ msgstr "原厂屏幕语言资源格式无效。"
 msgid "Conflicting stock UI language entries."
 msgstr "原厂屏幕语言资源中存在冲突条目。"
 
-msgid "Matches the original language resources before applying and backs up all changed files. Unknown or changed entries stay unchanged. Layout fixes are applied only to verified screen resources. Restore changes returns files to their pre-localization state."
-msgstr "应用前匹配原厂语言资源并备份所有将要修改的文件。未知或原文发生变化的条目保留原样，布局修正仅用于已验证的屏幕资源。还原更改会恢复至汉化前的状态。"
+msgid "Matches the original language resources before applying and backs up all changed files. Restore changes returns files to their pre-localization state."
+msgstr "应用前匹配原厂语言资源并备份所有将要修改的文件。还原更改会恢复至汉化前的状态。"
 
 msgid "Cellular"
 msgstr "蜂窝网络"
@@ -440,3 +440,102 @@ msgstr "屏幕模块设置已保存。"
 
 msgid "Checked modules appear on the custom screen. Select at least one. Hiding a module does not disable its service. Changes take effect within about one second."
 msgstr "勾选的模块会在第三方屏幕显示，至少保留一个。隐藏模块不会关闭对应服务，修改约一秒内生效。"
+
+msgid "One-click link tracking address replacement"
+msgstr "链路状态追踪地址一键替换"
+
+msgid "Replace the status tracking addresses for all links with the addresses below."
+msgstr "一键将所有链路的状态追踪改为以下地址"
+
+#, javascript-format
+msgid "IPv%s address %s"
+msgstr "IPv%s 地址 %s"
+
+msgid "Replace for all links"
+msgstr "一键替换"
+
+msgid "Link tracking addresses applied to all links."
+msgstr "已应用所有链路的状态追踪地址。"
+
+#, javascript-format
+msgid "Enter exactly four IPv%s addresses."
+msgstr "请输入 4 个 IPv%s 地址。"
+
+#, javascript-format
+msgid "Enter a valid IPv%s address in field %s."
+msgstr "请输入有效的 IPv%s 地址（第 %s 项）。"
+
+msgid "Link tracking configuration is unavailable on this firmware."
+msgstr "当前固件的链路状态追踪配置不可用。"
+
+msgid "Multi-WAN has pending configuration changes. Apply or discard them first."
+msgstr "多线负载配置有待提交的更改，请先应用或取消这些更改。"
+
+msgid "Unable to save all link tracking addresses. Please try again."
+msgstr "保存链路状态追踪地址时出错，请重试。"
+
+msgid "Addresses were saved, but Multi-WAN could not restart. Try applying them again."
+msgstr "地址已保存，多线负载服务重启失败。请再应用一次。"
+
+msgid "GL Admin Panel Simplified Chinese feature unlock"
+msgstr "GL管理界面简体中文功能解锁"
+
+msgid "Unlock access to VPN and other features in Simplified Chinese."
+msgstr "解锁简体中文语言下VPN等功能的入口"
+
+msgid "Apply unlock"
+msgstr "应用解锁"
+
+msgid "Loading GL Admin Panel unlock status…"
+msgstr "正在读取 GL 管理界面解锁状态…"
+
+msgid "Checking GL Admin Panel files and restarting the web server…"
+msgstr "正在处理 GL 管理界面文件，网页服务可能短暂断开…"
+
+msgid "Unlock applied. Refresh the GL Admin Panel."
+msgstr "解锁已应用，请刷新 GL 管理界面。"
+
+msgid "GL Admin Panel unlock is off."
+msgstr "GL 管理界面解锁未启用。"
+
+msgid "GL Admin Panel unlock status is unknown."
+msgstr "GL 管理界面解锁状态未知。"
+
+msgid "GL Admin Panel unlock warning"
+msgstr "GL 管理界面解锁警告"
+
+#, javascript-format
+msgid "The GL Admin Panel compatibility check failed at %s. Applying the unlock on this firmware may cause problems."
+msgstr "GL 管理界面兼容性检查失败（%s），在此固件上强行应用可能导致后台异常。"
+
+msgid "The GL Admin Panel web server failed to restart."
+msgstr "GL 管理界面的网页服务重启失败。"
+
+msgid "The GL Admin Panel backup is incomplete or damaged."
+msgstr "GL 管理界面备份不完整或已损坏。"
+
+msgid "No GL Admin Panel backup is available."
+msgstr "没有可用的 GL 管理界面备份。"
+
+msgid "The GL Admin Panel backup belongs to a different firmware build."
+msgstr "GL 管理界面备份属于另一固件构建版本。"
+
+#, javascript-format
+msgid "The GL Admin Panel file %s has changed since the backup was made."
+msgstr "GL 管理界面文件 %s 在备份后发生了变化。"
+
+msgid "Restore the previous GL Admin Panel backup before applying the unlock again."
+msgstr "请先还原上一次的 GL 管理界面备份，再重新应用解锁。"
+
+msgid "The unlock could not be completed. Use Restore changes to retry recovery from the backup."
+msgstr "解锁未能完成。请使用「还原更改」重试从备份恢复。"
+
+msgid "The GL Admin Panel operation was interrupted. Check its status before trying again."
+msgstr "GL 管理界面操作已中断，请检查当前状态后重试。"
+
+msgid "Invalid GL Admin Panel unlock action."
+msgstr "无效的 GL 管理界面解锁操作。"
+
+#, javascript-format
+msgid "The GL Admin Panel operation failed at %s."
+msgstr "GL 管理界面操作失败（%s）。"

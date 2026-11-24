@@ -6,6 +6,8 @@ The dashboard design draws on [robavionix/gl-e5800-dashboard](https://github.com
 
 This project adds controls missing from the Mudi7's stock touchscreen to address common day-to-day needs. Since the stock interface already offers many controls, the custom dashboard focuses on filling those gaps.
 
+The latest firmware version currently supported is: 4.10.3
+
 ## Features
 
 1. Keep the stock interface and switch between it and the custom dashboard anytime by holding the Home button for about two seconds.
