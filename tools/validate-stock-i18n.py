@@ -23,10 +23,13 @@ def parse(text):
     return result
 en=parse((root/'sources/en').read_text()); zh=parse((root/'sources/zh-cn').read_text())
 assert set(en)<=set(zh),set(en)-set(zh)
-assert set(zh)-set(en)<= {'SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE',
+assert set(zh)-set(en)<= {'SMS_OVERVIEW_OPTION_LABEL_Y_OFFSET',
+    'SMS_DETAILS_ATTRIBUTE_LABEL_Y_OFFSET', 'SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE',
     'LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_FORMAT', 'LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_WIDTH',
+    'LOCK_SCREEN_DATA_STYLE1_WEEK_LABEL_X',
     'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_FORMAT', 'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_X',
-    'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_WIDTH'}
+    'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_WIDTH',
+    'STATUS_BATTERY_BAR_WIDTH', 'STATUS_BATTERY_RATIO_LABEL_X'}
 pattern=r'%(?:\d+\$)?[-+0 #]*(?:\d+)?(?:\.\d+)?[a-zA-Z]'
 for key in en:
     assert Counter(re.findall(pattern,en[key]))==Counter(re.findall(pattern,zh[key])),key

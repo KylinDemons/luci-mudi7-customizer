@@ -2914,11 +2914,11 @@
     },
     "SETTING_IPV6_NATIVE_LABEL_TEXT": {
       "source": "\"Native\"",
-      "translated": "\"原生\""
+      "translated": "\"Native\""
     },
     "SETTING_IPV6_PASSTHROUGH_LABEL_TEXT": {
       "source": "\"Passthrough\"",
-      "translated": "\"透传\""
+      "translated": "\"Passthrough\""
     },
     "SETTING_IPV6_REMINDER_LABEL_TEXT": {
       "source": "\"Static IPv6 can only be set in the Admin Panel (%s).\"",
@@ -4652,9 +4652,14 @@
   "layout": {
     "LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_FORMAT": "\"%s%d日\"",
     "LOCK_SCREEN_DATA_STYLE1_DAY_LABEL_WIDTH": "64",
+    "LOCK_SCREEN_DATA_STYLE1_WEEK_LABEL_X": "168",
     "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_FORMAT": "\"%s%d日\"",
     "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_WIDTH": "64",
     "LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_X": "70",
-    "SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE": "4"
+    "SMS_DETAILS_ATTRIBUTE_LABEL_Y_OFFSET": "-2",
+    "SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE": "4",
+    "SMS_OVERVIEW_OPTION_LABEL_Y_OFFSET": "22",
+    "STATUS_BATTERY_BAR_WIDTH": "28",
+    "STATUS_BATTERY_RATIO_LABEL_X": "0"
   }
 }

@@ -25,7 +25,7 @@
     "etc/gl_screen/language/ttf/default_mono_medium_zh-cn.ttf": "a1ac205d44d088f36f592d85f53b9e055d9f9d35b891e36a0c5ee07144cca338",
     "etc/gl_screen/language/ttf/default_bold_zh-cn.ttf": "d5a2eaaf968f48bd232afdd72de35a93c29bef541f70293820c606f27089a46d",
     "etc/gl_screen/language/ttf/default_cn_medium_zh-cn.ttf": "c1107bce20bcf9e7cff4914b1f34fee1a907a7dca2fc021eee7d69e0307ac2d4",
-    "etc/gl_screen/language/text/default": "841da49d976096ebdf4c2ec62be0bc8a62f125638102c298653e07057bab2b77"
+    "etc/gl_screen/language/text/default": "10b1547f675696dec24d51c46893dcd24349f9926f8441cc7c153b6e16a4d8f6"
   },
-  "catalog_sha256": "dc6e0993ae3cf90ed295566ae405ce33d9fb147087676ad025840b8ff0209d9d"
+  "catalog_sha256": "ceb5b216bcba49027fcb1cd111c5372be0a2d1aa3abe78fc242b5a2d4d19ec98"
 }

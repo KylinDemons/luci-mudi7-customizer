@@ -45,3 +45,6 @@ Keep Chinese month/weekday translations, the `%s%d日` date formats, and the
 x=174 and width=37. Style 2 date wrapping fixes remain unchanged. All changes
 remain in the backed-up language file; no additional daemon or firmware
 modification was introduced.
+
+The later left-alignment change sets `LOCK_SCREEN_DATA_STYLE1_WEEK_LABEL_X`
+to the stock date label's x=168 so both labels start at the same position.

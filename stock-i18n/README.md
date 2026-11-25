@@ -27,8 +27,8 @@ Other devices, unsupported fonts, conflicting/malformed entries, damaged
 payloads and damaged backups are blocked.
 
 If the screen executable and original fonts match the verified fingerprints,
-the reviewed date-layout and SMS-spacing overrides are eligible. Otherwise
-only translation/font mappings are applied, preserving original layouts.
+the reviewed lock-screen, status-bar and SMS layout overrides are eligible.
+Otherwise only translation/font mappings are applied, preserving original layouts.
 Unverified implementations or unmatched entries display:
 
 > 当前屏幕版本或部分语言条目尚未完全适配，可能出现问题。出现问题请还原并等待适配。
@@ -56,14 +56,17 @@ python tools/validate-stock-i18n.py
 To adapt another firmware, compare its original text against sources/en,
 update sources/en and sources/zh-cn together, then rebuild. Review changed
 meanings, keys, printf placeholders and layout on the device before shipping.
-The current source splits the upstream Tor/Fast Charging joined entry,
-translates the two new firmware entries and includes SMS line spacing.
+The current source splits the upstream Tor/Fast Charging joined entry and
+translates the two new firmware entries. The SMS list gives the sender and
+preview more vertical separation. SMS details add space above the first line
+and use a four-pixel line gap for wrapped text.
 Months and weekdays are localized. Both lock-screen date formats use
 `%s%d日`; style 1 uses a 64-pixel date label, while style 2 also moves
 its 64-pixel label to x=70 so it ends before the weekday at x=139.
-The experimental fixed weekday centering was removed: stock style 1 has no
-configurable text-alignment property for its date and weekday labels. They
-retain their stock positions (weekday x=174, width=37). See ALIGNMENT.md.
+The style 1 weekday uses the stock position setting to share the date label's
+left edge at x=168. See ALIGNMENT.md for the earlier centering investigation.
+The status-bar battery is 28 pixels wide and centers the percentage text
+with a zero horizontal offset, leaving space for three-digit levels.
 These overrides remain inside the backed-up language file.
 All five mappings use independent *_zh-cn.ttf files with Latin UI vertical
 metrics. Original fonts remain untouched. Full CJK fonts allow arbitrary SMS
