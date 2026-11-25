@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """Validate checked-in payload, format placeholders and font mapping."""
-from collections import Counter
 import hashlib
 import json
 from pathlib import Path
 import re
+import sys
 
-root=Path(__file__).resolve().parents[1]/'stock-i18n'
+repo = Path(__file__).resolve().parents[1]
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(repo / 'src'))
+from stock_i18n import compatible_format
+
+root=repo/'stock-i18n'
 p=json.loads((root/'manifest.json').read_text())
 for rel,sha in p['targets'].items():
     assert hashlib.sha256((root/'payload'/rel).read_bytes()).hexdigest()==sha,rel
@@ -29,10 +34,10 @@ assert set(zh)-set(en)<= {'SMS_OVERVIEW_OPTION_LABEL_Y_OFFSET',
     'LOCK_SCREEN_DATA_STYLE1_WEEK_LABEL_X',
     'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_FORMAT', 'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_X',
     'LOCK_SCREEN_DATA_STYLE2_DAY_LABEL_WIDTH',
-    'STATUS_BATTERY_BAR_WIDTH', 'STATUS_BATTERY_RATIO_LABEL_X'}
+    'STATUS_BATTERY_RATIO_LABEL_X', 'USB_MODE_SELECTION_REMEMBER_LABEL_Y'}
 pattern=r'%(?:\d+\$)?[-+0 #]*(?:\d+)?(?:\.\d+)?[a-zA-Z]'
 for key in en:
-    assert Counter(re.findall(pattern,en[key]))==Counter(re.findall(pattern,zh[key])),key
+    assert compatible_format(key, en[key], zh[key]), key
 for key,value in zh.items():
     if key.startswith('FONT_'):
         assert (root/'payload/etc/gl_screen/language/ttf'/(value.strip('"')+'.ttf')).is_file(),key

@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-from stock_i18n import parse_text, placeholders
+from stock_i18n import compatible_format, parse_text
 
 assets = ROOT / 'stock-i18n'
 _, en = parse_text((assets / 'sources/en').read_bytes())
@@ -16,7 +16,7 @@ assert set(en) <= set(zh)
 entries = {}
 for key, source in en.items():
     translated = zh[key]
-    assert placeholders(source) == placeholders(translated), key
+    assert compatible_format(key, source, translated), key
     assert source.startswith('"') or source == translated, key
     entries[key] = {'source': source, 'translated': translated}
 catalog = {'entries': entries, 'layout': {key: zh[key] for key in zh.keys() - en.keys()}}

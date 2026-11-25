@@ -2866,7 +2866,7 @@
     },
     "SETTING_IPV6@MANAGEMENT_DISABLE_LABEL_TEXT": {
       "source": "\"Disable\"",
-      "translated": "\"禁用\""
+      "translated": "\"关闭\""
     },
     "SETTING_IPV6_ADDR_LABEL_TEXT": {
       "source": "\"IPv6 Address\"",
@@ -2906,7 +2906,7 @@
     },
     "SETTING_IPV6_MANAGEMENT_LABEL_TEXT": {
       "source": "\"%s, %s\"",
-      "translated": "\"%s, %s\""
+      "translated": "\"%.0s开启, %s\""
     },
     "SETTING_IPV6_NAT6_LABEL_TEXT": {
       "source": "\"NAT6\"",
@@ -2926,7 +2926,7 @@
     },
     "SETTING_IPV6_STATIC_LABEL_TEXT": {
       "source": "\"Static IPv6\"",
-      "translated": "\"静态 IPv6\""
+      "translated": "\"Static IPv6\""
     },
     "SETTING_LAN_ATTRIBUTE_LABEL_TEXT": {
       "source": "\"Router IP Address\"",
@@ -4659,7 +4659,7 @@
     "SMS_DETAILS_ATTRIBUTE_LABEL_Y_OFFSET": "-2",
     "SMS_DETAILS_ATTRIBUTE_LABE_TEXT_LINE_SPACE": "4",
     "SMS_OVERVIEW_OPTION_LABEL_Y_OFFSET": "22",
-    "STATUS_BATTERY_BAR_WIDTH": "28",
-    "STATUS_BATTERY_RATIO_LABEL_X": "0"
+    "STATUS_BATTERY_RATIO_LABEL_X": "0",
+    "USB_MODE_SELECTION_REMEMBER_LABEL_Y": "272"
   }
 }

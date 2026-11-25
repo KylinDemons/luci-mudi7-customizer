@@ -2,8 +2,26 @@
 """Requires fonttools==4.60.2; see stock-i18n/README.md."""
 import re,json,hashlib,zipfile,shutil
 from pathlib import Path
+from fontTools.misc.roundTools import otRound
 from fontTools.ttLib import TTFont
 import argparse
+
+
+def compact_bold_digits(font):
+    # At the status bar's 12 px size, three digits fit inside the 22 px battery.
+    horizontal_scale = 0.84
+    cmap = font.getBestCmap()
+    for character in '0123456789':
+        name = cmap[ord(character)]
+        glyph = font['glyf'][name]
+        glyph.coordinates.transform(((horizontal_scale, 0), (0, 1)))
+        glyph.coordinates.toInt()
+        # The original grid fitting depends on the original outline and advance.
+        glyph.removeHinting()
+        advance, bearing = font['hmtx'][name]
+        font['hmtx'][name] = otRound(advance * horizontal_scale), otRound(bearing * horizontal_scale)
+
+
 parser=argparse.ArgumentParser(description='Build stock UI resources from a read-only device snapshot and IBM Plex Sans SC 1.1.0 zip')
 parser.add_argument('device_root',type=Path)
 parser.add_argument('font_zip',type=Path)
@@ -30,6 +48,8 @@ for stem,weight in [('default_medium','Medium'),('default_bold','Bold'),('defaul
   if rec.nameID in (1,2,3,4,6,16,17):
    value={'1':'Mudi7 Chinese','2':weight,'3':'Mudi7Chinese-'+weight,'4':'Mudi7 Chinese '+weight,'6':'Mudi7Chinese-'+weight,'16':'Mudi7 Chinese','17':weight}[str(rec.nameID)]
    rec.string=value.encode(rec.getEncoding())
+ if stem == 'default_bold':
+  compact_bold_digits(f)
  f.save(dest)
 license_name=next(n for n in names if n.endswith('/LICENSE.txt')); (out/'OFL.txt').write_bytes(z.read(license_name))
 

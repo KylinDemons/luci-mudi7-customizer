@@ -67,6 +67,11 @@ TEXT = 'etc/gl_screen/language/text/default'
 WARNING = 'This screen version or some language entries are not fully verified. Problems may occur. If they do, restore changes and wait for adaptation.'
 KEY = re.compile(r'^([A-Za-z0-9_@]+)\s+(.+)$')
 PLACEHOLDER = re.compile(r'%(?:\d+\$)?[-+0 #]*(?:\d+|\*)?(?:\.(?:\d+|\*))?[hlLjzt]*[diuoxXfFeEgGaAcspn]')
+# The reviewed screen passes a literal "Enable" first and the mode name second.
+# Precision zero consumes the first string argument without rendering it.
+VERIFIED_FORMATS = {
+    'SETTING_IPV6_MANAGEMENT_LABEL_TEXT': ('"%s, %s"', '"%.0s开启, %s"'),
+}
 
 
 def parse_text(data):
@@ -99,6 +104,11 @@ def parse_text(data):
 
 def placeholders(value):
     return Counter(PLACEHOLDER.findall(value.replace('%%', '')))
+
+
+def compatible_format(key, source, translated):
+    return (placeholders(source) == placeholders(translated) or
+            VERIFIED_FORMATS.get(key) == (source, translated))
 
 
 def resource_guards(p):
@@ -158,15 +168,19 @@ def plan(p, b=None):
     lines, entries = parse_text(original_bytes(p, b))
     if 'FONT_MEDIUM' not in entries:
         raise RuntimeError('The stock UI resource format or device is not supported. Check for plugin updates.')
+    verified_layout = all(digest(ROOT / rel) == sha for rel, sha in p['guards'].items())
     translated, unmatched = {}, 0
     for key, value in entries.items():
         known = catalog['entries'].get(key)
         if known and known['source'] == value:
             replacement = known['translated']
-            if placeholders(value) != placeholders(replacement):
+            if not compatible_format(key, value, replacement):
                 raise RuntimeError('The bundled stock UI language pack is damaged.')
             if not value.startswith('"') and replacement != value:
                 raise RuntimeError('The bundled stock UI language pack is damaged.')
+            if not verified_layout and VERIFIED_FORMATS.get(key) == (value, replacement):
+                replacement = value
+                unmatched += 1
             translated[key] = replacement
         else:
             translated[key] = value  # Preserve unknown/changed entries verbatim.
@@ -178,7 +192,6 @@ def plan(p, b=None):
             rel = 'etc/gl_screen/language/ttf/' + basename + '.ttf'
             if rel not in p['targets']:
                 raise RuntimeError('The bundled stock UI language pack is damaged.')
-    verified_layout = all(digest(ROOT / rel) == sha for rel, sha in p['guards'].items())
     output = [line if key is None else key + ' ' + translated[key] for key, line in lines]
     if verified_layout:
         # Apply only overrides whose containing base keys still match this source.
