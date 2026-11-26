@@ -546,6 +546,19 @@ msgstr "切换GoodCloud云服务区域"
 msgid "Switch the GL.iNet account login server in one click"
 msgstr "一键切换GL.iNet账户登录服务器"
 
+#, javascript-format
+msgid "Current cloud service region: %s"
+msgstr "当前云服务区域：%s"
+
+msgid "Mainland China server"
+msgstr "中国大陆服务器"
+
+msgid "Global server"
+msgstr "全球服务器"
+
+msgid "Unavailable"
+msgstr "无法读取"
+
 msgid "Switch to Mainland China server"
 msgstr "切换为中国大陆服务器"
 

@@ -117,6 +117,7 @@ return view.extend({
 		var unlockState = E('p', { role: 'status', 'aria-live': 'polite' }, _("Loading GL Admin Panel unlock status…"));
 		var unlockWarning = E('p', { 'class': 'alert-message warning', role: 'alert', hidden: true });
 		var unlockData = {}, watchedUnlockJob = null;
+		var cloudRegion = E('p', { role: 'status' });
 		var screenLanguage = E('select', { disabled: true }, [
 			E('option', { value: 'zh-cn' }, _("Chinese")),
 			E('option', { value: 'en' }, _("English"))
@@ -202,6 +203,15 @@ return view.extend({
 			}
 		}
 
+		function updateCloudRegion(region) {
+			var label = region === 'cn' ? _("Mainland China server") :
+				region === 'global' ? _("Global server") :
+					region === 'unknown' ? _("Unknown") : _("Unavailable");
+			var message = _("Current cloud service region: %s").format(label);
+			if (cloudRegion.textContent !== message)
+				cloudRegion.textContent = message;
+		}
+
 		function update(data) {
 			if (!data || !data.ok)
 				throw new Error(rpcError(data, _("Unable to read device status.")));
@@ -214,6 +224,7 @@ return view.extend({
 			stockWarning.textContent = stockData.warning ? _(stockData.warning) : '';
 			stockWarning.style.display = stockData.warning ? '' : 'none';
 			updateUnlock(data.gl_ui_unlock);
+			updateCloudRegion(data.goodcloud_region);
 			available = true;
 			screen.checked = data.screen_enabled;
 			screenLanguage.value = data.screen_language || 'zh-cn';
@@ -256,6 +267,7 @@ return view.extend({
 			}).catch(function (error) {
 				if (started === revision && !busy) {
 					available = false;
+					updateCloudRegion();
 					feedback.textContent = error.message;
 					controls();
 				}
@@ -451,7 +463,10 @@ return view.extend({
 		});
 
 		try { update(initial); }
-		catch (error) { feedback.textContent = error.message; }
+		catch (error) {
+			updateCloudRegion();
+			feedback.textContent = error.message;
+		}
 		poll.add(refresh, 5);
 
 		return E('div', {}, [
@@ -470,6 +485,7 @@ return view.extend({
 			]),
 			section(_("Switch GoodCloud server region"), [
 				E('p', {}, _("Switch the GL.iNet account login server in one click")),
+				cloudRegion,
 				E('p', {}, [cloudButtons[0], ' ', cloudButtons[1]]),
 				cloudFeedback
 			]),

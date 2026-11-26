@@ -21,6 +21,8 @@ from link_probe_config import get_probe_host, host_family, set_probe_host
 from openclash_config import get_rule_group, set_rule_group
 
 DISABLED = battery.ROOT / 'screen-disabled'
+GOODCLOUD_SERVER_OPTION = 'gl-cloud.@cloud[0].server'
+GOODCLOUD_SERVERS = {'cn': 'gslb.gl-inet.cn', 'global': 'gslb-eu.goodcloud.xyz'}
 METHODS = {
     'status': {},
     'stock_i18n': {'action': ''},
@@ -68,14 +70,29 @@ def read_int(path):
         return None
 
 
+def read_goodcloud_server():
+    return subprocess.run(
+        ['uci', '-q', 'get', GOODCLOUD_SERVER_OPTION],
+        check=True, capture_output=True, text=True, timeout=3,
+    ).stdout.strip()
+
+
+def get_goodcloud_region():
+    try:
+        server = read_goodcloud_server().lower().removesuffix('.')
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return None
+    if not server:
+        return None
+    return next((region for region, host in GOODCLOUD_SERVERS.items() if host == server), 'unknown')
+
+
 def set_goodcloud_region(region, confirm):
     if confirm is not True:
         raise ValueError('Please confirm the GoodCloud region switch first.')
-    servers = {'cn': 'gslb.gl-inet.cn', 'global': 'gslb-eu.goodcloud.xyz'}
-    if not isinstance(region, str) or region not in servers:
+    if not isinstance(region, str) or region not in GOODCLOUD_SERVERS:
         raise ValueError('Invalid GoodCloud server region.')
-    server = servers[region]
-    option = 'gl-cloud.@cloud[0].server'
+    server = GOODCLOUD_SERVERS[region]
 
     try:
         changes = subprocess.run(
@@ -100,12 +117,9 @@ def set_goodcloud_region(region, confirm):
     try:
         with TemporaryDirectory(prefix='mudi7-goodcloud-', dir='/tmp') as savedir:
             uci = ['uci', '-q', '-t', savedir]
-            subprocess.run([*uci, 'set', f'{option}={server}'], check=True, timeout=3)
+            subprocess.run([*uci, 'set', f'{GOODCLOUD_SERVER_OPTION}={server}'], check=True, timeout=3)
             subprocess.run([*uci, 'commit', 'gl-cloud'], check=True, timeout=3)
-        saved = subprocess.run(
-            ['uci', '-q', 'get', option], check=True, capture_output=True, text=True, timeout=3,
-        ).stdout
-        if saved.strip() != server:
+        if read_goodcloud_server() != server:
             raise ValueError('Unexpected GoodCloud server after commit.')
     except (OSError, ValueError, subprocess.SubprocessError) as exc:
         raise RuntimeError('GoodCloud was unbound, but the server region could not be saved.') from exc
@@ -176,6 +190,7 @@ def status():
     return {
         'stock_i18n': stock_i18n.status(),
         'gl_ui_unlock': gl_ui_unlock.status(),
+        'goodcloud_region': get_goodcloud_region(),
         'rule_group': get_rule_group(),
         'link_host': get_probe_host(),
         'screen_language': get_language(),

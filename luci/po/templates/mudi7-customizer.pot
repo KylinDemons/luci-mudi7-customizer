@@ -347,7 +347,7 @@ msgstr ""
 msgid "GL Admin Panel Simplified Chinese feature unlock"
 msgstr ""
 
-msgid "Unlock access to VPN and other features in Simplified Chinese."
+msgid "Unlock access to VPN and other features in Simplified Chinese (Please use it reasonably in accordance with relevant local laws and regulations, and bear the consequences at your own risk)."
 msgstr ""
 
 msgid "Apply unlock"
@@ -407,6 +407,19 @@ msgid "Switch GoodCloud server region"
 msgstr ""
 
 msgid "Switch the GL.iNet account login server in one click"
+msgstr ""
+
+#, javascript-format
+msgid "Current cloud service region: %s"
+msgstr ""
+
+msgid "Mainland China server"
+msgstr ""
+
+msgid "Global server"
+msgstr ""
+
+msgid "Unavailable"
 msgstr ""
 
 msgid "Switch to Mainland China server"
