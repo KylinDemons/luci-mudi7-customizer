@@ -25,6 +25,7 @@ METHODS = {
     'status': {},
     'stock_i18n': {'action': ''},
     'gl_ui_unlock': {'action': ''},
+    'set_goodcloud_region': {'region': '', 'confirm': True},
     'set_screen': {'enabled': True},
     'set_screen_language': {'language': ''},
     'set_screen_modules': {'modules': []},
@@ -65,6 +66,56 @@ def read_int(path):
         return int(battery.read(path))
     except (OSError, ValueError):
         return None
+
+
+def set_goodcloud_region(region, confirm):
+    if confirm is not True:
+        raise ValueError('Please confirm the GoodCloud region switch first.')
+    servers = {'cn': 'gslb.gl-inet.cn', 'global': 'gslb-eu.goodcloud.xyz'}
+    if not isinstance(region, str) or region not in servers:
+        raise ValueError('Invalid GoodCloud server region.')
+    server = servers[region]
+    option = 'gl-cloud.@cloud[0].server'
+
+    try:
+        changes = subprocess.run(
+            ['uci', '-q', 'changes', 'gl-cloud'], check=True, capture_output=True, timeout=3,
+        ).stdout
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise RuntimeError('Unable to read the GoodCloud configuration.') from exc
+    if changes.strip():
+        raise RuntimeError('GoodCloud has pending configuration changes. Apply or discard them first.')
+
+    try:
+        result = subprocess.run(
+            ['ubus', '-t', '10', 'call', 'gl-cloud', 'unbind'], check=True, capture_output=True, timeout=11,
+        )
+        reply = json.loads(result.stdout) if result.stdout.strip() else {}
+        if not isinstance(reply, dict) or reply.get('code', 0) != 0:
+            raise ValueError('Unexpected unbind response.')
+    except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        raise RuntimeError('Unable to unbind GoodCloud. The server region was not changed.') from exc
+
+    # Keep a failed commit from leaving a staged server change in the shared UCI directory.
+    try:
+        with TemporaryDirectory(prefix='mudi7-goodcloud-', dir='/tmp') as savedir:
+            uci = ['uci', '-q', '-t', savedir]
+            subprocess.run([*uci, 'set', f'{option}={server}'], check=True, timeout=3)
+            subprocess.run([*uci, 'commit', 'gl-cloud'], check=True, timeout=3)
+        saved = subprocess.run(
+            ['uci', '-q', 'get', option], check=True, capture_output=True, text=True, timeout=3,
+        ).stdout
+        if saved.strip() != server:
+            raise ValueError('Unexpected GoodCloud server after commit.')
+    except (OSError, ValueError, subprocess.SubprocessError) as exc:
+        raise RuntimeError('GoodCloud was unbound, but the server region could not be saved.') from exc
+
+    try:
+        if service('gl-cloud', 'restart'):
+            return
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    raise RuntimeError('The server region was saved, but GoodCloud could not restart.')
 
 
 def set_link_tracking(ipv4, ipv6):
@@ -214,6 +265,8 @@ def handle(method, args):
         return {'job_id': gl_ui_unlock.schedule(args.get('action'))}
     if method == 'stock_i18n':
         stock_i18n.operate(args.get('action'))
+    elif method == 'set_goodcloud_region':
+        set_goodcloud_region(args.get('region'), args.get('confirm'))
     elif method == 'set_screen_modules':
         set_modules(args.get('modules'))
     elif method == 'set_screen_language':

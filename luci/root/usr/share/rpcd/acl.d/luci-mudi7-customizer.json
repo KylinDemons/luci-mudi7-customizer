@@ -22,6 +22,7 @@
           "cleanup",
           "stock_i18n",
           "gl_ui_unlock",
+          "set_goodcloud_region",
           "set_screen_language",
           "set_screen_modules"
         ],

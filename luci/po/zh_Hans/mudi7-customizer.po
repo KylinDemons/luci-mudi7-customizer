@@ -480,8 +480,8 @@ msgstr "地址已保存，多线负载服务重启失败。请再应用一次。
 msgid "GL Admin Panel Simplified Chinese feature unlock"
 msgstr "GL管理界面简体中文功能解锁"
 
-msgid "Unlock access to VPN and other features in Simplified Chinese."
-msgstr "解锁简体中文语言下VPN等功能的入口"
+msgid "Unlock access to VPN and other features in Simplified Chinese (Please use it reasonably in accordance with relevant local laws and regulations, and bear the consequences at your own risk)."
+msgstr "解锁简体中文语言下VPN等功能的入口（请在符合当地相关法律法规的情况下合理使用，后果自负）"
 
 msgid "Apply unlock"
 msgstr "应用解锁"
@@ -539,3 +539,45 @@ msgstr "无效的 GL 管理界面解锁操作。"
 #, javascript-format
 msgid "The GL Admin Panel operation failed at %s."
 msgstr "GL 管理界面操作失败（%s）。"
+
+msgid "Switch GoodCloud server region"
+msgstr "切换GoodCloud云服务区域"
+
+msgid "Switch the GL.iNet account login server in one click"
+msgstr "一键切换GL.iNet账户登录服务器"
+
+msgid "Switch to Mainland China server"
+msgstr "切换为中国大陆服务器"
+
+msgid "Switch to Global server"
+msgstr "切换为全球服务器"
+
+msgid "Switch server regions? This will unbind the existing GoodCloud account and disconnect any remote session. Perform this action on the local network to avoid losing access to the device."
+msgstr "确定要切换服务器区域吗？切换时会解除现有云服务绑定，如果您是远程登录，此操作会断开连接。请在局域网内执行以免设备失联。"
+
+msgid "Confirm switch"
+msgstr "确认切换"
+
+msgid "GoodCloud server region switched."
+msgstr "已切换 GoodCloud 云服务区域。"
+
+msgid "Please confirm the GoodCloud region switch first."
+msgstr "请先确认切换 GoodCloud 云服务区域。"
+
+msgid "Invalid GoodCloud server region."
+msgstr "无效的 GoodCloud 云服务区域。"
+
+msgid "Unable to read the GoodCloud configuration."
+msgstr "无法读取 GoodCloud 配置。"
+
+msgid "GoodCloud has pending configuration changes. Apply or discard them first."
+msgstr "GoodCloud 有待提交的配置更改，请先应用或取消这些更改。"
+
+msgid "Unable to unbind GoodCloud. The server region was not changed."
+msgstr "无法解绑 GoodCloud，服务器区域未更改。"
+
+msgid "GoodCloud was unbound, but the server region could not be saved."
+msgstr "GoodCloud 已解绑，但服务器区域保存失败。"
+
+msgid "The server region was saved, but GoodCloud could not restart."
+msgstr "服务器区域已保存，但 GoodCloud 服务重启失败。"

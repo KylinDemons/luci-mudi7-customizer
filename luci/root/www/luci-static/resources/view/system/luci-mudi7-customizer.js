@@ -8,6 +8,7 @@ var object = 'luci-mudi7-customizer';
 var status = rpc.declare({ object: object, method: 'status', reject: true });
 var setStockI18n = rpc.declare({ object: object, method: 'stock_i18n', params: ['action'], reject: true });
 var setGlUiUnlock = rpc.declare({ object: object, method: 'gl_ui_unlock', params: ['action'], reject: true });
+var setGoodCloudRegion = rpc.declare({ object: object, method: 'set_goodcloud_region', params: ['region', 'confirm'], reject: true });
 var setScreenModules = rpc.declare({ object: object, method: 'set_screen_modules', params: ['modules'], reject: true });
 var setScreenLanguage = rpc.declare({ object: object, method: 'set_screen_language', params: ['language'], reject: true });
 var setScreen = rpc.declare({ object: object, method: 'set_screen', params: ['enabled'], reject: true });
@@ -164,6 +165,7 @@ return view.extend({
 			restoreStock.disabled = busy || !available || !stockData.can_restore;
 			applyUnlock.disabled = busy || !available || unlockData.pending || unlockData.state !== 'original';
 			restoreUnlock.disabled = busy || !available || unlockData.pending || !unlockData.can_restore;
+			cloudButtons.forEach(function (button) { button.disabled = busy || !available; });
 			battery.disabled = target.disabled = save.disabled = busy || !available;
 			ruleGroup.disabled = saveGroup.disabled = busy || !available;
 			clean.disabled = busy || !available || unlockData.pending;
@@ -347,6 +349,32 @@ return view.extend({
 			click: function () { return startUnlock('restore'); }
 		}, _("Restore changes"));
 
+		var cloudFeedback = E('p', { role: 'status', 'aria-live': 'polite' });
+		function confirmCloudSwitch(region) {
+			ui.showModal(_("Switch GoodCloud server region"), [
+				E('p', {}, _("Switch server regions? This will unbind the existing GoodCloud account and disconnect any remote session. Perform this action on the local network to avoid losing access to the device.")),
+				E('div', { 'class': 'right' }, [
+					E('button', { 'class': 'btn', type: 'button', click: ui.hideModal }, _("Cancel")), ' ',
+					E('button', {
+						'class': 'btn cbi-button cbi-button-negative', type: 'button', click: function () {
+							ui.hideModal();
+							return apply(function () { return setGoodCloudRegion(region, true); },
+								_("GoodCloud server region switched."), null, cloudFeedback);
+						}
+					}, _("Confirm switch"))
+				])
+			]);
+		}
+		var cloudButtons = [
+			['cn', _("Switch to Mainland China server")],
+			['global', _("Switch to Global server")]
+		].map(function (option) {
+			return E('button', {
+				'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true,
+				click: function () { confirmCloudSwitch(option[0]); }
+			}, option[1]);
+		});
+
 		var save = E('button', { 'class': 'btn cbi-button cbi-button-apply', type: 'button', disabled: true }, _("Apply charge limit settings"));
 		save.addEventListener('click', function () {
 			var threshold = Number(target.value), enabled = battery.checked;
@@ -439,6 +467,11 @@ return view.extend({
 				unlockState,
 				unlockWarning,
 				E('p', {}, [applyUnlock, ' ', restoreUnlock])
+			]),
+			section(_("Switch GoodCloud server region"), [
+				E('p', {}, _("Switch the GL.iNet account login server in one click")),
+				E('p', {}, [cloudButtons[0], ' ', cloudButtons[1]]),
+				cloudFeedback
 			]),
 			section(_("Custom screen"), [
 				E('p', {}, [E('label', {}, [_("Interface language"), ' ', screenLanguage])]),

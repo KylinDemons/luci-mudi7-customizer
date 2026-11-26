@@ -403,6 +403,48 @@ msgstr ""
 msgid "Invalid GL Admin Panel unlock action."
 msgstr ""
 
+msgid "Switch GoodCloud server region"
+msgstr ""
+
+msgid "Switch the GL.iNet account login server in one click"
+msgstr ""
+
+msgid "Switch to Mainland China server"
+msgstr ""
+
+msgid "Switch to Global server"
+msgstr ""
+
+msgid "Switch server regions? This will unbind the existing GoodCloud account and disconnect any remote session. Perform this action on the local network to avoid losing access to the device."
+msgstr ""
+
+msgid "Confirm switch"
+msgstr ""
+
+msgid "GoodCloud server region switched."
+msgstr ""
+
+msgid "Please confirm the GoodCloud region switch first."
+msgstr ""
+
+msgid "Invalid GoodCloud server region."
+msgstr ""
+
+msgid "Unable to read the GoodCloud configuration."
+msgstr ""
+
+msgid "GoodCloud has pending configuration changes. Apply or discard them first."
+msgstr ""
+
+msgid "Unable to unbind GoodCloud. The server region was not changed."
+msgstr ""
+
+msgid "GoodCloud was unbound, but the server region could not be saved."
+msgstr ""
+
+msgid "The server region was saved, but GoodCloud could not restart."
+msgstr ""
+
 #, javascript-format
 msgid "The GL Admin Panel operation failed at %s."
 msgstr ""
