@@ -1,0 +1,568 @@
+diff --git a/src/chips.c b/src/chips.c
+index 88e03ef..b5e6c10 100644
+--- a/src/chips.c
++++ b/src/chips.c
+@@ -49,5 +49,5 @@ invalid:
+ }
+ 
+-int qb_get_sgm41600_info(struct qb_manager *cm)
++int qb_get_sgm41600_info(struct qb_manager *cm, bool refresh_limits)
+ {
+     struct qb_sgm41600 next = cm->pump;
+@@ -55,10 +55,13 @@ int qb_get_sgm41600_info(struct qb_manager *cm)
+     int debug_value;
+ 
++    if (refresh_limits &&
++        (qb_read_int(QB_SGM41600_PATH, "vbus_ocp_ua", &next.vbus_ocp_ua) < 0 ||
++         qb_read_int(QB_SGM41600_PATH, "vbus_ovp_uv", &next.vbus_ovp_uv) < 0 ||
++         qb_read_int(QB_SGM41600_PATH, "bat_ovp_uv", &next.bat_ovp_uv) < 0 ||
++         qb_read_int(QB_SGM41600_PATH, "bat_ocp_ua", &next.bat_ocp_ua) < 0 ||
++         qb_read_int(QB_SGM41600_PATH, "vbus_adc", &next.vbus_adc_mv) < 0))
++        goto invalid;
++
+     if (qb_read_int(QB_SGM41600_PATH, "charge_en", &next.charge_en) < 0 ||
+-        qb_read_int(QB_SGM41600_PATH, "vbus_ocp_ua", &next.vbus_ocp_ua) < 0 ||
+-        qb_read_int(QB_SGM41600_PATH, "vbus_ovp_uv", &next.vbus_ovp_uv) < 0 ||
+-        qb_read_int(QB_SGM41600_PATH, "bat_ovp_uv", &next.bat_ovp_uv) < 0 ||
+-        qb_read_int(QB_SGM41600_PATH, "bat_ocp_ua", &next.bat_ocp_ua) < 0 ||
+-        qb_read_int(QB_SGM41600_PATH, "vbus_adc", &next.vbus_adc_mv) < 0 ||
+         qb_read_int(QB_SGM41600_PATH, "ibus_adc", &next.ibus_adc_ma) < 0 ||
+         qb_read_int(QB_SGM41600_PATH, "vbat_adc", &next.vbat_adc_mv) < 0 ||
+@@ -193,5 +196,5 @@ int qb_set_sgm41600(struct qb_manager *cm, const char *attr, const char *value)
+ {
+     int rc = qb_write_str(QB_SGM41600_PATH, attr, value);
+-    qb_get_sgm41600_info(cm);
++    qb_get_sgm41600_info(cm, true);
+     return rc;
+ }
+@@ -472,5 +475,5 @@ void qb_enable_buck(struct qb_manager *cm, struct qb_pd_port *port)
+             qb_request_pdo(port, 12000, port->fixed_12v_current_ma);
+             cm->buck_input_current_ua = 1500000;
+-            cm->buck_charge_current_ua = cm->charge_current_ma;
++            cm->buck_charge_current_ua = qb_effective_charge_current(cm);
+             qb_set_sgm41542_int(cm, "ibus_iindpm", cm->buck_input_current_ua);
+         } else if (port->fixed_9v) {
+diff --git a/src/core.c b/src/core.c
+index ca66919..24126ba 100644
+--- a/src/core.c
++++ b/src/core.c
+@@ -9,5 +9,5 @@ bool qb_pump_allowed(struct qb_manager *cm, struct qb_pd_port *port, int vbat_mv
+     return qb_battery_present(cm) && cm->pump.telemetry_valid &&
+            port->telemetry_valid && cm->battery.telemetry_valid &&
+-           cm->charge_current_ma > 0 && !cm->pump_error &&
++           qb_effective_charge_current(cm) > 0 && !cm->pump_error &&
+            !port->pump_handoff_complete && qb_pps_enabled(cm) &&
+            qb_pump_entry_voltage_ok(cm, vbat_mv) &&
+@@ -116,5 +116,5 @@ void qb_pump_pps_control(struct qb_manager *cm)
+ 
+     if (vbat < target_mv - QB_PUMP_CV_LOWER_MARGIN_MV &&
+-        cm->pump.ibat_adc_ma < cm->charge_current_ma - 300) {
++        cm->pump.ibat_adc_ma < qb_effective_charge_current(cm) - 300) {
+         next = cm->pps_voltage_mv +
+                (near_limit ? QB_PPS_VOLTAGE_STEP_MV : 100);
+@@ -128,5 +128,5 @@ void qb_pump_pps_control(struct qb_manager *cm)
+ 
+     if (vbat > target_mv ||
+-        cm->pump.ibat_adc_ma > cm->charge_current_ma || vbat > 4300) {
++        cm->pump.ibat_adc_ma > qb_effective_charge_current(cm) || vbat > 4300) {
+         adjustment_mv = 50;
+         if (near_limit)
+@@ -161,7 +161,8 @@ void qb_fixed_charge_control(struct qb_manager *cm)
+ {
+     int vbus = cm->buck.vbus_adc_mv;
+-    int current_ceiling_ma =
+-        cm->charge_current_ma > 0 ? cm->charge_current_ma : 0;
++    int current_ceiling_ma = qb_effective_charge_current(cm);
+ 
++    if (current_ceiling_ma < 0)
++        current_ceiling_ma = 0;
+     if (!vbus)
+         return;
+diff --git a/src/main.c b/src/main.c
+index 60aaef5..f73305a 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -25,5 +25,6 @@ static void qb_manager_init(struct qb_manager *cm)
+     cm->max_pd_vbus_mv = QB_STOCK_MAX_PPS_VOLTAGE_MV;
+     cm->full_voltage_mv = 4400;
+-    cm->charge_current_ma = QB_STOCK_MAX_CURRENT_MA;
++    atomic_init(&cm->charge_current_ma, QB_STOCK_MAX_CURRENT_MA);
++    atomic_init(&cm->capacity_charge_hold, false);
+     cm->fixed_charge_current_ma = 300;
+     cm->mode = QB_MODE_NONE;
+@@ -68,5 +69,5 @@ int main(void)
+     qb_get_port_info(&cm->pdb, true);
+     qb_get_sgm41542_info(cm);
+-    qb_get_sgm41600_info(cm);
++    qb_get_sgm41600_info(cm, true);
+     if (qb_battery_present(cm))
+         qb_get_battery_info(cm);
+diff --git a/src/monitors.c b/src/monitors.c
+index 870e419..ce6c5e6 100644
+--- a/src/monitors.c
++++ b/src/monitors.c
+@@ -8,5 +8,5 @@ static bool qb_pump_ready_for(struct qb_manager *cm, struct qb_pd_port *port)
+            cm->battery.telemetry_valid && port->working &&
+            port->telemetry_valid && !cm->pump_error &&
+-           qb_pps_enabled(cm) && cm->charge_current_ma > 0 &&
++           qb_pps_enabled(cm) && qb_effective_charge_current(cm) > 0 &&
+            port->supports_pps && qb_battery_present(cm) &&
+            port->power_role == QB_ROLE_SINK &&
+@@ -94,5 +94,5 @@ static unsigned qb_pump_poll_interval_ms(const struct qb_manager *cm)
+ }
+ 
+-static int qb_check_pump_regulation(struct qb_manager *cm)
++static int qb_check_pump_regulation(struct qb_manager *cm, int *irq)
+ {
+     unsigned long long irq_count;
+@@ -100,7 +100,8 @@ static int qb_check_pump_regulation(struct qb_manager *cm)
+     unsigned fault2;
+     int previous_pps_mv;
++    int previous_irq = *irq;
+ 
+-    if (qb_read_irq_count(QB_PROC_INTERRUPTS, QB_SGM41600_IRQ_LABEL,
+-                          &irq_count) < 0)
++    if (qb_read_irq_count_cached(QB_PROC_INTERRUPTS, QB_IRQ_SYSFS_ROOT,
++                                 QB_SGM41600_IRQ_LABEL, irq, &irq_count) < 0)
+         return -1;
+     if (!cm->pump_irq_valid) {
+@@ -109,5 +110,5 @@ static int qb_check_pump_regulation(struct qb_manager *cm)
+         return 0;
+     }
+-    if (!cm->pump_regulation_retreating &&
++    if (!cm->pump_regulation_retreating && previous_irq == *irq &&
+         irq_count == cm->pump_irq_count)
+         return 0;
+@@ -144,5 +145,7 @@ static void qb_pump_run_port(struct qb_manager *cm, struct qb_pd_port *port, int
+ {
+     int initial_current;
+-    int measured_vbus_mv;
++    int measured_vbus_mv = -1;
++    int pump_irq = -1;
++    unsigned limit_refresh_elapsed_ms = 0;
+     if (qb_program_pump_voltage_limit(cm) < 0) {
+         qb_pump_fallback_to_buck(cm, port, index);
+@@ -153,5 +156,5 @@ static void qb_pump_run_port(struct qb_manager *cm, struct qb_pd_port *port, int
+     cm->pps_voltage_mv =
+         qb_pump_start_voltage_mv(cm, cm->pump.vbat_adc_mv);
+-    initial_current = (cm->charge_current_ma / 200) * 100;
++    initial_current = (qb_effective_charge_current(cm) / 200) * 100;
+     if (!qb_request_pdo(port, cm->pps_voltage_mv, initial_current)) {
+         qb_pump_fallback_to_buck(cm, port, index);
+@@ -181,5 +184,5 @@ static void qb_pump_run_port(struct qb_manager *cm, struct qb_pd_port *port, int
+     }
+     port->pump_handoff_samples = 0;
+-    if (qb_check_pump_regulation(cm) < 0) {
++    if (qb_check_pump_regulation(cm, &pump_irq) < 0) {
+         QBLOG(0x5a5, "%s", "pump regulation monitor unavailable");
+         qb_pump_fallback_to_buck(cm, port, index);
+@@ -190,14 +193,22 @@ static void qb_pump_run_port(struct qb_manager *cm, struct qb_pd_port *port, int
+         int previous_pps_mv = cm->pps_voltage_mv;
+         int regulation_adjusted;
++        unsigned poll_ms = qb_pump_poll_interval_ms(cm);
++        bool refresh_limits;
+ 
+-        if (qb_interruptible_sleep_ms(cm, qb_pump_poll_interval_ms(cm)))
++        if (qb_interruptible_sleep_ms(cm, poll_ms))
+             return;
+         if (cm->charge_mode_switching || !qb_battery_present(cm))
+             return;
+-        if (qb_get_sgm41600_info(cm) < 0) {
++
++        // Keep checking configuration at the normal cadence during fine adjustment.
++        limit_refresh_elapsed_ms += poll_ms;
++        refresh_limits = limit_refresh_elapsed_ms >= QB_PUMP_CONTROL_INTERVAL_MS;
++        if (qb_get_sgm41600_info(cm, refresh_limits) < 0) {
+             qb_pump_fallback_to_buck(cm, port, index);
+             return;
+         }
+-        regulation_adjusted = qb_check_pump_regulation(cm);
++        if (refresh_limits)
++            limit_refresh_elapsed_ms = 0;
++        regulation_adjusted = qb_check_pump_regulation(cm, &pump_irq);
+         if (regulation_adjusted < 0) {
+             QBLOG(0x5a5, "%s", "pump regulation fault");
+@@ -273,5 +284,5 @@ static bool qb_buck_ready_for(struct qb_manager *cm, struct qb_pd_port *port)
+     return cm->buck.working && cm->buck.telemetry_valid &&
+            cm->battery.telemetry_valid && port->working &&
+-           port->telemetry_valid && cm->charge_current_ma > 0 &&
++           port->telemetry_valid && qb_effective_charge_current(cm) > 0 &&
+            qb_battery_present(cm) && port->power_role == QB_ROLE_SINK &&
+            cm->temp_status >= QB_TEMP_COOL &&
+diff --git a/src/qb.h b/src/qb.h
+index 03b37d8..f1de806 100644
+--- a/src/qb.h
++++ b/src/qb.h
+@@ -3,4 +3,5 @@
+ 
+ #include <pthread.h>
++#include <stdatomic.h>
+ #include <stdbool.h>
+ #include <stddef.h>
+@@ -42,4 +43,5 @@
+ #define QB_SGM41600_IRQ_LABEL "2-006f"
+ #define QB_PROC_INTERRUPTS "/proc/interrupts"
++#define QB_IRQ_SYSFS_ROOT "/sys/kernel/irq"
+ 
+ #define QB_LOG_FLAG "/tmp/quec_battery_log"
+@@ -215,5 +217,5 @@ struct qb_manager {
+ 
+     int full_voltage_mv;
+-    int charge_current_ma;
++    atomic_int charge_current_ma;
+     int pps_voltage_mv;
+     int qc_max_voltage_mv;
+@@ -240,5 +242,5 @@ struct qb_manager {
+     int programmed_buck_voltage_mv;
+     int programmed_pump_voltage_mv;
+-    bool capacity_charge_hold;
++    atomic_bool capacity_charge_hold;
+     unsigned capacity_stop_samples;
+     unsigned capacity_resume_samples;
+@@ -285,5 +287,5 @@ bool qb_pps_voltage_matches(int requested_mv, int measured_mv);
+ 
+ int qb_get_sgm41542_info(struct qb_manager *cm);
+-int qb_get_sgm41600_info(struct qb_manager *cm);
++int qb_get_sgm41600_info(struct qb_manager *cm, bool refresh_limits);
+ int qb_get_battery_info(struct qb_manager *cm);
+ enum qb_battery_presence qb_battery_presence_from_raw(int raw_present);
+@@ -361,5 +363,13 @@ int qb_read_register_pair(const char *dir,
+ int qb_read_irq_count(const char *path, const char *label,
+                       unsigned long long *count);
++int qb_read_irq_count_cached(const char *path, const char *root,
++                             const char *label, int *irq,
++                             unsigned long long *count);
+ int qb_interruptible_sleep_ms(struct qb_manager *cm, unsigned milliseconds);
++static inline int qb_effective_charge_current(const struct qb_manager *cm)
++{
++    return cm->capacity_charge_hold ? 0 : cm->charge_current_ma;
++}
++
+ bool qb_update_capacity_charge_limit(struct qb_manager *cm);
+ void qb_update_charge_limits(struct qb_manager *cm);
+diff --git a/src/thermal.c b/src/thermal.c
+index 99c1bf6..3ae61ac 100644
+--- a/src/thermal.c
++++ b/src/thermal.c
+@@ -1,3 +1,4 @@
+ #include "qb.h"
++#include "mudi7_control.h"
+ 
+ #include <dlfcn.h>
+@@ -298,6 +299,4 @@ bool qb_update_capacity_charge_limit(struct qb_manager *cm)
+     }
+ 
+-    if (cm->capacity_charge_hold)
+-        cm->charge_current_ma = 0;
+     return cm->capacity_charge_hold != previous_hold;
+ }
+@@ -494,4 +493,5 @@ void *qb_gauge_monitor(void *arg)
+     time_t next_cycle_update = 0;
+     bool cycle_timer_started = false;
++    bool limit_changed = false;
+     struct timespec cycle_clock;
+ 
+@@ -516,4 +516,6 @@ void *qb_gauge_monitor(void *arg)
+         time_t now;
+ 
++        if (mudi7_reload_limit(cm))
++            limit_changed = true;
+         presence_status = qb_get_battery_online(cm);
+         if (presence_status < 0) {
+@@ -522,4 +524,5 @@ void *qb_gauge_monitor(void *arg)
+             qb_disable_pump(cm);
+             qb_disable_buck(cm);
++            mudi7_publish_battery_state(cm, qb_adapter_online(cm), false);
+             QBLOG(0x9ed, "battery presence unavailable raw:%d\n",
+                   cm->battery.raw_present);
+@@ -533,4 +536,5 @@ void *qb_gauge_monitor(void *arg)
+             cm->charge_current_ma = 0;
+             cm->temp_status = QB_TEMP_OVERHEAT;
++            mudi7_publish_battery_state(cm, qb_adapter_online(cm), false);
+             QBLOG(0x9ed, "battery telemetry unavailable failures:%u\n",
+                   cm->battery.telemetry_failures);
+@@ -541,10 +545,23 @@ void *qb_gauge_monitor(void *arg)
+             cm->battery.temp_decic = -5;
+         qb_update_charge_limits(cm);
+-        capacity_changed = qb_update_capacity_charge_limit(cm);
++        if (limit_changed) {
++            bool previous_hold = cm->capacity_charge_hold;
++
++            cm->capacity_charge_hold = qb_battery_present(cm) &&
++                cm->charge_limit_percent > 0 &&
++                cm->battery.capacity >= cm->charge_limit_percent;
++            cm->capacity_stop_samples = 0;
++            cm->capacity_resume_samples = 0;
++            capacity_changed = cm->capacity_charge_hold != previous_hold;
++            limit_changed = false;
++        } else {
++            capacity_changed = qb_update_capacity_charge_limit(cm);
++        }
++        adapter_online = qb_adapter_online(cm);
+         if (capacity_changed) {
+             QBLOG(0x9ed, "capacity charge hold:%d capacity:%d limit:%d\n",
+                   cm->capacity_charge_hold, cm->battery.capacity,
+                   cm->charge_limit_percent);
+-            if (qb_battery_present(cm) && qb_adapter_online(cm)) {
++            if (qb_battery_present(cm) && adapter_online) {
+                 pthread_mutex_lock(&cm->reset_mutex);
+                 qb_reset_charge_state(cm);
+@@ -554,9 +571,10 @@ void *qb_gauge_monitor(void *arg)
+         }
+ 
++        mudi7_publish_battery_state(cm, adapter_online, true);
+         QBLOG(0x9ed, "capacity:%d temp:%d current:%d mA vbat:%d mV full:%d mV "
+               "charge:%d mA present:%d temp_status:%d mode:%d work_mode:%d",
+               cm->battery.capacity, cm->battery.temp_decic,
+               cm->battery.current_ma, cm->buck.vbat_adc_mv,
+-              cm->full_voltage_mv, cm->charge_current_ma,
++              cm->full_voltage_mv, qb_effective_charge_current(cm),
+               cm->battery.raw_present, cm->temp_status, cm->mode, cm->work_mode);
+ 
+@@ -569,5 +587,4 @@ void *qb_gauge_monitor(void *arg)
+             }
+ 
+-            adapter_online = qb_adapter_online(cm);
+             if (cm->battery.capacity < 1 && !adapter_online) {
+                 qb_mos_off(cm, 0);
+diff --git a/src/util.c b/src/util.c
+index ea9f9db..94d4ed1 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -1,4 +1,5 @@
+ #include "qb.h"
+ 
++#include <ctype.h>
+ #include <errno.h>
+ #include <fcntl.h>
+@@ -134,6 +135,6 @@ int qb_read_register_pair(const char *dir,
+ }
+ 
+-int qb_read_irq_count(const char *path, const char *label,
+-                      unsigned long long *count)
++static int qb_scan_irq_count(const char *path, const char *label,
++                             unsigned long long *count, int *irq)
+ {
+     FILE *fp;
+@@ -150,4 +151,12 @@ int qb_read_irq_count(const char *path, const char *label,
+         if (!strstr(line, label) || !(cursor = strchr(line, ':')))
+             continue;
++        if (irq) {
++            long number;
++
++            errno = 0;
++            number = strtol(line, &end, 10);
++            if (!errno && end == cursor && number >= 0 && number <= INT_MAX)
++                *irq = (int)number;
++        }
+         cursor++;
+         for (;;) {
+@@ -176,4 +185,65 @@ int qb_read_irq_count(const char *path, const char *label,
+ }
+ 
++int qb_read_irq_count(const char *path, const char *label,
++                      unsigned long long *count)
++{
++    return qb_scan_irq_count(path, label, count, NULL);
++}
++
++static int qb_read_irq_sysfs(const char *root, const char *label, int irq,
++                             unsigned long long *count)
++{
++    char path[128];
++    char buffer[256];
++    const char *cursor = buffer;
++    unsigned long long total = 0;
++    int length = snprintf(path, sizeof(path), "%s/%d/", root, irq);
++
++    if (length < 0 || (size_t)length >= sizeof(path) ||
++        qb_read_str(path, "actions", buffer, sizeof(buffer)) < 0 ||
++        strcmp(buffer, label) != 0)
++        return -1;
++    length = qb_read_str(path, "per_cpu_count", buffer, sizeof(buffer));
++    if (length <= 0 || (size_t)length >= sizeof(buffer) - 2)
++        return -1;
++
++    for (;;) {
++        unsigned long long value;
++        char *end;
++
++        if (!isdigit((unsigned char)*cursor))
++            return -1;
++        errno = 0;
++        value = strtoull(cursor, &end, 10);
++        if (errno || ULLONG_MAX - total < value)
++            return -1;
++        total += value;
++        if (!*end)
++            break;
++        if (*end != ',')
++            return -1;
++        cursor = end + 1;
++    }
++    *count = total;
++    return 0;
++}
++
++int qb_read_irq_count_cached(const char *path, const char *root,
++                             const char *label, int *irq,
++                             unsigned long long *count)
++{
++    int found_irq = -1;
++
++    if (*irq >= 0 && qb_read_irq_sysfs(root, label, *irq, count) == 0)
++        return 0;
++
++    *irq = -1;
++    if (qb_scan_irq_count(path, label, count, &found_irq) < 0)
++        return -1;
++    if (found_irq >= 0 && qb_read_irq_sysfs(root, label, found_irq, count) == 0)
++        *irq = found_irq;
++    return 0;
++}
++
+ int qb_update_register(const char *dir, unsigned reg, unsigned mask,
+                        unsigned value)
+diff --git a/src/watchdog.c b/src/watchdog.c
+index 43e49c9..578353b 100644
+--- a/src/watchdog.c
++++ b/src/watchdog.c
+@@ -1,3 +1,4 @@
+ #include "qb.h"
++#include "mudi7_control.h"
+ 
+ #include <errno.h>
+@@ -133,4 +134,5 @@ void *qb_watchdog_monitor(void *arg)
+         qb_run_system("echo 0 > /sys/devices/platform/hypervisor/"
+                       "hypervisor:qcom,gh-watchdog/user_pet_enabled");
++        mudi7_watchdog_state(MUDI7_WATCHDOG_DISABLED);
+         return NULL;
+     }
+@@ -183,7 +185,10 @@ void *qb_watchdog_monitor(void *arg)
+                 feed_failures = 0;
+             }
++            mudi7_watchdog_state(feed_failures || read_failures ?
++                                  MUDI7_WATCHDOG_PENDING : MUDI7_WATCHDOG_ACTIVE);
+             if (!qb_watchdog_sleep(cm, 5))
+                 break;
+         }
++        mudi7_watchdog_state(MUDI7_WATCHDOG_PENDING);
+         close(fd);
+     }
+diff --git a/tests/behavior.c b/tests/behavior.c
+index 0ce2810..8d416d8 100644
+--- a/tests/behavior.c
++++ b/tests/behavior.c
+@@ -3,4 +3,5 @@
+ #include <assert.h>
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+ #include <sys/stat.h>
+@@ -516,19 +517,18 @@ static void test_capacity_charge_limit(void)
+     assert(qb_update_capacity_charge_limit(&cm));
+     assert(cm.capacity_charge_hold);
+-    assert(cm.charge_current_ma == 0);
++    assert(qb_effective_charge_current(&cm) == 0);
+ 
+     cm.battery.capacity = 78;
+     cm.charge_current_ma = 1000;
+     assert(!qb_update_capacity_charge_limit(&cm));
+-    assert(cm.capacity_charge_hold && cm.charge_current_ma == 0);
++    assert(cm.capacity_charge_hold && qb_effective_charge_current(&cm) == 0);
+     cm.battery.capacity = 77;
+-    cm.charge_current_ma = 1000;
++    cm.battery.temp_decic = 360;
++    qb_update_charge_limits(&cm);
+     assert(!qb_update_capacity_charge_limit(&cm));
+-    cm.charge_current_ma = 1000;
+     assert(!qb_update_capacity_charge_limit(&cm));
+-    cm.charge_current_ma = 1000;
+     assert(qb_update_capacity_charge_limit(&cm));
+     assert(!cm.capacity_charge_hold);
+-    assert(cm.charge_current_ma == 1000);
++    assert(qb_effective_charge_current(&cm) == 1000);
+ 
+     cm.battery.capacity = 80;
+@@ -542,5 +542,5 @@ static void test_capacity_charge_limit(void)
+     cm.charge_current_ma = 1000;
+     assert(!qb_update_capacity_charge_limit(&cm));
+-    assert(cm.capacity_charge_hold && cm.charge_current_ma == 0);
++    assert(cm.capacity_charge_hold && qb_effective_charge_current(&cm) == 0);
+     cm.battery.presence = QB_BATTERY_ABSENT;
+     assert(qb_update_capacity_charge_limit(&cm));
+@@ -556,4 +556,5 @@ static void test_capacity_charge_limit(void)
+     cm.capacity_charge_hold = true;
+     cm.battery.capacity = 80;
++    cm.battery.temp_decic = 200;
+     qb_power_limit_state = 0;
+     qb_update_charge_limits(&cm);
+@@ -561,5 +562,5 @@ static void test_capacity_charge_limit(void)
+     assert(cm.charge_current_ma == QB_STOCK_MAX_CURRENT_MA);
+     assert(!qb_update_capacity_charge_limit(&cm));
+-    assert(cm.charge_current_ma == 0);
++    assert(qb_effective_charge_current(&cm) == 0);
+ }
+ 
+@@ -650,4 +651,55 @@ static void test_charge_voltage_limit(void)
+ }
+ 
++static void test_cached_irq_count(void)
++{
++    char root[] = "/tmp/qb-irq-test-XXXXXX";
++    char directory[96];
++    char path[128];
++    unsigned long long count;
++    int irq = -1;
++
++    assert(mkdtemp(root) != NULL);
++    snprintf(directory, sizeof(directory), "%s/151/", root);
++    assert(mkdir(directory, 0700) == 0);
++    snprintf(path, sizeof(path), "%s/interrupts", root);
++    write_test_file(root, "/interrupts", " 151: 7 3 0 0 msmgpio 19 Edge 2-006f\n");
++
++    assert(qb_read_irq_count_cached(path, root, QB_SGM41600_IRQ_LABEL,
++                                    &irq, &count) == 0);
++    assert(irq == -1 && count == 10);
++
++    write_test_file(directory, "actions", "2-006f\n");
++    write_test_file(directory, "per_cpu_count", "7,4,0,0\n");
++    assert(qb_read_irq_count_cached(path, root, QB_SGM41600_IRQ_LABEL,
++                                    &irq, &count) == 0);
++    assert(irq == 151 && count == 11);
++
++    write_test_file(directory, "per_cpu_count", "8,4,0,0\n");
++    assert(qb_read_irq_count_cached("/missing-interrupts", root,
++                                    QB_SGM41600_IRQ_LABEL, &irq, &count) == 0);
++    assert(irq == 151 && count == 12);
++
++    write_test_file(directory, "per_cpu_count", "8,broken\n");
++    assert(qb_read_irq_count_cached(path, root, QB_SGM41600_IRQ_LABEL,
++                                    &irq, &count) == 0);
++    assert(irq == -1 && count == 10);
++
++    write_test_file(directory, "per_cpu_count", "9,5,0,0\n");
++    write_test_file(directory, "actions", "unrelated\n");
++    assert(qb_read_irq_count_cached(path, root, QB_SGM41600_IRQ_LABEL,
++                                    &irq, &count) == 0);
++    assert(irq == -1 && count == 10);
++    assert(unlink(path) == 0);
++    assert(qb_read_irq_count_cached(path, root, QB_SGM41600_IRQ_LABEL,
++                                    &irq, &count) == -1);
++
++    snprintf(path, sizeof(path), "%sactions", directory);
++    assert(unlink(path) == 0);
++    snprintf(path, sizeof(path), "%sper_cpu_count", directory);
++    assert(unlink(path) == 0);
++    assert(rmdir(directory) == 0);
++    assert(rmdir(root) == 0);
++}
++
+ static void test_initial_temperature_policy(void)
+ {
+@@ -1046,4 +1098,5 @@ int main(void)
+     test_capacity_charge_limit();
+     test_charge_voltage_limit();
++    test_cached_irq_count();
+     test_initial_temperature_policy();
+     test_temperature_policy_matrix();

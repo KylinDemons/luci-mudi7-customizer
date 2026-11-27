@@ -29,6 +29,7 @@ from urllib.parse import quote
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+import battery_control
 import screen_pin
 import screen_i18n
 from screen_modules import MODULES, get_modules, selected_index
@@ -1606,22 +1607,13 @@ PICKER_TOP, PICKER_BOTTOM = 38, 316
 PANEL_NAMES = list(MODULES)
 
 
-# Charge-limit settings and status come from the independent controller.
 def battery_snapshot():
-    def read_json(path):
-        try:
-            return json.loads(Path(path).read_text())
-        except (OSError, ValueError):
-            return {}
-    cfg = dict(enabled=False, threshold=80)
-    cfg.update(read_json(CONFIG_DIR / "battery_config.json"))
-    status = read_json("/var/run/mudi7-customizer/battery.json")
-    return cfg, status
+    return battery_control.snapshot()
 
 
 def battery_action(action, value):
     cmd = [sys.executable, str(Path(__file__).with_name("battery_control.py")), action, str(value)]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=12)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
     return result.returncode == 0, (result.stderr.strip() or "Charge setting applied")
 
 
@@ -1641,14 +1633,13 @@ def panel_battery(conn_type=None, cell_signal=None, current=None):
     img, d = new_canvas()
     a = ACCENT["battery"]
     draw_header(d, tr("BATTERY"), a, conn_type, cell_signal)
-    # The controller backs off to a 30 s heartbeat when no adapter is attached,
-    # so allow one missed tick before calling the service dead.
-    healthy = time.time() - st.get("updated", 0) < 45 and not st.get("error")
-    pct = st.get("capacity")
+    raw_pct, plugged = get_battery() or (None, False)
+    pct = battery_control.gauge_to_display(raw_pct) if raw_pct is not None else None
     centered_text(d, 66, 42, f"{pct}%" if pct is not None else "--%", font("default_bold", 28), a)
-    d.text((125, 47), tr("USB power") if st.get("online") else tr("On battery"), font=font("default_medium", 12), fill=FG)
+    power = tr("USB power") if st.get("online", plugged) else tr("On battery")
+    d.text((125, 47), power, font=font("default_medium", 12), fill=FG)
     d.text((125, 65), tr("Mudi 7 scale"), font=font("default_medium", 11), fill=DIM)
-    message = st.get("message", tr("Service unavailable")) if healthy else st.get("error") or tr("Service unavailable")
+    message = st.get("error") or st.get("message") or tr("Service unavailable")
     centered_text(d, W / 2, 88, truncate_to_width(d, tr(message), font("default_medium", 12), 220), font("default_medium", 12), DIM)
     d.text((16, 116), tr("Charge limit"), font=font("default_bold", 15), fill=FG)
     draw_toggle(d, 174, 112, bool(cfg["enabled"]), a, w=50, h=26)

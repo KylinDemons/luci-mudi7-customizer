@@ -478,7 +478,7 @@ return view.extend({
 				E('p', {}, [applyStock, ' ', restoreStock])
 			]),
 			section(_("GL Admin Panel Simplified Chinese feature unlock"), [
-				E('p', {}, _("Unlock access to VPN and other features in Simplified Chinese.")),
+				E('p', {}, _("Unlock access to VPN and other features in Simplified Chinese (Please use it reasonably in accordance with relevant local laws and regulations, and bear the consequences at your own risk).")),
 				unlockState,
 				unlockWarning,
 				E('p', {}, [applyUnlock, ' ', restoreUnlock])

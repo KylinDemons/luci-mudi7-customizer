@@ -8,6 +8,7 @@ if [ "${1:-}" = remove ] && [ -d /etc/mudi7-stock-i18n ]; then
 fi
 if [ "${1:-}" = remove ]; then
     /usr/bin/python3 /usr/libexec/mudi7-customizer/gl_ui_unlock.py restore-if-needed
+    /usr/bin/python3 /usr/libexec/mudi7-customizer/battery_control.py deactivate
 fi
 
 # If the custom dashboard is currently the active screen, switch back to
@@ -17,9 +18,6 @@ if [ -x /etc/init.d/mudi7-dashboard ] &&
     { /etc/init.d/mudi7-dashboard enabled || /etc/init.d/mudi7-dashboard running; } 2>/dev/null; then
     /usr/libexec/mudi7-customizer/toggle.sh off || true
 fi
-
-/etc/init.d/batterycontrol stop 2>/dev/null || true
-/etc/init.d/batterycontrol disable 2>/dev/null || true
 
 /etc/init.d/homebutton stop 2>/dev/null || true
 /etc/init.d/homebutton disable 2>/dev/null || true

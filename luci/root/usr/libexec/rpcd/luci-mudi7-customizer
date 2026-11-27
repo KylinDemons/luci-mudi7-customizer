@@ -7,7 +7,6 @@ import shutil
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
-import time
 
 sys.dont_write_bytecode = True
 DASH = Path('/usr/libexec/mudi7-customizer')
@@ -163,21 +162,18 @@ def set_link_tracking(ipv4, ipv6):
 
 
 def status():
-    cfg = battery.load(battery.CONFIG, battery.DEFAULT)
-    state = battery.load(battery.STATE, {})
-    running = service('batterycontrol', 'running')
+    cfg, state = battery.snapshot()
     gauge = read_int(battery.BAT / 'capacity')
     voltage = read_int(battery.BAT / 'voltage_now')
     online = read_int(battery.ONLINE)
     supported = battery.supported()
-    fresh = 0 <= time.time() - state.get('updated', 0) < 25
     threshold = cfg['threshold']
-    gauge_stop = next((n for n in range(101) if battery.gauge_to_display(n) >= threshold), None)
+    gauge_stop = battery.gauge_threshold(threshold)
     if not supported:
         control = 'unsupported'
     elif not cfg['enabled']:
         control = 'off'
-    elif not running or not fresh:
+    elif not state:
         control = 'inactive'
     elif state.get('error'):
         control = 'error'
@@ -209,54 +205,12 @@ def status():
     }
 
 
-def restore_pump():
-    """Re-enable the charge pump on teardown.
-
-    battery.release() deliberately leaves the pump alone: while the package is
-    installed the vendor daemon re-mirrors it on the next plug event, and
-    switching it back early can undo a gate that is still meant to hold. A
-    cleanup is different -- nothing of ours is left to fix it later, and on
-    supplies that actually reach the pump (9 V PD / PPS; its input sits behind
-    an 11.5 V OVP, so 12 V heads never get there) charge_en=0 would keep the
-    pack from charging until the next replug. Writing 1 cannot cost anything:
-    the vendor daemon owns this pin and rewrites it on its own schedule.
-    """
-    try:
-        if battery.read(battery.PUMP) != '1':
-            battery.PUMP.write_text('1\n')
-    except OSError:
-        pass
-
-
 def cleanup():
     if stock_i18n.BACKUP.exists():
         stock_i18n.operate('restore')
     run('Switch to the stock screen', DASH / 'toggle.sh', 'disable')
-    if not service('batterycontrol', 'disable'):
-        raise RuntimeError('Unable to disable charge limit service autostart.')
-    # procd refuses to stop an instance that is already gone; only a service
-    # that is still running after a failed stop is a real problem.
-    if not service('batterycontrol', 'stop') and service('batterycontrol', 'running'):
-        raise RuntimeError('The charge limit service failed to stop. Please try again.')
-
-    # Wait for the daemon's shutdown handler. Keep its original voltage record
-    # until the restoration has succeeded, including after an unclean exit.
-    runtime = battery.STATE.parent
-    if runtime.exists():
-        deadline = time.monotonic() + 5
-        with battery.DAEMON_LOCK.open('a') as daemon_lock, battery.LOCK.open('a') as lock:
-            for fd in (daemon_lock, lock):
-                while True:
-                    try:
-                        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-                        break
-                    except BlockingIOError:
-                        if time.monotonic() >= deadline:
-                            raise RuntimeError('The charge limit service has not stopped yet. Please try again.')
-                        time.sleep(0.05)
-            battery.release()
-            restore_pump()
-    labels = {'mudi7-dashboard': 'Custom screen', 'homebutton': 'Button switching', 'batterycontrol': 'Charge limit'}
+    battery.deactivate()
+    labels = {'mudi7-dashboard': 'Custom screen', 'homebutton': 'Button switching'}
     leftover = [labels[name] for name in labels if service(name, 'running')]
     if leftover:
         raise TranslatableError('These services are still running. Please try again later: %s', leftover)
@@ -264,7 +218,7 @@ def cleanup():
         raise RuntimeError('The stock screen has not started yet. Please try again.')
 
     for directory in (
-        runtime, Path('/tmp/mudi7-customizer'),
+        battery.RUNTIME, Path('/tmp/mudi7-customizer'),
         DASH / '__pycache__', battery.ROOT,
     ):
         try:
@@ -296,8 +250,6 @@ def handle(method, args):
         enabled, threshold = args.get('enabled'), args.get('threshold')
         if type(enabled) is not bool or type(threshold) is not int or not 50 <= threshold <= 100:
             raise ValueError('The charge target must be an integer from 50 to 100.')
-        battery.LOCK.parent.mkdir(parents=True, exist_ok=True)
-        battery.ensure_daemon()
         battery.operate('configure', (enabled, threshold))
     elif method == 'set_rule_group':
         set_rule_group(args.get('name'))

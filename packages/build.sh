@@ -1,5 +1,5 @@
 #!/bin/sh
-# Usage: packages/build.sh /absolute/path/to/dependency-ipks
+# Usage: packages/build.sh DIRECTORY_WITH_DEPENDENCY_IPKS QUEC_BATTERY2_CHECKOUT
 # Stages the native libraries from pinned GL.iNet feed packages.
 #
 # ipk format note: despite looking similar to a .deb, this is NOT an ar
@@ -9,11 +9,12 @@
 # building it as an ar archive (the classic ipkg/dpkg convention many
 # guides describe) makes real opkg reject it as "Malformed package file".
 set -e
-if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
-    echo "usage: $0 DIRECTORY_WITH_PILLOW_AND_FREETYPE_IPKS" >&2
+if [ "$#" -ne 2 ] || [ ! -d "$1" ] || [ ! -d "$2" ]; then
+    echo "usage: $0 DIRECTORY_WITH_DEPENDENCY_IPKS QUEC_BATTERY2_CHECKOUT" >&2
     exit 1
 fi
 DEP_DIR=$(cd "$1" && pwd)
+QUEC_SOURCE=$(cd "$2" && pwd)
 cd "$(dirname "$0")"
 python3 ../tools/validate-stock-i18n.py
 
@@ -26,7 +27,8 @@ trap 'rm -rf "$WORK"' EXIT
 
 mkdir -p "$WORK/data/usr/libexec/mudi7-customizer" "$WORK/data/etc/init.d" "$WORK/data/lib/upgrade/keep.d"
 cp ../src/*.py ../src/*.sh "$WORK/data/usr/libexec/mudi7-customizer/"
-cp ../init.d/batterycontrol ../init.d/mudi7-dashboard ../init.d/homebutton "$WORK/data/etc/init.d/"
+cp ../init.d/mudi7-dashboard ../init.d/homebutton "$WORK/data/etc/init.d/"
+./quec-battery2/build.sh "$QUEC_SOURCE" "$WORK/data/usr/libexec/mudi7-customizer/quec_battery"
 chmod 755 "$WORK/data/usr/libexec/mudi7-customizer/"* "$WORK/data/etc/init.d/"*
 
 cp -R ../luci/root/. "$WORK/data/"
